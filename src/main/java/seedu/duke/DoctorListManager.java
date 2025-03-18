@@ -12,4 +12,8 @@ public class DoctorListManager {
     public static void listDoctors() {
         DoctorLister.listAllDoctors(doctorList);
     }
+
+    public static void addDoctor(Doctor doctor) {
+        doctorList.add(doctor);
+    }
 }

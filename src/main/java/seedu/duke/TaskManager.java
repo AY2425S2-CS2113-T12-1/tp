@@ -12,10 +12,10 @@ public class TaskManager {
 //            showHelp();
             break;
         case "register":
-//            registerPatient(arguments);
+            Registration.registerPatient(arguments);
             break;
         case "oncall":
-//            registerDoctor(arguments);
+            Registration.registerDoctor(arguments);
             break;
         case "patient":
 //            viewPatient(arguments);
