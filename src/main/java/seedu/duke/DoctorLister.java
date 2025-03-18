@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class DoctorLister {
     public static final String LINE_BREAK = "================================";
 
-    public static void printAllDoctors(ArrayList<Doctor> doctorList) {
+    public static void listAllDoctors(ArrayList<Doctor> doctorList) {
         printListDoctorHeader(doctorList.size());
         int doctorIndex = 1;
         for (Doctor doctor : doctorList) {
