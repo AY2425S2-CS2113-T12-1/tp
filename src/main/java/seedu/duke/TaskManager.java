@@ -10,10 +10,10 @@ public class TaskManager {
 //            showHelp();
             break;
         case "register":
-//            registerPatient(arguments);
+            Registration.registerPatient(arguments);
             break;
         case "oncall":
-//            registerDoctor(arguments);
+            Registration.registerDoctor(arguments);
             break;
         case "patient":
 //            viewPatient(arguments);
@@ -48,7 +48,7 @@ public class TaskManager {
         case "exit":
             System.out.println("Exiting MediNote...");
             MediNote.setIsMedinoteOn(false);
-            return;
+            break;
         default:
             System.out.println("Invalid command. Type 'help' for a list of commands.");
             break;
