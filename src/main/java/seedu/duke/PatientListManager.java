@@ -10,8 +10,10 @@ public class PatientListManager {
     }
 
     public static void listPatients() {
-        Patient newPatient = new Patient("jiaen", "dry skin between ring finger and pinky, hair turning white", "today", "allergic to prawn", "not treated", "siqiang");
-        patientList.add(newPatient);
         PatientLister.listAllPatients(patientList);
+    }
+
+    public static void addPatient(Patient patient) {
+        patientList.add(patient);
     }
 }
