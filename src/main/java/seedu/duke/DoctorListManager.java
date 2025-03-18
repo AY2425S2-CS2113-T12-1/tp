@@ -10,6 +10,6 @@ public class DoctorListManager {
     }
 
     public static void listDoctors() {
-        DoctorLister.printAllDoctors(doctorList);
+        DoctorLister.listAllDoctors(doctorList);
     }
 }
