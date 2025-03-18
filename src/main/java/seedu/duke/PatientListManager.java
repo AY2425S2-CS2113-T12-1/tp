@@ -12,4 +12,8 @@ public class PatientListManager {
     public static void listPatients() {
         PatientLister.listAllPatients(patientList);
     }
+
+    public static void addPatient(Patient patient) {
+        patientList.add(patient);
+    }
 }
