@@ -1,10 +1,12 @@
 package seedu.duke;
 
-import java.util.ArrayList;
 
 public class TaskManager {
 
-    public static void checkCommand(String command, String arguments) {
+    public static void checkCommand(String input) {
+        String[] words = input.split(" ", 2);
+        String command = words[0].toLowerCase();
+        String arguments = words.length > 1 ? words[1] : "";
         switch (command) {
         case "help":
 //            showHelp();
@@ -23,9 +25,9 @@ public class TaskManager {
             break;
         case "list":
             if (arguments.equals("patient")) {
-                PatientLister.listPatients();
+                PatientListManager.listPatients();
             } else if (arguments.equals("doctor")) {
-//                listDoctors();
+                DoctorListManager.listDoctors();
             } else {
                 System.out.println("Invalid list command.");
             }
@@ -47,7 +49,6 @@ public class TaskManager {
             break;
         case "exit":
             System.out.println("Exiting MediNote...");
-            MediNote.setIsMedinoteOn(false);
             break;
         default:
             System.out.println("Invalid command. Type 'help' for a list of commands.");

@@ -14,9 +14,10 @@ public class Registration {
 
             if (patientInfo.length == 4) {
                 Patient patient = new Patient(patientInfo[0].trim(), patientInfo[1].trim(), patientInfo[2].trim(), patientInfo[3].trim(), "NA", "NA");
+                PatientListManager.addPatient(patient);
                 System.out.println("Patient " + patientInfo[0].trim() + " successfully registered as patient!");
             } else {
-                throw new IllegalArgumentException("Compulsory patient details are not entered.\nExpected Format: reigster/name/symptoms/timestamp/medical history. Please re-enter.");
+                throw new IllegalArgumentException("Compulsory patient details are not entered.\nExpected Format: reigster name/symptoms/timestamp/medical history. Please re-enter.");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -35,9 +36,10 @@ public class Registration {
 
             if (doctorInfo.length == 2) {
                 Doctor doctor = new Doctor (doctorInfo[0].trim(), doctorInfo[1].trim(), "NA", "NA");
+                DoctorListManager.addDoctor(doctor);
                 System.out.println("Doctor " + doctorInfo[0].trim() + " successfully registered as doctor!");
             } else {
-                throw new IllegalArgumentException("Compulsory doctor details are not entered.\nExpected Format: oncall/name/specialisation. Please re-enter.");
+                throw new IllegalArgumentException("Compulsory doctor details are not entered.\nExpected Format: oncall name/specialisation. Please re-enter.");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
