@@ -76,4 +76,5 @@ public class Ui {
     public static void printEmptyRow() {
         System.out.printf("%-20s | %-80s%n", "", "");
     }
+
 }
