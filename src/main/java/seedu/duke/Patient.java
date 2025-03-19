@@ -41,4 +41,11 @@ public class Patient {
         return doctorAssigned;
     }
 
+    public void setTreatmentStatus(String treatmentStatus) {
+        this.treatmentStatus = treatmentStatus;
+    }
+
+    public void setDoctorAssigned(String doctorAssigned) {
+        this.doctorAssigned = doctorAssigned;
+    }
 }
