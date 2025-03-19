@@ -42,10 +42,18 @@ public class TaskManager {
             }
             break;
         case "discharge":
-//            dischargePatient(arguments);
+            if (arguments.startsWith("patient")) {
+                PatientDischarger.dischargePatient(arguments.substring((8)));
+            } else {
+                System.out.println("Invalid discharge patient command.");
+            }
             break;
         case "delete":
-//            deleteDoctor(arguments);
+            if(arguments.startsWith("doctor")) {
+                DoctorDeleter.deleteDoctor(arguments.substring(7));
+            } else {
+                System.out.println("Invalid delete doctor command.");
+            }
             break;
         case "exit":
             System.out.println("Exiting MediNote...");
