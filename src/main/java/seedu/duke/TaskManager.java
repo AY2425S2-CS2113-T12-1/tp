@@ -9,7 +9,7 @@ public class TaskManager {
         String arguments = words.length > 1 ? words[1] : "";
         switch (command) {
         case "help":
-//            showHelp();
+            Ui.printHelpTable();
             break;
         case "register":
             Registration.registerPatient(arguments);
@@ -24,28 +24,36 @@ public class TaskManager {
 //            viewDoctor(arguments);
             break;
         case "list":
-            if (arguments.equals("patient")) {
-                PatientListManager.listPatients();
-            } else if (arguments.equals("doctor")) {
-                DoctorListManager.listDoctors();
+            if (arguments.startsWith("patient")) {
+                PatientUpdater.updatePatient(arguments.substring(8));
+            } else if (arguments.startsWith("doctor")) {
+                DoctorUpdater.updateDoctor(arguments.substring(7));
             } else {
-                System.out.println("Invalid list command.");
+                System.out.println("Invalid update command.");
             }
             break;
         case "update":
             if (arguments.startsWith("patient")) {
-//                updatePatient(arguments.substring(8));
+                updatePatient(arguments.substring(8));
             } else if (arguments.startsWith("doctor")) {
-//                updateDoctor(arguments.substring(7));
+                updateDoctor(arguments.substring(7));
             } else {
                 System.out.println("Invalid update command.");
             }
             break;
         case "discharge":
-//            dischargePatient(arguments);
+            if (arguments.startsWith("patient")) {
+                PatientDischarger.dischargePatient(arguments.substring((8)));
+            } else {
+                System.out.println("Invalid discharge patient command.");
+            }
             break;
         case "delete":
-//            deleteDoctor(arguments);
+            if(arguments.startsWith("doctor")) {
+                DoctorDeleter.deleteDoctor(arguments.substring(7));
+            } else {
+                System.out.println("Invalid delete doctor command.");
+            }
             break;
         case "exit":
             System.out.println("Exiting MediNote...");
