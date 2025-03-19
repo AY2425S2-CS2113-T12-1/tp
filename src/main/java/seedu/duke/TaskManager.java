@@ -24,6 +24,15 @@ public class TaskManager {
 //            viewDoctor(arguments);
             break;
         case "list":
+            if (arguments.equals("patient")) {
+                PatientListManager.listPatients();
+            } else if (arguments.equals("doctor")) {
+                DoctorListManager.listDoctors();
+            } else {
+                System.out.println("Invalid list command.");
+            }
+            break;
+        case "update":
             if (arguments.startsWith("patient")) {
                 PatientUpdater.updatePatient(arguments.substring(8));
             } else if (arguments.startsWith("doctor")) {
@@ -32,25 +41,16 @@ public class TaskManager {
                 System.out.println("Invalid update command.");
             }
             break;
-        case "update":
-            if (arguments.startsWith("patient")) {
-                updatePatient(arguments.substring(8));
-            } else if (arguments.startsWith("doctor")) {
-                updateDoctor(arguments.substring(7));
-            } else {
-                System.out.println("Invalid update command.");
-            }
-            break;
         case "discharge":
             if (arguments.startsWith("patient")) {
-                PatientDischarger.dischargePatient(arguments.substring((8)));
+                PatientDischarger.dischargePatient(arguments.substring((7)));
             } else {
                 System.out.println("Invalid discharge patient command.");
             }
             break;
         case "delete":
             if(arguments.startsWith("doctor")) {
-                DoctorDeleter.deleteDoctor(arguments.substring(7));
+                DoctorDeleter.deleteDoctor(arguments.substring(6));
             } else {
                 System.out.println("Invalid delete doctor command.");
             }
