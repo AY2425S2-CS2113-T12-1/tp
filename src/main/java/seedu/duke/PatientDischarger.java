@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class PatientDischarger {
     public static void dischargePatient(String patientName) {
+        patientName = patientName.trim();
         if(patientName.isEmpty()) {
             System.out.println("Please provide a patient name and try again.");
             return;
@@ -19,6 +20,5 @@ public class PatientDischarger {
         }
 
         System.out.println("Patient with name \"" + patientName + "\" was not found");
-        return;
     }
 }

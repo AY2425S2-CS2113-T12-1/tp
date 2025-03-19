@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class DoctorDeleter {
     public static void deleteDoctor(String doctorName) {
+        doctorName = doctorName.trim();
         if(doctorName.isEmpty()) {
             System.out.println("Please provide a doctor name and try again.");
             return;
@@ -19,6 +20,5 @@ public class DoctorDeleter {
         }
 
         System.out.println("Doctor with name \"" + doctorName + "\" was not found");
-        return;
     }
 }
