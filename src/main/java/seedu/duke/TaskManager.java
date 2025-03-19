@@ -43,7 +43,7 @@ public class TaskManager {
             break;
         case "discharge":
             if (arguments.startsWith("patient")) {
-                PatientDischarger.dischargePatient(arguments.substring((8));
+                PatientDischarger.dischargePatient(arguments.substring((8)));
             } else {
                 System.out.println("Invalid discharge patient command.");
             }
