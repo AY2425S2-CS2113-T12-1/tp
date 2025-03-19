@@ -29,4 +29,8 @@ public class Doctor {
         return patientsBeingTreated;
     }
 
+    public void setAvailability(String availability) {this.availability = availability;}
+
+    public void setCurrentPatient(String patientName) { this.patientsBeingTreated = patientName;}
+
 }
