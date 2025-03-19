@@ -34,9 +34,9 @@ public class TaskManager {
             break;
         case "update":
             if (arguments.startsWith("patient")) {
-//                updatePatient(arguments.substring(8));
+                updatePatient(arguments.substring(8));
             } else if (arguments.startsWith("doctor")) {
-//                updateDoctor(arguments.substring(7));
+                updateDoctor(arguments.substring(7));
             } else {
                 System.out.println("Invalid update command.");
             }
