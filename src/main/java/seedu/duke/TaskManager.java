@@ -24,12 +24,12 @@ public class TaskManager {
 //            viewDoctor(arguments);
             break;
         case "list":
-            if (arguments.equals("patient")) {
-                PatientListManager.listPatients();
-            } else if (arguments.equals("doctor")) {
-                DoctorListManager.listDoctors();
+            if (arguments.startsWith("patient")) {
+                PatientUpdater.updatePatient(arguments.substring(8));
+            } else if (arguments.startsWith("doctor")) {
+                DoctorUpdater.updateDoctor(arguments.substring(7));
             } else {
-                System.out.println("Invalid list command.");
+                System.out.println("Invalid update command.");
             }
             break;
         case "update":

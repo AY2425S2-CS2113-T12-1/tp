@@ -6,7 +6,6 @@ public class MediNote {
 
 
 
-
     public static void main(String[] args) {
         final Scanner userLineScanner = new Scanner(System.in);
         String userInput = "";
