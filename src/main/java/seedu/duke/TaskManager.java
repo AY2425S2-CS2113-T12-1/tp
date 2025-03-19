@@ -9,7 +9,7 @@ public class TaskManager {
         String arguments = words.length > 1 ? words[1] : "";
         switch (command) {
         case "help":
-            printHelpTable();
+            Ui.printHelpTable();
             break;
         case "register":
             Registration.registerPatient(arguments);
