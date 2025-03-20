@@ -1,4 +1,7 @@
-package seedu.duke;
+package seedu.medinote.commands;
+
+import seedu.medinote.person.Doctor;
+import seedu.medinote.manager.DoctorListManager;
 
 public class DoctorUpdater {
     public static void updateDoctor(String doctorDetails) {

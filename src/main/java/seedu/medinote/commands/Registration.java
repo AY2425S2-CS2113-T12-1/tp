@@ -1,4 +1,9 @@
-package seedu.duke;
+package seedu.medinote.commands;
+
+import seedu.medinote.person.Doctor;
+import seedu.medinote.manager.DoctorListManager;
+import seedu.medinote.person.Patient;
+import seedu.medinote.manager.PatientListManager;
 
 public class Registration {
 
