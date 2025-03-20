@@ -8,7 +8,8 @@ public class Patient {
     private String treatmentStatus;
     private String doctorAssigned;
 
-    public Patient(String name, String symptoms, String timeStamp, String medicalHistory, String treatmentStatus, String doctorAssigned) {
+    public Patient(String name, String symptoms, String timeStamp,
+                   String medicalHistory, String treatmentStatus, String doctorAssigned) {
         this.name = name;
         this.symptoms = symptoms;
         this.timeStamp = timeStamp;
