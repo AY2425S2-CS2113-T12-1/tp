@@ -3,7 +3,8 @@ package seedu.duke;
 import java.util.ArrayList;
 
 public class PatientLister {
-    public static final String LINE_BREAK = "================================";
+    public static final String LINE_BREAK = "===============================================" +
+            "===============================================";
 
     public static void listAllPatients(ArrayList<Patient> patientList) {
         printListPatientHeader(patientList.size());
@@ -28,4 +29,5 @@ public class PatientLister {
         System.out.println(LINE_BREAK);
         System.out.println("You have " + size + " patient(s) in hospital");
     }
+
 }
