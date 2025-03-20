@@ -1,6 +1,8 @@
-package seedu.duke;
+package seedu.medinote.commands;
 
 import java.util.ArrayList;
+
+import seedu.medinote.person.Patient;
 
 public class PatientLister {
     public static final String LINE_BREAK = "===============================================" +

@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.medinote.person;
 
 public class Patient {
     private String name;

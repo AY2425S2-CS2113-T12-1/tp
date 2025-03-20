@@ -1,6 +1,8 @@
-package seedu.duke;
+package seedu.medinote.ui;
 
 import java.util.Scanner;
+
+import seedu.medinote.manager.TaskManager;
 
 public class MediNote {
 
