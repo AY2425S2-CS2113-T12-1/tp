@@ -1,4 +1,11 @@
-package seedu.duke;
+package seedu.medinote.manager;
+
+import seedu.medinote.commands.DoctorDeleter;
+import seedu.medinote.commands.DoctorUpdater;
+import seedu.medinote.commands.PatientDischarger;
+import seedu.medinote.commands.PatientUpdater;
+import seedu.medinote.commands.Registration;
+import seedu.medinote.ui.Ui;
 
 public class TaskManager {
 
