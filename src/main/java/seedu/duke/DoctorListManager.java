@@ -17,5 +17,8 @@ public class DoctorListManager {
         doctorList.add(doctor);
     }
 
-    public static void removeDoctor(Doctor doctor) { doctorList.remove(doctor); }
+    public static void removeDoctor(Doctor doctor) {
+        doctorList.remove(doctor);
+    }
+
 }
