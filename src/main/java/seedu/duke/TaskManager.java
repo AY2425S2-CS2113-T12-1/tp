@@ -1,6 +1,5 @@
 package seedu.duke;
 
-
 public class TaskManager {
 
     public static void checkCommand(String input) {
@@ -18,10 +17,10 @@ public class TaskManager {
             Registration.registerDoctor(arguments);
             break;
         case "patient":
-//            viewPatient(arguments);
+            //viewPatient(arguments);
             break;
         case "doctor":
-//            viewDoctor(arguments);
+            //viewDoctor(arguments);
             break;
         case "list":
             if (arguments.equals("patient")) {
