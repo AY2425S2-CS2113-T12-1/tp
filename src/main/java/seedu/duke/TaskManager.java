@@ -1,6 +1,5 @@
 package seedu.duke;
 
-
 public class TaskManager {
 
     public static void checkCommand(String input) {
