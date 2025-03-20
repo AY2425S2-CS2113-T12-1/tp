@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.medinote.ui;
 
 public class Ui {
 

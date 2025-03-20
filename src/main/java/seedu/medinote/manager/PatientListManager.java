@@ -1,6 +1,9 @@
-package seedu.duke;
+package seedu.medinote.manager;
 
 import java.util.ArrayList;
+
+import seedu.medinote.commands.PatientLister;
+import seedu.medinote.person.Patient;
 
 public class PatientListManager {
     private static ArrayList<Patient> patientList = new ArrayList<>();
