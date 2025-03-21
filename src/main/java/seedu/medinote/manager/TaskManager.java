@@ -1,6 +1,13 @@
 package seedu.medinote.manager;
 
-import seedu.medinote.commands.*;
+import seedu.medinote.commands.RegisterPatient;
+import seedu.medinote.commands.PatientUpdater;
+import seedu.medinote.commands.PatientDischarger;
+import seedu.medinote.commands.RegisterDoctor;
+import seedu.medinote.commands.DoctorUpdater;
+import seedu.medinote.commands.DoctorDeleter;
+
+
 import seedu.medinote.ui.Ui;
 
 public class TaskManager {
