@@ -1,10 +1,13 @@
 package seedu.medinote.manager;
 
-import seedu.medinote.commands.DoctorDeleter;
-import seedu.medinote.commands.DoctorUpdater;
-import seedu.medinote.commands.PatientDischarger;
+import seedu.medinote.commands.RegisterPatient;
 import seedu.medinote.commands.PatientUpdater;
-import seedu.medinote.commands.Registration;
+import seedu.medinote.commands.PatientDischarger;
+import seedu.medinote.commands.RegisterDoctor;
+import seedu.medinote.commands.DoctorUpdater;
+import seedu.medinote.commands.DoctorDeleter;
+
+
 import seedu.medinote.ui.Ui;
 
 public class TaskManager {
@@ -18,10 +21,10 @@ public class TaskManager {
             Ui.printHelpTable();
             break;
         case "register":
-            Registration.registerPatient(arguments);
+            RegisterPatient.registerPatient(arguments);
             break;
         case "oncall":
-            Registration.registerDoctor(arguments);
+            RegisterDoctor.registerDoctor(arguments);
             break;
         case "patient":
             //viewPatient(arguments);
