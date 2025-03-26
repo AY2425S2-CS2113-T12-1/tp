@@ -17,12 +17,12 @@ public class RegisterPatientTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
 
-        RegisterPatient regPatient = new RegisterPatient();;
+        RegisterPatient regPatient = new RegisterPatient();
         regPatient.registerPatient(input);
 
         System.setOut(out);
 
-        String expectedOutput = "\tPatient " + "Patient 1 successfully registered as patient!";
+        String expectedOutput = "\tPatient Patient 1 successfully registered as patient!";
 
         assertTrue(output.toString().contains(expectedOutput));
     }
@@ -34,7 +34,7 @@ public class RegisterPatientTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
 
-        RegisterPatient regPatient = new RegisterPatient();;
+        RegisterPatient regPatient = new RegisterPatient();
         regPatient.registerPatient("");
 
         System.setOut(out);
@@ -53,7 +53,7 @@ public class RegisterPatientTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
 
-        RegisterPatient regPatient = new RegisterPatient();;
+        RegisterPatient regPatient = new RegisterPatient();
         regPatient.registerPatient(input);
 
         System.setOut(out);
