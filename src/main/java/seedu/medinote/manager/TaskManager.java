@@ -1,5 +1,6 @@
 package seedu.medinote.manager;
 
+import seedu.medinote.commands.DoctorViewer;
 import seedu.medinote.commands.RegisterPatient;
 import seedu.medinote.commands.PatientUpdater;
 import seedu.medinote.commands.PatientDischarger;
@@ -30,7 +31,7 @@ public class TaskManager {
             //viewPatient(arguments);
             break;
         case "doctor":
-            //viewDoctor(arguments);
+            DoctorViewer.viewDoctor(arguments);
             break;
         case "list":
             if (arguments.equals("patient")) {
