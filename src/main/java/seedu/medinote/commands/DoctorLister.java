@@ -12,6 +12,7 @@ public class DoctorLister {
         int doctorIndex = 1;
         for (Doctor doctor : doctorList) {
             printOneDoctorDetails(doctorIndex, doctor);
+            doctorIndex++;
         }
         System.out.println(LINE_BREAK);
     }
