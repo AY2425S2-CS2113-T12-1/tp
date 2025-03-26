@@ -27,7 +27,7 @@ public class RegisterDoctor {
             if (doctorInfo.length == NEW_DOCTOR_PARAMETER_LENGTH) {
                 Doctor doctor = new Doctor (doctorInfo[0].trim(), doctorInfo[1].trim(), "NA", "NA");
                 DoctorListManager.addDoctor(doctor);
-                System.out.println("Doctor " + doctorInfo[0].trim() + " successfully registered as doctor!");
+                System.out.println("\tDoctor " + doctorInfo[0].trim() + " successfully registered as doctor!");
                 // Call view doctor and print out details. Omit name
             } else {
                 throw new IllegalArgumentException(MISSING_DOCTOR_DETAILS + "\n"
