@@ -10,7 +10,8 @@ public class PatientViewer {
             "===============================================";
     private static final String VIEWABLE_PATIENTS_HEADER = "\tHere is a list of viewable patients:";
     private static final String VIEW_PATIENT_FORMAT_SUGGESTION = "\tUse command format: patient <NAME>.";
-    private static final String NO_PATIENTS_MESSAGE = "\tCurrently no viewable patients! Use register to add a patient.";
+    private static final String NO_PATIENTS_MESSAGE =
+            "\tCurrently no viewable patients! Use register to add a patient.";
     private static final int INVALID_INDEX_IN_PATIENT_LIST = -1;
     private static final String NAME_POINT = "\t\t>Name: ";
     private static final String SYMPTOMS_POINT = "\t\t\t>Symptoms: ";
