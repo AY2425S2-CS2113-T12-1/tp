@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class RegisterDoctorTest {
 
     @Test
-    public void testRegisterDoctor_successfulRegistration() {
+    public void testRegisterDoctor_correctNewDoctor_successfulRegistration() {
         String input = "Doctor 1 / Cardio";
 
         PrintStream out = System.out;
