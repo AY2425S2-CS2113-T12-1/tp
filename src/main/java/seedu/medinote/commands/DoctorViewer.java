@@ -27,7 +27,12 @@ public class DoctorViewer {
     }
 
     private static void searchViewableDoctors(String targetNames) {
-        String[] targetNamesArray = targetNames.split(" +");
+        String[] targetNamesArray = targetNames.split("/");
+
+        for (int i = 0; i < targetNamesArray.length; i++) {
+            targetNamesArray[i] = targetNamesArray[i].trim();
+        }
+
         ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
         ArrayList<Integer> nameIndexList = findValidViewableDoctorIndexes(targetNamesArray, doctorList);
         printViewableDoctors(targetNamesArray, nameIndexList, doctorList);
