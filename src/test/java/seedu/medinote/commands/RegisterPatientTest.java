@@ -63,7 +63,6 @@ public class RegisterPatientTest {
                 + "\tExpected Format: register <name> / <symptoms> / <admission time> / <medical history>";
 
         assertTrue(output.toString().contains(expectedOutput));
-
     }
 
 }
