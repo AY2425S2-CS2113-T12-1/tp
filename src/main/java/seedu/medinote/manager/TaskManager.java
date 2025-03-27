@@ -1,11 +1,6 @@
 package seedu.medinote.manager;
 
-import seedu.medinote.commands.RegisterPatient;
-import seedu.medinote.commands.PatientUpdater;
-import seedu.medinote.commands.DischargeDoctor;
-import seedu.medinote.commands.RegisterDoctor;
-import seedu.medinote.commands.DoctorUpdater;
-import seedu.medinote.commands.DeleteDoctor;
+import seedu.medinote.commands.*;
 
 
 import seedu.medinote.ui.Ui;
@@ -52,7 +47,7 @@ public class TaskManager {
             break;
         case "discharge":
             if (arguments.startsWith("patient")) {
-                DischargeDoctor.dischargePatient(arguments.substring((7)));
+                DischargePatient.dischargePatient(arguments.substring((7)));
             } else {
                 System.out.println("Invalid discharge patient command.");
             }
@@ -62,6 +57,15 @@ public class TaskManager {
                 DeleteDoctor.deleteDoctor(arguments.substring(6));
             } else {
                 System.out.println("Invalid delete doctor command.");
+            }
+            break;
+        case "popular":
+            if(arguments.equals("doctor type")) {
+                ViewDoctorFrequencies.viewMostFrequentSpecialisation();
+            } else if(arguments.equals("visited doctor")) {
+                ViewDoctorFrequencies.viewMostFrequentDoctor();
+            } else {
+                System.out.println("Invalid view frequencies command.");
             }
             break;
         case "exit":
