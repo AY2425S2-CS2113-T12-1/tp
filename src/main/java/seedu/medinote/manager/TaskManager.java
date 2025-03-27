@@ -1,5 +1,14 @@
-package seedu.duke;
+package seedu.medinote.manager;
 
+import seedu.medinote.commands.RegisterPatient;
+import seedu.medinote.commands.PatientUpdater;
+import seedu.medinote.commands.DischargeDoctor;
+import seedu.medinote.commands.RegisterDoctor;
+import seedu.medinote.commands.DoctorUpdater;
+import seedu.medinote.commands.DeleteDoctor;
+
+
+import seedu.medinote.ui.Ui;
 
 public class TaskManager {
 
@@ -12,16 +21,16 @@ public class TaskManager {
             Ui.printHelpTable();
             break;
         case "register":
-            Registration.registerPatient(arguments);
+            RegisterPatient.registerPatient(arguments);
             break;
         case "oncall":
-            Registration.registerDoctor(arguments);
+            RegisterDoctor.registerDoctor(arguments);
             break;
         case "patient":
-//            viewPatient(arguments);
+            //viewPatient(arguments);
             break;
         case "doctor":
-//            viewDoctor(arguments);
+            //viewDoctor(arguments);
             break;
         case "list":
             if (arguments.equals("patient")) {
@@ -43,14 +52,14 @@ public class TaskManager {
             break;
         case "discharge":
             if (arguments.startsWith("patient")) {
-                PatientDischarger.dischargePatient(arguments.substring((7)));
+                DischargeDoctor.dischargePatient(arguments.substring((7)));
             } else {
                 System.out.println("Invalid discharge patient command.");
             }
             break;
         case "delete":
             if(arguments.startsWith("doctor")) {
-                DoctorDeleter.deleteDoctor(arguments.substring(6));
+                DeleteDoctor.deleteDoctor(arguments.substring(6));
             } else {
                 System.out.println("Invalid delete doctor command.");
             }

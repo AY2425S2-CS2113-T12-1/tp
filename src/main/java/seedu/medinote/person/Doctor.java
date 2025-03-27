@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.medinote.person;
 
 public class Doctor {
     private String name;
@@ -29,8 +29,12 @@ public class Doctor {
         return patientsBeingTreated;
     }
 
-    public void setAvailability(String availability) {this.availability = availability;}
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
 
-    public void setCurrentPatient(String patientName) { this.patientsBeingTreated = patientName;}
+    public void setCurrentPatient(String patientName) {
+        this.patientsBeingTreated = patientName;
+    }
 
 }

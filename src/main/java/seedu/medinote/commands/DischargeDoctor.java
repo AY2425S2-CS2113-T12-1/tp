@@ -1,8 +1,11 @@
-package seedu.duke;
+package seedu.medinote.commands;
 
 import java.util.ArrayList;
 
-public class PatientDischarger {
+import seedu.medinote.person.Patient;
+import seedu.medinote.manager.PatientListManager;
+
+public class DischargeDoctor {
     public static void dischargePatient(String patientName) {
         patientName = patientName.trim();
         if(patientName.isEmpty()) {

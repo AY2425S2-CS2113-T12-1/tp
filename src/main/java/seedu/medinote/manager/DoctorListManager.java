@@ -1,6 +1,9 @@
-package seedu.duke;
+package seedu.medinote.manager;
 
 import java.util.ArrayList;
+
+import seedu.medinote.commands.DoctorLister;
+import seedu.medinote.person.Doctor;
 
 public class DoctorListManager {
     private static ArrayList<Doctor> doctorList = new ArrayList<>();
@@ -17,5 +20,8 @@ public class DoctorListManager {
         doctorList.add(doctor);
     }
 
-    public static void removeDoctor(Doctor doctor) { doctorList.remove(doctor); }
+    public static void removeDoctor(Doctor doctor) {
+        doctorList.remove(doctor);
+    }
+
 }

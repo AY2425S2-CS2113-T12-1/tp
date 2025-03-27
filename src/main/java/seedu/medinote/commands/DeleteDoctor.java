@@ -1,8 +1,11 @@
-package seedu.duke;
+package seedu.medinote.commands;
 
 import java.util.ArrayList;
 
-public class DoctorDeleter {
+import seedu.medinote.person.Doctor;
+import seedu.medinote.manager.DoctorListManager;
+
+public class DeleteDoctor {
     public static void deleteDoctor(String doctorName) {
         doctorName = doctorName.trim();
         if(doctorName.isEmpty()) {

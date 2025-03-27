@@ -1,12 +1,16 @@
-package seedu.duke;
+package seedu.medinote.ui;
 
 public class Ui {
+
+    public static final String UI_LINE_BREAK = "===============================================" +
+            "===============================================";
+
     public static void printHelpTable() {
         String format = "%-20s | %-80s%n"; // Formatting for alignment
 
-        System.out.println("==============================================================================================");
+        System.out.println(UI_LINE_BREAK);
         System.out.printf(format, "Keyword", "Action");
-        System.out.println("==============================================================================================");
+        System.out.println(UI_LINE_BREAK);
 
         printRow("help", "Shows a list of commands for navigating the database");
         printEmptyRow();
@@ -66,7 +70,7 @@ public class Ui {
 
         printRow("exit", "Exits the program");
 
-        System.out.println("==============================================================================================");
+        System.out.println(UI_LINE_BREAK);
     }
 
     public static void printRow(String keyword, String action) {

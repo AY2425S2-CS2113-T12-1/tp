@@ -1,15 +1,19 @@
-package seedu.duke;
+package seedu.medinote.commands;
 
 import java.util.ArrayList;
 
+import seedu.medinote.person.Patient;
+
 public class PatientLister {
-    public static final String LINE_BREAK = "================================";
+    public static final String LINE_BREAK = "===============================================" +
+            "===============================================";
 
     public static void listAllPatients(ArrayList<Patient> patientList) {
         printListPatientHeader(patientList.size());
         int patientIndex = 1;
         for (Patient patient : patientList) {
             printOnePatientDetails(patientIndex, patient);
+            patientIndex++;
         }
         System.out.println(LINE_BREAK);
     }
@@ -28,4 +32,5 @@ public class PatientLister {
         System.out.println(LINE_BREAK);
         System.out.println("You have " + size + " patient(s) in hospital");
     }
+
 }

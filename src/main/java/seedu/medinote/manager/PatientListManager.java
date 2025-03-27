@@ -1,6 +1,9 @@
-package seedu.duke;
+package seedu.medinote.manager;
 
 import java.util.ArrayList;
+
+import seedu.medinote.commands.PatientLister;
+import seedu.medinote.person.Patient;
 
 public class PatientListManager {
     private static ArrayList<Patient> patientList = new ArrayList<>();
@@ -17,5 +20,8 @@ public class PatientListManager {
         patientList.add(patient);
     }
 
-    public static void removePatient(Patient patient) { patientList.remove(patient); }
+    public static void removePatient(Patient patient) {
+        patientList.remove(patient);
+    }
+
 }
