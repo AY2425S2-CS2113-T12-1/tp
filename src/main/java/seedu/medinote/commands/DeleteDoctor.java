@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import seedu.medinote.person.Doctor;
 import seedu.medinote.manager.DoctorListManager;
 
-public class DoctorDeleter {
+public class DeleteDoctor {
     public static void deleteDoctor(String doctorName) {
         doctorName = doctorName.trim();
         if(doctorName.isEmpty()) {

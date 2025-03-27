@@ -9,7 +9,7 @@ public class MediNote {
     public static void main(String[] args) {
         final Scanner userLineScanner = new Scanner(System.in);
         String userInput = "";
-        assert false : "test assertion failed";
+        //assert false : "test assertion failed";
 
         while (!userInput.equals("exit")) {
             userInput = userLineScanner.nextLine().trim();

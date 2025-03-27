@@ -2,10 +2,10 @@ package seedu.medinote.manager;
 
 import seedu.medinote.commands.RegisterPatient;
 import seedu.medinote.commands.PatientUpdater;
-import seedu.medinote.commands.PatientDischarger;
+import seedu.medinote.commands.DischargeDoctor;
 import seedu.medinote.commands.RegisterDoctor;
 import seedu.medinote.commands.DoctorUpdater;
-import seedu.medinote.commands.DoctorDeleter;
+import seedu.medinote.commands.DeleteDoctor;
 
 
 import seedu.medinote.ui.Ui;
@@ -52,14 +52,14 @@ public class TaskManager {
             break;
         case "discharge":
             if (arguments.startsWith("patient")) {
-                PatientDischarger.dischargePatient(arguments.substring((7)));
+                DischargeDoctor.dischargePatient(arguments.substring((7)));
             } else {
                 System.out.println("Invalid discharge patient command.");
             }
             break;
         case "delete":
             if(arguments.startsWith("doctor")) {
-                DoctorDeleter.deleteDoctor(arguments.substring(6));
+                DeleteDoctor.deleteDoctor(arguments.substring(6));
             } else {
                 System.out.println("Invalid delete doctor command.");
             }

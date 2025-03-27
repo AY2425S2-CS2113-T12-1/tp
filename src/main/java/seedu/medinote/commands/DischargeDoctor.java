@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import seedu.medinote.person.Patient;
 import seedu.medinote.manager.PatientListManager;
 
-public class PatientDischarger {
+public class DischargeDoctor {
     public static void dischargePatient(String patientName) {
         patientName = patientName.trim();
         if(patientName.isEmpty()) {
