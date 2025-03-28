@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class RegisterPatientTest {
 
     @Test
-    public void testRegisterPatient_successfulRegistration() {
+    public void testRegisterPatient_correctNewPatient_successfulRegistration() {
         String input = "Patient 1 / cough / 13:42 / peanut allergy";
 
         PrintStream out = System.out;
@@ -63,7 +63,6 @@ public class RegisterPatientTest {
                 + "\tExpected Format: register <name> / <symptoms> / <admission time> / <medical history>";
 
         assertTrue(output.toString().contains(expectedOutput));
-
     }
 
 }
