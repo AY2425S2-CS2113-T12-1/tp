@@ -1,14 +1,6 @@
 package seedu.medinote.manager;
 
-import seedu.medinote.commands.DoctorViewer;
-import seedu.medinote.commands.PatientViewer;
-import seedu.medinote.commands.RegisterDoctor;
-import seedu.medinote.commands.RegisterPatient;
-import seedu.medinote.commands.DeleteDoctor;
-import seedu.medinote.commands.DischargePatient;
-import seedu.medinote.commands.DoctorUpdater;
-import seedu.medinote.commands.PatientUpdater;
-import seedu.medinote.commands.ViewDoctorFrequencies;
+import seedu.medinote.commands.*;
 
 import seedu.medinote.ui.Ui;
 
@@ -75,9 +67,24 @@ public class TaskManager {
                 System.out.println("Invalid view frequencies command.");
             }
             break;
+        case "view":
+            if (arguments.startsWith("patient ")){
+                ViewPatientAttributes.PrintPatientAttributes(arguments.substring(8));
+            } else if (arguments.startsWith("doctor ")) {
+                ViewDoctorAttributes.PrintDoctorAttributes(arguments.substring(7));
+            }else{
+                System.out.println("Invalid view command inputed. Try: view <patient Name> <attibute>");
+            }
+            break;
+
+        case "stats":
+            OverallStatistics.ShowStatistics();
+            break;
+
         case "exit":
             System.out.println("Exiting MediNote...");
             break;
+
         default:
             System.out.println("Invalid command. Type 'help' for a list of commands.");
             break;
