@@ -43,8 +43,11 @@ public class Doctor {
     }
 
     public void setCurrentPatient(String patientName) {
-        this.patientsBeingTreated = patientName;
-        this.numPatientsTreated++;
+        patientsBeingTreated = patientName.trim();
+        if(!(patientName.trim().isEmpty() || patientName.equalsIgnoreCase("na"))) {
+            numPatientsTreated++;
+        }
+
     }
 
 }

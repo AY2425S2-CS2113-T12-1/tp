@@ -18,7 +18,7 @@ public class DischargePatient {
             String currPatientName = patient.getName();
             if(currPatientName.equalsIgnoreCase(patientName)) {
                 PatientListManager.removePatient(patient);
-                System.out.println("Patient " + patientName + " has been discharged" +
+                System.out.println("Patient " + patientName + " has been discharged " +
                         "and removed from their doctor's assignment.");
                 return;
             }
