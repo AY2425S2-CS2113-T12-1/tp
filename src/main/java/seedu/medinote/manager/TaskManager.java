@@ -63,7 +63,7 @@ public class TaskManager {
             if(arguments.equals("doctor type")) {
                 ViewDoctorFrequencies.viewMostFrequentSpecialisation();
             } else if(arguments.equals("visited doctor")) {
-                ViewDoctorFrequencies.viewMostFrequentDoctor();
+                //ViewDoctorFrequencies.viewMostFrequentDoctor();
             } else {
                 System.out.println("Invalid view frequencies command.");
             }
