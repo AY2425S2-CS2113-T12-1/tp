@@ -15,13 +15,14 @@ public class DischargePatient {
 
         ArrayList<Patient> patientList = PatientListManager.getPatientList();
         for(Patient patient : patientList) {
-            if(patient.getName().equalsIgnoreCase(patientName)) {
+            String currPatientName = patient.getName();
+            if(currPatientName.equalsIgnoreCase(patientName)) {
                 PatientListManager.removePatient(patient);
-                System.out.println("Patient " + patientName + " has been discharged.");
+                System.out.println("Patient " + patientName + " has been discharged " +
+                        "and removed from their doctor's assignment.");
                 return;
             }
         }
-
         System.out.println("Patient with name \"" + patientName + "\" was not found");
     }
 }
