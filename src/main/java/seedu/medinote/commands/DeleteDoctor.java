@@ -17,6 +17,7 @@ public class DeleteDoctor {
         for(Doctor doctor : doctorList) {
             if(doctor.getName().equalsIgnoreCase(doctorName)) {
                 DoctorListManager.removeDoctor(doctor);
+                System.out.println("Doctor " + doctorName + " has been deleted.");
                 return;
             }
         }
