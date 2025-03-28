@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import seedu.medinote.commands.PatientLister;
 import seedu.medinote.person.Patient;
 import seedu.medinote.person.Doctor;
-import seedu.medinote.manager.DoctorListManager;
 
 public class PatientListManager {
     private static ArrayList<Patient> patientList = new ArrayList<>();
@@ -27,7 +26,7 @@ public class PatientListManager {
         ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
         for(Doctor doctor : doctorList) {
             if(patient.getDoctorAssigned().equalsIgnoreCase(doctor.getName())) {
-                doctor.setCurrentPatient("NA"); // remove patient from doctor's attribute
+                doctor.setCurrentPatient("na"); // remove patient from doctor's attribute
             }
         }
     }
