@@ -26,7 +26,7 @@ public class Ui {
         printRow("oncall", "Register on-call doctor(s) with necessary details:");
         printRow("", "• <NAME>");
         printRow("", "• <SPECIALISATION>");
-        printRow("", "Format: oncall / <NAME> / <SPECIALISATION>");
+        printRow("", "Format: onCall / <NAME> / <SPECIALISATION>");
         printEmptyRow();
 
         printRow("patient", "Displays specific patient information such as:");
