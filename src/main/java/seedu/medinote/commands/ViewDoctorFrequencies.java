@@ -12,7 +12,6 @@ public class ViewDoctorFrequencies {
     public static void viewMostFrequentSpecialisation() {
         ArrayList<String> specialisations = new ArrayList<>(); // arraylist of unique specialisations
         ArrayList<Integer> counts = new ArrayList<>(); // arraylist of counts corresponding to each specialization
-        //ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
 
         // counts through list of doctors
         for (Doctor doctor : doctorList) {
@@ -36,8 +35,7 @@ public class ViewDoctorFrequencies {
         }
 
         // prints specialisations with the max frequency
-        //ArrayList<String> mostFrequentSpecialisations = new ArrayList<>();
-        System.out.println("The types of doctor most frequently visited were: ");
+        System.out.println("The type(s) of doctor most frequently visited were: ");
         for (int i = 0; i < counts.size(); i++) {
             if (counts.get(i) == maxCount) {
                 System.out.println(specialisations.get(i));
@@ -60,12 +58,12 @@ public class ViewDoctorFrequencies {
             }
         }
 
-        System.out.println("The doctors with the most patients treated and currently treating are: ");
+        System.out.println("The doctor(s) with the most patients treated and currently treating are: ");
 
         for(String doctorName : mostVisitedDoctors) {
             System.out.println(doctorName);
         }
 
-        System.out.println("These doctors each have " + maxPatients + " total visits.");
+        System.out.println("These doctor(s) each have " + maxPatients + " total visits.");
     }
 }
