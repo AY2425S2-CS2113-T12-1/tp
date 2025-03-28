@@ -1,7 +1,14 @@
 package seedu.medinote.manager;
 
-import seedu.medinote.commands.*;
-
+import seedu.medinote.commands.DoctorViewer;
+import seedu.medinote.commands.PatientViewer;
+import seedu.medinote.commands.RegisterDoctor;
+import seedu.medinote.commands.RegisterPatient;
+import seedu.medinote.commands.DeleteDoctor;
+import seedu.medinote.commands.DischargePatient;
+import seedu.medinote.commands.DoctorUpdater;
+import seedu.medinote.commands.PatientUpdater;
+import seedu.medinote.commands.ViewDoctorFrequencies;
 
 import seedu.medinote.ui.Ui;
 
