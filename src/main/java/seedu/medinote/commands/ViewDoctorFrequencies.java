@@ -45,4 +45,27 @@ public class ViewDoctorFrequencies {
         }
         System.out.println("Each of these specialisations had " + maxCount + " visits.");
     }
+
+    public static void viewMostFrequentDoctor() {
+        int maxPatients = 0;
+        ArrayList<String> mostVisitedDoctors = new ArrayList<>();
+
+        for(Doctor doctor : doctorList) {
+            if(doctor.getNumPatientsTreated() > maxPatients) {
+                maxPatients = doctor.getNumPatientsTreated();
+                mostVisitedDoctors.clear();
+            }
+            if(doctor.getNumPatientsTreated() == maxPatients) {
+                mostVisitedDoctors.add(doctor.getName());
+            }
+        }
+
+        System.out.println("The doctors with the most patients treated and currently treating are: ");
+
+        for(String doctorName : mostVisitedDoctors) {
+            System.out.println(doctorName);
+        }
+
+        System.out.println("These doctors each have " + maxPatients + " total visits.");
+    }
 }

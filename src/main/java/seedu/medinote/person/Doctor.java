@@ -5,12 +5,18 @@ public class Doctor {
     private String specialisation;
     private String availability;
     private String patientsBeingTreated;
+    private Integer numPatientsTreated; // includes patients currently treating
 
     public Doctor(String name, String specialisation, String availability, String patientsBeingTreated) {
         this.name = name;
         this.specialisation = specialisation;
         this.availability = availability;
         this.patientsBeingTreated = patientsBeingTreated;
+        if(patientsBeingTreated.trim().isEmpty() || patientsBeingTreated.equalsIgnoreCase("na")) {
+            this.numPatientsTreated = 0;
+        } else {
+            this.numPatientsTreated = 1;
+        }
     }
 
     public String getName() {
@@ -29,12 +35,16 @@ public class Doctor {
         return patientsBeingTreated;
     }
 
+    public Integer getNumPatientsTreated() {
+        return numPatientsTreated;
+    }
     public void setAvailability(String availability) {
         this.availability = availability;
     }
 
     public void setCurrentPatient(String patientName) {
         this.patientsBeingTreated = patientName;
+        this.numPatientsTreated++;
     }
 
 }
