@@ -2,10 +2,7 @@ package seedu.medinote.commands;
 
 import seedu.medinote.manager.PatientListManager;
 import seedu.medinote.person.Patient;
-
 import java.util.List;
-
-
 
 public class ViewPatientAttributes {
     private static final String LINE_BREAK = "===============================================" +

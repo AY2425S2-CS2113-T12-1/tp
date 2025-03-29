@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.person.Doctor;
 
-
-
 public class ViewDoctorFrequencies {
     private static final ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
 
@@ -35,13 +33,13 @@ public class ViewDoctorFrequencies {
         }
 
         // prints specialisations with the max frequency
-        System.out.println("The type(s) of doctor most frequently visited were: ");
+        System.out.println("The type(s) of doctor most commonly present are: ");
         for (int i = 0; i < counts.size(); i++) {
             if (counts.get(i) == maxCount) {
                 System.out.println(specialisations.get(i));
             }
         }
-        System.out.println("Each of these specialisations had " + maxCount + " visits.");
+        System.out.println("Each of these specialisations had " + maxCount + " dcotors.");
     }
 
     public static void viewMostFrequentDoctor() {
