@@ -1,3 +1,1 @@
 Dr. X|Respiratory|NA|NA|0
-Dr. Y|Skin|NA|NA|0
-Dr. Z|Respiratory|NA|NA|0

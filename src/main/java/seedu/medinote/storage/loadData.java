@@ -18,7 +18,7 @@ public class loadData {
      * Loads doctor data from file and returns an ArrayList of Doctor objects.
      *
      * @return ArrayList of Doctor objects
-     * @throws IOException If there's an error reading the file
+     * @throws IOException         If there's an error reading the file
      * @throws DataFormatException If the data format is invalid
      */
     public ArrayList<Doctor> loadDoctorData() throws IOException, DataFormatException {
@@ -44,7 +44,6 @@ public class loadData {
 
             while ((line = br.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) continue;
 
                 String[] fields = line.split(FIELD_SEPARATOR, -1); // -1 keeps empty fields
                 if (fields.length != DOCTOR_FIELD_COUNT) {
@@ -68,7 +67,7 @@ public class loadData {
      * Loads patient data from file and returns an ArrayList of Patient objects.
      *
      * @return ArrayList of Patient objects
-     * @throws IOException If there's an error reading the file
+     * @throws IOException         If there's an error reading the file
      * @throws DataFormatException If the data format is invalid
      */
     public ArrayList<Patient> loadPatientData() throws IOException, DataFormatException {
@@ -94,7 +93,6 @@ public class loadData {
 
             while ((line = br.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) continue;
 
                 String[] fields = line.split(FIELD_SEPARATOR, -1); // -1 keeps empty fields
                 if (fields.length != PATIENT_FIELD_COUNT) {
