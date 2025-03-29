@@ -20,7 +20,7 @@ public class saveData {
      * @throws IOException If there's an error writing to file
      */
     public static void saveDoctorsData(ArrayList<Doctor> doctors) throws IOException {
-        ensureFilesExist.ensureDoctorsFileExists();
+        seedu.medinote.storage.ensureFilesExist.ensureDoctorsFileExists();
 
         try (FileWriter fw = new FileWriter(DOCTOR_FILE_PATH)) {
             for (Doctor doctor : doctors) {
@@ -43,7 +43,7 @@ public class saveData {
      * @throws IOException If there's an error writing to file
      */
     public void savePatientsData(ArrayList<Patient> patients) throws IOException {
-        ensureFilesExist.ensurePatientsFileExists();
+        seedu.medinote.storage.ensureFilesExist.ensurePatientsFileExists();
 
         try (FileWriter fw = new FileWriter(PATIENT_FILE_PATH)) {
             for (Patient patient : patients) {

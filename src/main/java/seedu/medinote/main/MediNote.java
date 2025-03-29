@@ -1,10 +1,11 @@
 package seedu.medinote.main;
 
 import java.util.Scanner;
+
+import seedu.medinote.storage.ensureFilesExist;
 import seedu.medinote.storage.loadData;
 import seedu.medinote.manager.TaskManager;
 import seedu.medinote.storage.saveData;
-import seedu.medinote.storage.ensureFilesExist;
 import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.manager.PatientListManager;
 
@@ -32,7 +33,7 @@ public class MediNote {
         try {
             // Ensure files exist
             ensureFilesExist.ensureDoctorsFileExists();
-            ensureFilesExist.ensurePatientsFileExists();
+            seedu.medinote.storage.ensureFilesExist.ensurePatientsFileExists();
 
             // Load existing data
             loadData dataLoader = new loadData();
