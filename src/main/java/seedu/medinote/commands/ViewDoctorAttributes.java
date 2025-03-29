@@ -2,11 +2,7 @@ package seedu.medinote.commands;
 
 import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.person.Doctor;
-
 import java.util.List;
-
-
-
 
 public class ViewDoctorAttributes {
     private static final String LINE_BREAK = "===============================================" +

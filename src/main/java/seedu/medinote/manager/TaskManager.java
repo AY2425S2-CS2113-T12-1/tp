@@ -1,7 +1,6 @@
 package seedu.medinote.manager;
 
 import seedu.medinote.commands.*;
-
 import seedu.medinote.ui.Ui;
 
 public class TaskManager {
