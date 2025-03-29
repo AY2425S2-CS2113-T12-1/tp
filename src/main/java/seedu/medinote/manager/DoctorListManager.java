@@ -6,7 +6,6 @@ import seedu.medinote.commands.DoctorLister;
 import seedu.medinote.person.Doctor;
 import seedu.medinote.person.Patient;
 
-
 public class DoctorListManager {
     private static ArrayList<Doctor> doctorList = new ArrayList<>();
 

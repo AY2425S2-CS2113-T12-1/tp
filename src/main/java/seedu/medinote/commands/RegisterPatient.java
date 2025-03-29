@@ -2,6 +2,7 @@ package seedu.medinote.commands;
 
 import seedu.medinote.person.Patient;
 import seedu.medinote.manager.PatientListManager;
+import seedu.medinote.storage.saveData;
 
 public class RegisterPatient {
 
@@ -14,6 +15,7 @@ public class RegisterPatient {
 
     public static void registerPatient(String patientDetails) {
         System.out.println(LINE_BREAK);
+
         try {
             String[] patientInfo = patientDetails.split("/");
 
@@ -28,6 +30,12 @@ public class RegisterPatient {
                         patientInfo[2].trim(), patientInfo[3].trim(), "NA", "NA");
                 PatientListManager.addPatient(patient);
                 System.out.println("\tPatient " + patientInfo[0].trim() + " successfully registered as patient!");
+
+                try {
+                    new saveData().savePatientsData(PatientListManager.getPatientList());
+                } catch (Exception e) {
+                    System.out.println("\tError saving patient data: " + e.getMessage());
+                }
                 // Call view patient and print out details. Omit name
             } else {
                 throw new IllegalArgumentException(MISSING_PATIENT_DETAILS + "\n"
@@ -36,7 +44,9 @@ public class RegisterPatient {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+
         System.out.println(LINE_BREAK);
 
     }
+
 }
