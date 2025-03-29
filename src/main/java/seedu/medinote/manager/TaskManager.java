@@ -79,9 +79,9 @@ public class TaskManager {
             break;
         case "view":
             if (arguments.startsWith("patient ")) {
-                ViewPatientAttributes.PrintPatientAttributes(arguments.substring(8));
+                ViewPatientAttributes.printPatientAttributes(arguments.substring(8));
             } else if (arguments.startsWith("doctor ")) {
-                ViewDoctorAttributes.PrintDoctorAttributes(arguments.substring(7));
+                ViewDoctorAttributes.printDoctorAttributes(arguments.substring(7));
             } else {
                 System.out.println("Invalid view command inputed. Try: view <patient Name> <attibute>");
             }

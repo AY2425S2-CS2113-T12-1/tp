@@ -8,7 +8,7 @@ public class ViewPatientAttributes {
     private static final String LINE_BREAK = "===============================================" +
             "===============================================";
 
-    public static void PrintPatientAttributes(String attribute){
+    public static void printPatientAttributes(String attribute){
         List<Patient> patients = PatientListManager.getPatientList();
         attribute = attribute.trim().toLowerCase();
 

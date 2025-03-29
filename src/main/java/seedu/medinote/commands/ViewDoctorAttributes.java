@@ -9,7 +9,7 @@ public class ViewDoctorAttributes {
     private static final String LINE_BREAK = "===============================================" +
             "===============================================";
 
-    public static void PrintDoctorAttributes(String attribute) {
+    public static void printDoctorAttributes(String attribute) {
         List<Doctor> doctors = DoctorListManager.getDoctorList();
         attribute = attribute.trim().toLowerCase();
 
