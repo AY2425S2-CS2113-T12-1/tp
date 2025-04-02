@@ -7,6 +7,7 @@ import seedu.medinote.storage.saveData;
 
 public class DeleteDoctor {
     public static void deleteDoctor(String doctorName) {
+        assert doctorName != null: "Doctor name should not be null.";
         doctorName = doctorName.trim();
 
         if(doctorName.isEmpty()) {
@@ -15,6 +16,8 @@ public class DeleteDoctor {
         }
 
         ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
+        assert doctorList != null: "Doctor list should not be null.";
+        assert (!doctorList.isEmpty()): "Doctor list should not be empty.";
 
         for(Doctor doctor : doctorList) {
             if(doctor.getName().equalsIgnoreCase(doctorName)) {

@@ -8,6 +8,7 @@ import seedu.medinote.storage.saveData;
 
 public class DischargePatient {
     public static void dischargePatient(String patientName) {
+        assert patientName != null : "Patient name should not be null.";
         patientName = patientName.trim();
 
         if(patientName.isEmpty()) {
@@ -16,6 +17,7 @@ public class DischargePatient {
         }
 
         ArrayList<Patient> patientList = PatientListManager.getPatientList();
+        assert patientList != null : "Patient list should not be null";
 
         for(Patient patient : patientList) {
             String currPatientName = patient.getName();
