@@ -20,13 +20,13 @@ public class Ui {
         printRow("", "• <SYMPTOMS>");
         printRow("", "• <TIMESTAMP>");
         printRow("", "• <MEDICAL HISTORY>");
-        printRow("", "Format: register / <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>");
+        printRow("", "Format: register <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>");
         printEmptyRow();
 
         printRow("oncall", "Register on-call doctor(s) with necessary details:");
         printRow("", "• <NAME>");
         printRow("", "• <SPECIALISATION>");
-        printRow("", "Format: onCall / <NAME> / <SPECIALISATION>");
+        printRow("", "Format: oncall <NAME> / <SPECIALISATION>");
         printEmptyRow();
 
         printRow("patient", "Displays specific patient information such as:");

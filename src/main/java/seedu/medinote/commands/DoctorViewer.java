@@ -70,11 +70,17 @@ public class DoctorViewer {
                 printThisDoctor(doctorList.get(integer));
             }
         }
-        if (nameIndexList.contains(-1)) {
-            System.out.println("\tCould not find doctors named:");
-        }
+        int count = 0;
         for (int i = 0; i < nameIndexList.size(); i++) {
             if (nameIndexList.get(i) < 0) {
+                if (targetNamesArray[i].isEmpty()) {
+                    continue;
+                }
+
+                if (count == 0) {
+                    System.out.println("\tCould not find doctors named:");
+                    count++;
+                }
                 System.out.println("\t\t> " + targetNamesArray[i]);
             }
         }
