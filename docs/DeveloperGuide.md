@@ -6,8 +6,22 @@
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+### Overall Architecture
 
+![Architecture Diagram](./pictures/Architecture.png)  
+This Architecture Diagram represents the high-level design of MediNote.  
+
+### Main Components of Architecture
+
+Main consists of the _MediNote_ class which is in charge of startup and shutting down.  
+- At launch, if a save file exists, it will load all patient and doctor information into MediNote.  
+
+In an overview, most work is done by these components:
+- **Main**: Reads user input.
+- **Storage**: Loads and writes information as MediNote is running.
+- **Manager**: Handles overall patient, doctor information and command calls.  
+- **Commands**: Executes commands.
+- **Ui**: Prints to user *(Currently only help command)*.
 
 ## Product scope
 ### Target user profile
