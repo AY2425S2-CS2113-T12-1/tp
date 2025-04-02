@@ -17,6 +17,9 @@ via a Command Line Interface (CLI).
 - [Register a new patient: `register`](#registering-a-new-patient-register)
 - [Add a new doctor: `oncall`](#adding-a-new-doctor-oncall)
 - [View patient information: `patient NAME`](#view-patient-information-patient-name)
+- [Discharge a patient: `discharge`](#discharge-a-patient-discharge-patient-name)
+- [Delete a doctor: `delete`](#delete-a-doctor-delete-doctor-name)
+- [Display popular doctor or specialisation: `popular`](#popular)
 
 
 ### Registering a new patient: `register`
@@ -62,6 +65,36 @@ Format: `patient NAME`
 Example of usage:
 
 `patient John Pork`
+
+### Discharge a patient: `discharge patient NAME`
+Deletes patient and their corresponding information from the database.
+
+Format: `discharge patient NAME`
+
+Example of usage:
+
+`discharge patient Lebron James`
+
+### Delete a doctor: `delete doctor NAME`
+Deletes doctor and their corresponding information from the database.
+
+Format: `delete doctor NAME`
+
+Example of usage:
+
+`delete doctor Michael Jordan`
+
+### Popular
+
+#### Display most popular doctor type: `popular doctor type`
+Displays the specialisation with most patient visits. Includes patients currently being treated.
+
+Format & Example usage: popular doctor type
+
+#### Display most visited doctor: `popular visited doctor`
+Displays the doctor(s) with most patients treated. Includes patients currently being treated.
+
+Format & Example usage: popular visited doctor
 
 
 ## FAQ
