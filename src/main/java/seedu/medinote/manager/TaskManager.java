@@ -1,14 +1,17 @@
 package seedu.medinote.manager;
 
-import seedu.medinote.commands.DoctorViewer;
 import seedu.medinote.commands.RegisterPatient;
-import seedu.medinote.commands.PatientUpdater;
-import seedu.medinote.commands.DischargeDoctor;
 import seedu.medinote.commands.RegisterDoctor;
+import seedu.medinote.commands.PatientViewer;
+import seedu.medinote.commands.DoctorViewer;
+import seedu.medinote.commands.PatientUpdater;
 import seedu.medinote.commands.DoctorUpdater;
+import seedu.medinote.commands.DischargePatient;
 import seedu.medinote.commands.DeleteDoctor;
-
-
+import seedu.medinote.commands.ViewDoctorFrequencies;
+import seedu.medinote.commands.ViewDoctorAttributes;
+import seedu.medinote.commands.ViewPatientAttributes;
+import seedu.medinote.commands.OverallStatistics;
 import seedu.medinote.ui.Ui;
 
 public class TaskManager {
@@ -28,7 +31,7 @@ public class TaskManager {
             RegisterDoctor.registerDoctor(arguments);
             break;
         case "patient":
-            //viewPatient(arguments);
+            PatientViewer.viewPatient(arguments);
             break;
         case "doctor":
             DoctorViewer.viewDoctor(arguments);
@@ -53,21 +56,45 @@ public class TaskManager {
             break;
         case "discharge":
             if (arguments.startsWith("patient")) {
-                DischargeDoctor.dischargePatient(arguments.substring((7)));
+                DischargePatient.dischargePatient(arguments.substring((7)));
             } else {
                 System.out.println("Invalid discharge patient command.");
             }
             break;
         case "delete":
-            if(arguments.startsWith("doctor")) {
+            if (arguments.startsWith("doctor")) {
                 DeleteDoctor.deleteDoctor(arguments.substring(6));
             } else {
                 System.out.println("Invalid delete doctor command.");
             }
             break;
+        case "popular":
+            if (arguments.equals("doctor type")) {
+                ViewDoctorFrequencies.viewMostFrequentSpecialisation();
+            } else if (arguments.equals("visited doctor")) {
+                ViewDoctorFrequencies.viewMostFrequentDoctor();
+            } else {
+                System.out.println("Invalid view frequencies command.");
+            }
+            break;
+        case "view":
+            if (arguments.startsWith("patient ")) {
+                ViewPatientAttributes.printPatientAttributes(arguments.substring(8));
+            } else if (arguments.startsWith("doctor ")) {
+                ViewDoctorAttributes.printDoctorAttributes(arguments.substring(7));
+            } else {
+                System.out.println("Invalid view command inputed. Try: view <patient Name> <attibute>");
+            }
+            break;
+
+        case "stats":
+            OverallStatistics.showStatistics();
+            break;
+
         case "exit":
             System.out.println("Exiting MediNote...");
             break;
+
         default:
             System.out.println("Invalid command. Type 'help' for a list of commands.");
             break;
