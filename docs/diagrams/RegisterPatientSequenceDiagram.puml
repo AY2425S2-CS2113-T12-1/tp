@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+actor User
+participant ":Main"
+participant ":Manager"
+participant ":Commands"
+participant ":Storage"
+
+
+User -> ":Main" : "register John Pork/..."
+activate ":Main"
+
+":Main" -> ":Manager" : checkCommand("register John Pork/...")
+activate ":Manager"
+
+":Manager" -> ":Commands" : registerPatient("John Pork/...")
+activate ":Commands"
+
+":Commands" -> ":Storage" : savePatientsData()
+activate ":Storage"
+
+":Storage" -> ":Storage" : Save to file
+activate ":Storage"
+
+":Storage" --> ":Storage"
+deactivate ":Storage"
+
+":Storage" --> ":Commands"
+deactivate ":Storage"
+
+":Commands" --> ":Manager"
+deactivate ":Commands"
+
+":Manager" --> ":Main"
+deactivate ":Manager"
+
+":Main" --> User :Show details of registered patient
+deactivate ":Main"
+@enduml
