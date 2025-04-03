@@ -59,6 +59,8 @@ public class PatientViewer {
                 nameIndexList.add(INVALID_INDEX_IN_PATIENT_LIST);
             }
         }
+        assert nameIndexList.size() == targetNamesArray.length
+                : "nameIndexList and targetNamesArray are not the same size";
         return nameIndexList;
     }
 
@@ -91,6 +93,7 @@ public class PatientViewer {
     }
 
     private static void printThisPatient(Patient patient) {
+        assert patient != null : "patient should not be null";
         System.out.println(NAME_POINT + patient.getName());
         System.out.println(SYMPTOMS_POINT + patient.getSymptoms());
         System.out.println(TIME_STAMP_POINT + patient.getTimeStamp());
