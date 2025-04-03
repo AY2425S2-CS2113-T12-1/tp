@@ -29,7 +29,7 @@ test {
 }
 
 application {
-    mainClass.set("seedu.medinote.ui.MediNote")
+    mainClass.set("seedu.medinote.main.MediNote")
 }
 
 shadowJar {

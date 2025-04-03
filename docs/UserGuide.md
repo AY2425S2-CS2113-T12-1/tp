@@ -5,15 +5,19 @@
 MediNote is a desktop app for managing hospital information such as doctor and patient records, optimised for use 
 via a Command Line Interface (CLI).
 
-## Quick Start
+## 💡 Quick Start 💡
 
-{Give steps to get started quickly}
-
-1. Ensure that you have Java 17 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Ensure that you have **Java 17** or above installed.
+2. Down the latest version of `MediNote` from [here](https://github.com/AY2425S2-CS2113-T12-1/tp).
+3. Copy the application to the directory you want to use as the **working directory**.
+4. In your terminal, move to the directory containing the application and run it with `java -jar tP_V2.jar`.
 
 ## Features 
 
+- [Listing all patients: `list patient`](#listing-all-current-patients-list-patient)
+- [Listing all doctors: `list doctor`](#listing-all-current-doctors-list-doctor)
+- [Viewing specific doctors: `doctor`](#viewing-specified-doctor-doctor)
+- [Viewing specific patients: `patient`](#viewing-specified-patient-patient)
 - [Register a new patient: `register`](#registering-a-new-patient-register)
 - [Add a new doctor: `oncall`](#adding-a-new-doctor-oncall)
 - [View patient information: `patient NAME`](#view-patient-information-patient-name)
@@ -21,6 +25,95 @@ via a Command Line Interface (CLI).
 - [Delete a doctor: `delete`](#delete-a-doctor-delete-doctor-name)
 - [Display popular doctor or specialisation: `popular`](#popular)
 
+### Listing all current patients: `list patient`
+Lists all patients currently admitted, along with all of their attributes:<br>
+
+Format: `list patient`
+
+Example output of a list with 2 patients:
+```
+You have 2 patient(s) in hospital
+1. Mr. A:
+    >Time of Admission: 01 JAN 2025
+    >Symptoms: Cough
+    >Medical History: NA
+    >Treatment Status: NA
+    >Doctor Assigned: NA
+
+2. Si En:
+    >Time of Admission: Tomorrow
+    >Symptoms: Eye Fever
+    >Medical History: None
+    >Treatment Status: NA
+    >Doctor Assigned: NA
+```
+
+### Listing all current doctors: `list doctor`
+Lists all doctors currently working, along with all of their attributes:<br>
+
+Format: `list doctor`
+
+Example output of a list with 2 doctors:<br>
+```
+You have 2 doctor(s) in hospital
+1. Pengu:
+    >Specialization: Eye Fever Doctor
+    >Availability: NA
+    >Currently treating: NA
+
+2. Timothy Cheese:
+    >Specialization: Knee Pain
+    >Availability: NA
+    >Currently treating: NA
+```
+
+### Viewing specified doctor: `doctor`
+Views all the attributes of doctors specified in the command:<br>
+`doctor` searches for all doctors mentioned by the user.
+
+Format: `doctor <NAME_1>/<NAME_2>/.../<NAME_X>`
+
+Example usage:<br>
+`doctor Timothy Cheese/Pengu`
+
+Example output:<br>
+```
+    Details of specified doctors:
+        >Name: Timothy Cheese
+            >Specialisation: Knee Pain
+            >Availability: NA
+            >Currently treating: NA
+        >Name: Pengu
+            >Specialisation: Eye Fever Doctor
+            >Availability: NA
+            >Currently treating: NA
+```
+
+### Viewing specified patient: `patient`
+Views all the attributes of patients specified in the command:<br>
+`patient` searches for all patients mentioned by the user.
+
+Format: `patient <NAME_1>/<NAME_2>/.../<NAME_X>`
+
+Example usage:<br>
+`patient Mr. A/Si En`
+
+Example output:<br>
+```
+    Details of specified patients:
+        >Name: Mr. A
+            >Symptoms: Cough
+            >Time Stamp: 01 JAN 2025
+            >Medical History: NA
+            >Treatment Status: NA
+            >Doctor Assigned: NA
+        >Name: Si En
+            >Symptoms: Eye Fever
+            >Time Stamp: Tomorrow
+            >Medical History: None
+            >Treatment Status: NA
+            >Doctor Assigned: NA
+```
 
 ### Registering a new patient: `register`
 Registers a new patient with necessary details:<br>
@@ -32,7 +125,7 @@ Registers a new patient with necessary details:<br>
 
 Format: `register NAME/SYMPTOMS/TIMESTAMP/MEDICAL HISTORY`
 
-Example of usage: 
+Example usage: 
 
 `register John Pork/High Fever/5 Jan 2025 1730/Allergic to cheese`
 
@@ -47,7 +140,7 @@ Adds a new on-call doctor with necessary details:<br>
 
 Format: `oncall NAME/SPECIALISATION/PATIENT NAME`
 
-Example of usage:
+Example usage:
 
 `oncall Simon Claw/Cardiologist/Mr Lim`
 
@@ -62,7 +155,7 @@ Displays specific patient information such as:<br>
 
 Format: `patient NAME`
 
-Example of usage:
+Example usage:
 
 `patient John Pork`
 
@@ -71,7 +164,7 @@ Deletes patient and their corresponding information from the database.
 
 Format: `discharge patient NAME`
 
-Example of usage:
+Example usage:
 
 `discharge patient Lebron James`
 
@@ -80,7 +173,7 @@ Deletes doctor and their corresponding information from the database.
 
 Format: `delete doctor NAME`
 
-Example of usage:
+Example usage:
 
 `delete doctor Michael Jordan`
 
