@@ -36,8 +36,10 @@ public class DeleteDoctorTest {
     @Test
     public void testDeleteDoctor_twoDoctors_successfulDeletions() {
         // create and add to doctor list, verify
-        doctorListManager.addDoctor(new Doctor("Mike", "Heart", "NA", "NA"));
-        doctorListManager.addDoctor(new Doctor("John", "Foot", "Busy", "NA"));
+        doctorListManager.addDoctor(new Doctor("Mike",
+                "Heart", "NA", "NA"));
+        doctorListManager.addDoctor(new Doctor("John",
+                "Foot", "Busy", "NA"));
         assertEquals(2, doctorListManager.getDoctorList().size());
 
         // delete doctor1, verify
@@ -61,7 +63,8 @@ public class DeleteDoctorTest {
 
     @Test
     public void testDeleteDoctor_nameNotFound_unsuccessfulDeletion() {
-        doctorListManager.addDoctor(new Doctor("Bob", "Lungs", "NA", "NA"));
+        doctorListManager.addDoctor(new Doctor("Bob",
+                "Lungs", "NA", "NA"));
         doctorDeleter.deleteDoctor("John");
 
         // verify with expected output and check "Mike" is still in doctor list
