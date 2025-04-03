@@ -139,12 +139,9 @@ MediNote aims to improve the management capacity and efficiency of hospitals.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to key in most of the records faster using commands than using the mouse.
 
-{More to be added}
 
 ## Glossary
 
 * <b>Mainstream OS</b>: Windows, Linux, Unix, macOS
 
 ## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
