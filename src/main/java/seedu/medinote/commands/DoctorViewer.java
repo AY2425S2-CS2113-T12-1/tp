@@ -57,6 +57,8 @@ public class DoctorViewer {
                 nameIndexList.add(INVALID_INDEX_IN_DOCTOR_LIST);
             }
         }
+        assert nameIndexList.size() == targetNamesArray.length
+                : "nameIndexList and targetNamesArray are not the same size";
         return nameIndexList;
     }
 
@@ -88,6 +90,7 @@ public class DoctorViewer {
     }
 
     private static void printThisDoctor(Doctor doctor) {
+        assert doctor != null : "doctor should not be null";
         System.out.println(NAME_POINT + doctor.getName());
         System.out.println(SPECIALISATION_POINT + doctor.getSpecialisation());
         System.out.println(AVAILABILITY_POINT + doctor.getAvailability());

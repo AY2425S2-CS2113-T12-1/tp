@@ -2,8 +2,6 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
 ## Design & implementation
 
 ### Overall Architecture
@@ -42,6 +40,70 @@ In the context of this example:
 | commands | RegisterPatient | Contains bulk of code logic                                           |
 | storage  | SaveData        | Persists data to text files                                           |
 
+### Management of Tracked Doctors
+
+The `DoctorListManager` class main purpose is to maintain `ArrayList<Doctor> doctorList`, 
+which keeps track of the doctors currently working in the hospital.<br>
+This class also contains methods that directly modifies the state of `doctorList`.<br>
+
+1. **Adding New Doctors:**
+    - `DoctorListManager` contains `addDoctor()` which is called by the `RegisterDoctor` class.
+    - `addDoctor()` takes in one `Doctor` type and adds it to `doctorList`.
+
+2. **Removing Existing Doctors:**
+    - `DoctorListManager` contains `removeDoctor()` which is called by `DeleteDoctor` class.
+    - `removeDoctor()` takes in one `Doctor` type removes it from `doctorList`.
+    - It then searches `patientList` and removes the doctor from all patients' `doctorAssigned` attribute.
+
+3. **Listing Existing Doctors:**
+    - `DoctorListManager` contains `listDoctors()` which is called by `TaskManager` class.
+    - It then calls the `DoctorLister` class which contains the printing logic.
+
+The <i>Sequence Diagram</i> below shows how the components interact with each other for the scenario where the user
+ issues the command `list doctor`
+
+![Sequence Diagram of list doctor](./pictures/DoctorListManagerSequenceExample.png)
+
+### Application Startup Process (Loading Data)
+
+This sequence diagram illustrates the steps executed when the application is launched.
+The **MediNote** application ensures the necessary data files exist,
+loads doctor and patient data, and prepares the application for user input.
+
+1. **File Existence Check:**
+    - `MediNote` calls `ensureDoctorsFileExists()` and `ensurePatientsFileExists()` to confirm the presence of required storage files.
+
+2. **Doctor Data Loading:**
+    - The `loadDoctorData()` method is called from `loadData`, returning a `List<Doctor>`.
+    - The retrieved doctor list is then added to `DoctorListManager` using `addAll(doctors)`.
+
+3. **Patient Data Loading:**
+    - The `loadPatientData()` method is called from `loadData`, returning a `List<Patient>`.
+    - The retrieved patient list is then added to `PatientListManager` using `addAll(patients)`.
+
+4. **Application Readiness:**
+    - Once all necessary data is loaded, the application signals readiness for user input.
+
+![ApplicationStartupLoadData.png](diagrams/ApplicationStartupLoadData.png)
+
+
+
+### Application Shutdown Process (Saving Data)
+
+This sequence diagram describes the data-saving process when the application exits. Upon receiving an exit command, the system saves the doctor and patient data before shutting down.
+
+1. **Doctor Data Retrieval & Saving:**
+    - `MediNote` calls `getDoctorList()` on `DoctorListManager` to obtain the list of doctors.
+    - The retrieved doctor list is passed to `saveDoctorsData(doctors)`, ensuring it is stored persistently.
+
+2. **Patient Data Retrieval & Saving:**
+    - `MediNote` calls `getPatientList()` on `PatientListManager` to obtain the list of patients.
+    - The retrieved patient list is passed to `savePatientsData(patients)`, ensuring it is stored persistently.
+
+3. **Application Shutdown:**
+    - Once all data is saved, the application exits gracefully.
+
+![ApplicationShutdownSaveData.png](diagrams/ApplicationShutdownSaveData.png)
 
 ## Product scope
 ### Target user profile
