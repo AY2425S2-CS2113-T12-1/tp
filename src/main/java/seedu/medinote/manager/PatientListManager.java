@@ -26,7 +26,8 @@ public class PatientListManager {
         ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
         for(Doctor doctor : doctorList) {
             if(patient.getDoctorAssigned().equalsIgnoreCase(doctor.getName())) {
-                doctor.setCurrentPatient("na"); // remove patient from doctor's attribute
+                // remove patient from doctor's attribute
+                doctor.setCurrentPatient("na");
             }
         }
     }
