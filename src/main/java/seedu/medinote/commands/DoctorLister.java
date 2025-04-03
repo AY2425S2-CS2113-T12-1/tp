@@ -8,6 +8,7 @@ public class DoctorLister {
     public static final String LINE_BREAK = "================================";
 
     public static void listAllDoctors(ArrayList<Doctor> doctorList) {
+
         printListDoctorHeader(doctorList.size());
         int doctorIndex = 1;
         for (Doctor doctor : doctorList) {
@@ -18,6 +19,8 @@ public class DoctorLister {
     }
 
     private static void printOneDoctorDetails(int doctorIndex, Doctor doctor) {
+        assert doctor != null : "doctor should not be null";
+        assert doctorIndex != 0 : "doctorIndex should not be 0";
         System.out.print(doctorIndex + ". ");
         System.out.println(doctor.getName() + ":");
         System.out.println("\t>Specialization: " + doctor.getSpecialisation());

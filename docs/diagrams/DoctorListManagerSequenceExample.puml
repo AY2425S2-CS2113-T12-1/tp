@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+actor User
+participant ":Main"
+participant ":TaskManager"
+participant ":DoctorListManager"
+participant ":DoctorLister"
+
+User -> ":Main" : "list doctor"
+activate ":Main"
+
+":Main" -> ":TaskManager" : checkCommand("list doctor")
+activate ":TaskManager"
+
+":TaskManager" -> ":DoctorListManager" : listDoctors()
+activate ":DoctorListManager"
+
+":DoctorListManager" -> ":DoctorLister" : listAllDoctors(doctorList)
+activate ":DoctorLister"
+
+":DoctorLister" -> ":DoctorLister" : printListDoctorHeader(doctorList.size())
+activate ":DoctorLister"
+
+":DoctorLister" --> ":DoctorLister"
+deactivate ":DoctorLister"
+
+loop Every doctor in doctorList
+    ":DoctorLister" --> ":DoctorLister" : printOneDoctorDetails(doctorIndex, doctor)
+    activate ":DoctorLister"
+    ":DoctorLister" --> ":DoctorLister"
+    deactivate ":DoctorLister"
+end
+
+":DoctorListManager" <-- ":DoctorLister"
+deactivate ":DoctorLister"
+
+":TaskManager" <-- ":DoctorListManager"
+deactivate ":DoctorListManager"
+
+":Main" <-- ":TaskManager"
+deactivate ":TaskManager"
+
+User <-- ":Main" : Show list of doctors and information
+deactivate ":Main"
+
+@enduml
