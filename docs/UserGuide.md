@@ -10,11 +10,12 @@ via a Command Line Interface (CLI).
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 17 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Down the latest version of `MediNote` from [here](http://link.to/duke).
 
 ## Features
 
-- [Prompt for Help Table to list all Command Words: `help`](#printing-out-list-of-commands-for-reference-help)
+
+- [Show a list of commands: `help`](...)
 - [Register a new patient: `register`](#registering-a-new-patient-register)
 - [Add a new doctor: `oncall`](#adding-a-new-doctor-oncall)
 - [View patient information: `patient <NAME>`](#view-patient-information-patient-name)
@@ -31,6 +32,13 @@ via a Command Line Interface (CLI).
 
 ### Printing out List of Commands for Reference: `help`
 Prints out all Command Words and Instructions on how to use them.<br>
+
+Format: `help`
+
+### Show a list of commands: `help`
+Shows a list of commands for navigating around the database.
+Provides an explanation on how different commands work to bring out 
+or add the desired information from or into the database.
 
 Format: `help`
 
@@ -159,6 +167,7 @@ Available `<ATTRIBUTE>` values:
 - `history`
 - `treatment`
 - `doctor`
+
 
 Format: `view patient <ATTRIBUTE>`
 
