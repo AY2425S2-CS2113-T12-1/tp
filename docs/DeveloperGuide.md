@@ -2,8 +2,6 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
 ## Design & implementation
 
 ### Overall Architecture
@@ -61,7 +59,10 @@ This class also contains methods that directly modifies the state of `doctorList
     - `DoctorListManager` contains `listDoctors()` which is called by `TaskManager` class.
     - It then calls the `DoctorLister` class which contains the printing logic.
 
-[//]: # (ADD SEQUENCE DIAGRAM)
+The <i>Sequence Diagram</i> below shows how the components interact with each other for the scenario where the user
+ issues the command `list doctor`
+
+![Sequence Diagram of list doctor](./pictures/DoctorListManagerSequenceExample.png)
 
 ### Application Startup Process (Loading Data)
 

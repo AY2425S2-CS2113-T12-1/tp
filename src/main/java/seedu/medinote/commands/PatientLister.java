@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import seedu.medinote.person.Patient;
 
 public class PatientLister {
-    public static final String LINE_BREAK = "===============================================" +
-            "===============================================";
+    public static final String LINE_BREAK = "==============================================="
+            + "===============================================";
 
     public static void listAllPatients(ArrayList<Patient> patientList) {
         printListPatientHeader(patientList.size());
@@ -19,6 +19,8 @@ public class PatientLister {
     }
 
     private static void printOnePatientDetails(int patientIndex, Patient patient) {
+        assert patient != null : "patient should not be null";
+        assert  patientIndex != 0 : "patientIndex should not be 0";
         System.out.print(patientIndex + ". ");
         System.out.println(patient.getName() + ":");
         System.out.println("\t>Time of Admission: " + patient.getTimeStamp());
