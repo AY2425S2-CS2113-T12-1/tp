@@ -48,8 +48,10 @@ public class DoctorViewerTest {
 
     @Test
     public void testViewDoctor_doubleValidDoctor_successfulOutput() {
-        DoctorListManager.addDoctor(new Doctor("Tim Cheese", "Cardiologist", "NA1", "NA1"));
-        DoctorListManager.addDoctor(new Doctor("John Pork", "Optometrist", "NA2", "NA2"));
+        DoctorListManager.addDoctor(new Doctor("Tim Cheese", "Cardiologist", "NA1",
+                "NA1"));
+        DoctorListManager.addDoctor(new Doctor("John Pork", "Optometrist", "NA2",
+                "NA2"));
 
         String input = "John Pork / Tim Cheese";
 
@@ -94,8 +96,10 @@ public class DoctorViewerTest {
 
     @Test
     public void testViewDoctor_emptyInput_validDoctorListOutput() {
-        DoctorListManager.addDoctor(new Doctor("Tim Cheese", "Cardiologist", "NA1", "NA1"));
-        DoctorListManager.addDoctor(new Doctor("John Pork", "Optometrist", "NA2", "NA2"));
+        DoctorListManager.addDoctor(new Doctor("Tim Cheese", "Cardiologist", "NA1",
+                "NA1"));
+        DoctorListManager.addDoctor(new Doctor("John Pork", "Optometrist", "NA2",
+                "NA2"));
 
         String input = "   ";
 
@@ -117,8 +121,10 @@ public class DoctorViewerTest {
 
     @Test
     public void testViewDoctor_invalidDoctor_errorMessageOutput() {
-        DoctorListManager.addDoctor(new Doctor("Tim Cheese", "Cardiologist", "NA1", "NA1"));
-        DoctorListManager.addDoctor(new Doctor("John Pork", "Optometrist", "NA2", "NA2"));
+        DoctorListManager.addDoctor(new Doctor("Tim Cheese", "Cardiologist", "NA1",
+                "NA1"));
+        DoctorListManager.addDoctor(new Doctor("John Pork", "Optometrist", "NA2",
+                "NA2"));
 
         String input = "John Pork / Simon Claw";
 

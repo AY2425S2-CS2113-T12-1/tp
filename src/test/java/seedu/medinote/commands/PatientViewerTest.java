@@ -25,8 +25,10 @@ public class PatientViewerTest {
 
     @Test
     public void testViewPatient_singleValidPatient_successfulOutput() {
-        PatientListManager.addPatient(new Patient("Simon Claw", "High Fever", "5 Jan 530pm", "Nut allergy", "NA1", "NA1"));
-        PatientListManager.addPatient(new Patient("Agent 55", "Bronchitis", "8 April 640am", "NA2", "NA2", "NA2"));
+        PatientListManager.addPatient(new Patient("Simon Claw", "High Fever", "5 Jan 530pm",
+                "Nut allergy", "NA1", "NA1"));
+        PatientListManager.addPatient(new Patient("Agent 55", "Bronchitis", "8 April 640am",
+                "NA2", "NA2", "NA2"));
 
         String input = "Simon Claw";
 
@@ -51,8 +53,10 @@ public class PatientViewerTest {
 
     @Test
     public void testViewPatient_doubleValidPatient_successfulOutput() {
-        PatientListManager.addPatient(new Patient("Simon Claw", "High Fever", "5 Jan 530pm", "Nut allergy", "NA1", "NA1"));
-        PatientListManager.addPatient(new Patient("Agent 55", "Bronchitis", "8 April 640am", "NA2", "NA2", "NA2"));
+        PatientListManager.addPatient(new Patient("Simon Claw", "High Fever", "5 Jan 530pm",
+                "Nut allergy", "NA1", "NA1"));
+        PatientListManager.addPatient(new Patient("Agent 55", "Bronchitis", "8 April 640am",
+                "NA2", "NA2", "NA2"));
 
         String input = "Simon Claw / Agent 55";
 
@@ -101,8 +105,10 @@ public class PatientViewerTest {
 
     @Test
     public void testViewPatient_emptyInput_validPatientListOutput() {
-        PatientListManager.addPatient(new Patient("Simon Claw", "High Fever", "5 Jan 530pm", "Nut allergy", "NA1", "NA1"));
-        PatientListManager.addPatient(new Patient("Agent 55", "Bronchitis", "8 April 640am", "NA2", "NA2", "NA2"));
+        PatientListManager.addPatient(new Patient("Simon Claw", "High Fever", "5 Jan 530pm",
+                "Nut allergy", "NA1", "NA1"));
+        PatientListManager.addPatient(new Patient("Agent 55", "Bronchitis", "8 April 640am",
+                "NA2", "NA2", "NA2"));
 
         String input = "   ";
 
@@ -124,8 +130,10 @@ public class PatientViewerTest {
 
     @Test
     public void testViewPatient_invalidPatient_errorMessageOutput() {
-        PatientListManager.addPatient(new Patient("Simon Claw", "High Fever", "5 Jan 530pm", "Nut allergy", "NA1", "NA1"));
-        PatientListManager.addPatient(new Patient("Agent 55", "Bronchitis", "8 April 640am", "NA2", "NA2", "NA2"));
+        PatientListManager.addPatient(new Patient("Simon Claw", "High Fever", "5 Jan 530pm",
+                "Nut allergy", "NA1", "NA1"));
+        PatientListManager.addPatient(new Patient("Agent 55", "Bronchitis", "8 April 640am",
+                "NA2", "NA2", "NA2"));
 
         String input = "Simon Claw / John Pork";
 
