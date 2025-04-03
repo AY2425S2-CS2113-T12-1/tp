@@ -17,10 +17,13 @@ public class DischargePatient {
         }
 
         ArrayList<Patient> patientList = PatientListManager.getPatientList();
-        assert patientList != null : "Patient list should not be null";
+        assert patientList != null : "Patient list should not be null.";
 
         for(Patient patient : patientList) {
+            assert patient != null : "Patient object should not be null.";
             String currPatientName = patient.getName();
+            assert currPatientName != null : "Patient name should not be null.";
+
             if(currPatientName.equalsIgnoreCase(patientName)) {
                 PatientListManager.removePatient(patient);
                 System.out.println("Patient " + patientName + " has been discharged " +
