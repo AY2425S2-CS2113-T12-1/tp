@@ -42,9 +42,32 @@ In the context of this example:
 | commands | RegisterPatient | Contains bulk of code logic                                           |
 | storage  | SaveData        | Persists data to text files                                           |
 
+### Management of Tracked Doctors
+
+The `DoctorListManager` class main purpose is to maintain `ArrayList<Doctor> doctorList`, 
+which keeps track of the doctors currently working in the hospital.<br>
+This class also contains methods that directly modifies the state of `doctorList`.<br>
+
+1. **Adding New Doctors:**
+    - `DoctorListManager` contains `addDoctor()` which is called by the `RegisterDoctor` class.
+    - `addDoctor()` takes in one `Doctor` type and adds it to `doctorList`.
+
+2. **Removing Existing Doctors:**
+    - `DoctorListManager` contains `removeDoctor()` which is called by `DeleteDoctor` class.
+    - `removeDoctor()` takes in one `Doctor` type removes it from `doctorList`.
+    - It then searches `patientList` and removes the doctor from all patients' `doctorAssigned` attribute.
+
+3. **Listing Existing Doctors:**
+    - `DoctorListManager` contains `listDoctors()` which is called by `TaskManager` class.
+    - It then calls the `DoctorLister` class which contains the printing logic.
+
+[//]: # (ADD SEQUENCE DIAGRAM)
+
 ### Application Startup Process (Loading Data)
 
-This sequence diagram illustrates the steps executed when the application is launched. The **MediNote** application ensures the necessary data files exist, loads doctor and patient data, and prepares the application for user input.
+This sequence diagram illustrates the steps executed when the application is launched.
+The **MediNote** application ensures the necessary data files exist,
+loads doctor and patient data, and prepares the application for user input.
 
 1. **File Existence Check:**
     - `MediNote` calls `ensureDoctorsFileExists()` and `ensurePatientsFileExists()` to confirm the presence of required storage files.
