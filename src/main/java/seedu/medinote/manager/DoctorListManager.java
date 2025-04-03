@@ -39,4 +39,8 @@ public class DoctorListManager {
         }
     }
 
+    public static void clearDoctorList() {
+        doctorList.clear();
+    }
+
 }

@@ -36,4 +36,8 @@ public class PatientListManager {
         }
     }
 
+    public static void clearPatientList() {
+        patientList.clear();
+    }
+
 }

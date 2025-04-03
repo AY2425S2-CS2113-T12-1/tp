@@ -1,1 +1,0 @@
-name|symptoms|timeStamp|medicalHistory|treatmentStatus|doctorAssigned
