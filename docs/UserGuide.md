@@ -10,10 +10,11 @@ via a Command Line Interface (CLI).
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 17 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Down the latest version of `MediNote` from [here](http://link.to/duke).
 
 ## Features 
 
+- [Show a list of commands: `help`](...)
 - [Register a new patient: `register`](#registering-a-new-patient-register)
 - [Add a new doctor: `oncall`](#adding-a-new-doctor-oncall)
 - [View patient information: `patient NAME`](#view-patient-information-patient-name)
@@ -21,6 +22,13 @@ via a Command Line Interface (CLI).
 - [Delete a doctor: `delete`](#delete-a-doctor-delete-doctor-name)
 - [Display popular doctor or specialisation: `popular`](#popular)
 
+
+### Show a list of commands: `help`
+Shows a list of commands for navigating around the database.
+Provides an explanation on how different commands work to bring out 
+or add the desired information from or into the database.
+
+Format: `help`
 
 ### Registering a new patient: `register`
 Registers a new patient with necessary details:<br>
@@ -105,7 +113,28 @@ Format & Example usage: popular visited doctor
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
+| Command            | Description                                                                           |
+|--------------------|---------------------------------------------------------------------------------------|
+| `help`             | Shows all available commands                                                          |
+| `register`         | Add new patient: `NAME / SYMPTOMS / TIMESTAMP / MED_HISTORY`                          |
+| `oncall`           | Add doctor: `NAME / SPECIALISATION`                                                   |
+| `patient NAME`     | View patient details (case-insensitive)                                               |
+| `doctor NAME`      | View doctor details (case-insensitive)                                                |
+| `list patient`     | Show all active patients                                                              |
+| `list doctor`      | Show all available doctors                                                            |
+| `update patient`   | Modify: treatment status or assigned doctor                                           |
+| `update doctor`    | Modify: availability or current patient                                               |
+| `discharge patient`| Remove patient record                                                                 |
+| `delete doctor`    | Remove doctor record                                                                  |
+| `clear patients`   | Delete all patient data                                                               |
+| `clear doctors`    | Delete all doctor data                                                                |
+| `exit`             | Quit the program                                                                      |
+
+**Detailed Formats:**
+- `register`: `NAME / SYMPTOMS / TIMESTAMP / MEDICAL_HISTORY`
+- `oncall`: `NAME / SPECIALISATION`
+- Patient info includes: name, symptoms, timestamp, history, status, doctor
+- Doctor info includes: name, specialisation, availability, patients
 
 * Register patient `register NAME/SYMPTOMS/TIMESTAMP/MEDICAL HISTORY`
 * Add doctor `oncall NAME/SPECIALISATION/PATIENT NAME`
