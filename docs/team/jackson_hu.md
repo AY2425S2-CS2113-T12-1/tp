@@ -16,5 +16,5 @@ Features Added and Enhancement Implemented:
 - Delete doctor and their information from database
 - Discharge patient and remove their information from database
 - View most frequently visited doctor as well as doctor type
-- Added JUnit testing for deleting doctor
+- Added JUnit testing for deleting doctor, discharging patient
 - Added feature explanations to UG
