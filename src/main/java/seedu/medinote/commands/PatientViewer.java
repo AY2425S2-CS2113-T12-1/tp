@@ -93,7 +93,7 @@ public class PatientViewer {
     }
 
     private static void printThisPatient(Patient patient) {
-        assert patient != null : "patient should not be null";
+        assert patient != null : "Patient should not be null";
         System.out.println(NAME_POINT + patient.getName());
         System.out.println(SYMPTOMS_POINT + patient.getSymptoms());
         System.out.println(TIME_STAMP_POINT + patient.getTimeStamp());
@@ -112,6 +112,7 @@ public class PatientViewer {
     }
 
     private static void printExistingPatients(ArrayList<Patient> patientList) {
+        assert !patientList.isEmpty() : "patientList should not be empty";
         System.out.println(LINE_BREAK);
         System.out.println(VIEWABLE_PATIENTS_HEADER);
         for (Patient patient : patientList) {
