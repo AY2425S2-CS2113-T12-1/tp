@@ -107,6 +107,7 @@ public class DoctorViewer {
     }
 
     private static void printExistingDoctors(ArrayList<Doctor> doctorList) {
+        assert !doctorList.isEmpty() : "doctorList should not be empty";
         System.out.println(LINE_BREAK);
         System.out.println(VIEWABLE_DOCTORS_HEADER);
         for (Doctor doctor : doctorList) {
