@@ -26,6 +26,7 @@ public class MediNote {
 
         // Save data before exiting
         saveAllData();
+        System.out.println("Exiting MediNote...");
 
     }
 

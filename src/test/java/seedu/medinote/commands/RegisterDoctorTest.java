@@ -40,7 +40,7 @@ public class RegisterDoctorTest {
         System.setOut(out);
 
         String expectedOutput =
-                "\tExpected Format: oncall <name> / <specialization>";
+                "\tExpected Format: oncall <name> / <specialisation>";
 
         assertTrue(output.toString().contains(expectedOutput));
     }
@@ -59,7 +59,7 @@ public class RegisterDoctorTest {
         System.setOut(out);
 
         String expectedOutput = "\tCompulsory doctor details are incomplete." + "\n"
-                                + "\tExpected Format: oncall <name> / <specialization>";
+                                + "\tExpected Format: oncall <name> / <specialisation>";
 
         assertTrue(output.toString().contains(expectedOutput));
     }
