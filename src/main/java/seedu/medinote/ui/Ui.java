@@ -18,9 +18,9 @@ public class Ui {
         printRow("register", "Registers new patient with necessary details:");
         printRow("", "• <NAME>");
         printRow("", "• <SYMPTOMS>");
-        printRow("", "• <TIMESTAMP>");
+        printRow("", "• <ADMISSION TIME>");
         printRow("", "• <MEDICAL HISTORY>");
-        printRow("", "Format: register <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>");
+        printRow("", "Format: register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>");
         printEmptyRow();
 
         printRow("oncall", "Register on-call doctor(s) with necessary details:");
@@ -32,7 +32,7 @@ public class Ui {
         printRow("patient", "Displays specific patient information such as:");
         printRow("", "• Name");
         printRow("", "• Symptoms");
-        printRow("", "• Timestamp");
+        printRow("", "• Admission time");
         printRow("", "• Medical history");
         printRow("", "• Treatment status (if any)");
         printRow("", "• Doctors assigned (if any)");

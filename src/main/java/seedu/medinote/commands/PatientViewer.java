@@ -16,7 +16,7 @@ public class PatientViewer {
     private static final int INVALID_INDEX_IN_PATIENT_LIST = -1;
     private static final String NAME_POINT = "\t\t>Name: ";
     private static final String SYMPTOMS_POINT = "\t\t\t>Symptoms: ";
-    private static final String TIME_STAMP_POINT = "\t\t\t>Time Stamp: ";
+    private static final String TIME_STAMP_POINT = "\t\t\t>Time of Admission: ";
     private static final String MEDICAL_HISTORY_POINT = "\t\t\t>Medical History: ";
     private static final String TREATMENT_STATUS_POINT = "\t\t\t>Treatment Status: ";
     private static final String DOCTOR_ASSIGNED_POINT = "\t\t\t>Doctor Assigned: ";
