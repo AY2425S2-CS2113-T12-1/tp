@@ -9,3 +9,4 @@
 	Welcome to MediNote! Type command 'help' to see
 	available commands.
 ==============================================================================================
+All data saved successfully.
