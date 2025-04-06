@@ -15,11 +15,11 @@ public class DoctorListerTest {
             "================================" + System.lineSeparator()
             + "You have 2 doctor(s) in hospital" + System.lineSeparator()
             + "1. Roger:" + System.lineSeparator()
-            + "\t>Specialization: Cardio" + System.lineSeparator()
+            + "\t>Specialisation: Cardio" + System.lineSeparator()
             + "\t>Availability: NA" + System.lineSeparator()
             + "\t>Currently treating: NA" + System.lineSeparator() + System.lineSeparator()
             + "2. Stark:" + System.lineSeparator()
-            + "\t>Specialization: Eye" + System.lineSeparator()
+            + "\t>Specialisation: Eye" + System.lineSeparator()
             + "\t>Availability: Busy" + System.lineSeparator()
             + "\t>Currently treating: NA" + System.lineSeparator() + System.lineSeparator()
             + "================================" + System.lineSeparator();

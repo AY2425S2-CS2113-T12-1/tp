@@ -8,10 +8,10 @@ public class DoctorTest {
 
     @Test
     public void getAttributes_validAttributes_success() {
-        Doctor testDoctor = new Doctor("Doctor Test", "Specialization Test", "Availability Test", "Patients Test");
+        Doctor testDoctor = new Doctor("Doctor Test", "Specialisation Test", "Availability Test", "Patients Test");
 
         assertEquals("Doctor Test", testDoctor.getName());
-        assertEquals("Specialization Test", testDoctor.getSpecialisation());
+        assertEquals("Specialisation Test", testDoctor.getSpecialisation());
         assertEquals("Availability Test", testDoctor.getAvailability());
         assertEquals("Patients Test", testDoctor.getPatientsBeingTreated());
     }
