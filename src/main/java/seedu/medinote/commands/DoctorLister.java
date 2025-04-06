@@ -23,7 +23,7 @@ public class DoctorLister {
         assert doctorIndex != 0 : "doctorIndex should not be 0";
         System.out.print(doctorIndex + ". ");
         System.out.println(doctor.getName() + ":");
-        System.out.println("\t>Specialization: " + doctor.getSpecialisation());
+        System.out.println("\t>Specialisation: " + doctor.getSpecialisation());
         System.out.println("\t>Availability: " + doctor.getAvailability());
         System.out.println("\t>Currently treating: " + doctor.getPatientsBeingTreated() + System.lineSeparator());
     }
