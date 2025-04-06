@@ -38,8 +38,6 @@ or add the desired information from or into the database.
 
 Format: `help`
 
-<<<<<<< Updated upstream
-=======
 Example output:
 ```
 ==============================================================================================
@@ -138,7 +136,6 @@ exit                 | Exits the program
 ==============================================================================================
 ```
 
->>>>>>> Stashed changes
 ### Listing all current patients: `list patient`
 Lists all patients currently admitted, along with all of their attributes:<br>
 

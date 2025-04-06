@@ -4,6 +4,17 @@ public class Ui {
 
     public static final String UI_LINE_BREAK = "===============================================" +
             "===============================================";
+    private static final String MEDINOTE_ART =
+            "\t··················································" + System.lineSeparator() +
+            "\t: __  __            _  _  _   _         _        :" + System.lineSeparator() +
+            "\t:|  \\/  |  ___   __| |(_)| \\ | |  ___  | |_  ___ :" + System.lineSeparator() +
+            "\t:| |\\/| | / _ \\ / _` || ||  \\| | / _ \\ | __|/ _ \\:" + System.lineSeparator() +
+            "\t:| |  | ||  __/| (_| || || |\\  || (_) || |_|  __/:" + System.lineSeparator() +
+            "\t:|_|  |_| \\___| \\__,_||_||_| \\_| \\___/  \\__|\\___|:" + System.lineSeparator() +
+            "\t··················································";
+    private static final String WELCOME_TO_MEDINOTE =
+            "\tWelcome to MediNote! Type command 'help' to see" + System.lineSeparator() +
+            "\tavailable commands.";
 
     public static void printHelpTable() {
         String format = "%-20s | %-80s%n"; // Formatting for alignment
@@ -36,18 +47,53 @@ public class Ui {
         printRow("", "• Medical history");
         printRow("", "• Treatment status (if any)");
         printRow("", "• Doctors assigned (if any)");
+        printRow("", "Format: patient <NAME_1> / ... / <NAME_X>");
         printRow("", "Note: <NAME> inputted does not need to be case-sensitive");
+        printEmptyRow();
+
+        printRow("view patient", "Displays each patient's specific attribute one by one:");
+        printRow("", "Available attributes:");
+        printRow("", "\t• name");
+        printRow("", "\t• symptoms");
+        printRow("", "\t• timestamp");
+        printRow("", "\t• history");
+        printRow("", "\t• treatment");
+        printRow("", "\t• doctor");
+        printRow("", "Format: view patient <ATTRIBUTE>");
         printEmptyRow();
 
         printRow("doctor", "Displays specific doctor information such as:");
         printRow("", "• Specialisation");
         printRow("", "• Availability");
         printRow("", "• Patients under the doctor (if any)");
+        printRow("", "Format: doctor <NAME_1> / ... / <NAME_X>");
         printRow("", "Note: <NAME> inputted does not need to be case-sensitive");
         printEmptyRow();
 
-        printRow("list patient", "Displays all the patients in the patients class array that are yet to be discharged");
+        printRow("view doctor", "Displays each doctor's specific attribute one by one:");
+        printRow("", "Available attributes:");
+        printRow("", "\t• name");
+        printRow("", "\t• specialisation");
+        printRow("", "\t• availability");
+        printRow("", "\t• treating");
+        printRow("", "\t• numtreated");
+        printRow("", "Format: view doctor <ATTRIBUTE>");
+        printEmptyRow();
+
+        printRow("list patient",
+                "Displays all the patients in the patients class array that are yet to be discharged");
         printRow("list doctor", "Displays all doctors available in the hospital");
+        printEmptyRow();
+
+        printRow("list patient <ATRB>", "Displays a specific attribute for all patients.");
+        printRow("", "Available attributes:");
+        printRow("", "\t• name");
+        printRow("", "\t• symptoms");
+        printRow("", "\t• timestamp");
+        printRow("", "\t• history");
+        printRow("", "\t• treatment");
+        printRow("", "\t• doctor");
+        printRow("", "Format: list patient <ATTRIBUTE>");
         printEmptyRow();
 
         printRow("update patient", "Updates corresponding patient’s information on:");
@@ -68,6 +114,20 @@ public class Ui {
         printRow("clear doctors", "Clears all doctor entries from the database");
         printEmptyRow();
 
+        printRow("popular", "Displays most popular doctors based on specified attributes");
+        printRow("", "Available options:");
+        printRow("", "\t• doctor type");
+        printRow("", "\t• visited doctor");
+        printEmptyRow();
+
+        printRow("stats", "Prints an overview of hospital metrics");
+        printRow("", "\t• Total number of patients");
+        printRow("", "\t• Number of patients currently being treated");
+        printRow("", "\t• Total number of doctors");
+        printRow("", "\t• Most active doctor (by patient count)");
+        printRow("", "\t• Average patients per doctor");
+        printEmptyRow();
+
         printRow("exit", "Exits the program");
 
         System.out.println(UI_LINE_BREAK);
@@ -79,6 +139,13 @@ public class Ui {
 
     public static void printEmptyRow() {
         System.out.printf("%-20s | %-80s%n", "", "");
+    }
+
+    public static void printGreetings() {
+        System.out.println(UI_LINE_BREAK);
+        System.out.println(MEDINOTE_ART);
+        System.out.println(WELCOME_TO_MEDINOTE);
+        System.out.println(UI_LINE_BREAK);
     }
 
 }
