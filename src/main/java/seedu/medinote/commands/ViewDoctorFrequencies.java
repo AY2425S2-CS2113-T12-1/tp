@@ -48,7 +48,7 @@ public class ViewDoctorFrequencies {
                 System.out.println(specialisations.get(i));
             }
         }
-        System.out.println("Each of these specialisations had " + maxCount + " dcotors.");
+        System.out.println("Each of these specialisations had " + maxCount + " doctors.");
     }
 
     public static void viewMostFrequentDoctor() {

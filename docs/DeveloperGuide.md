@@ -119,19 +119,19 @@ MediNote aims to improve the management capacity and efficiency of hospitals.
 
 ## User Stories
 
-| Version | As a ...                  | I want to ...                                    | So that I can ...                                                 |
-|---------|---------------------------|--------------------------------------------------|-------------------------------------------------------------------|
-| v1.0    | Hospital receptionist     | View medical history of patients                 | Inform the doctor about their past conditions                     |
-| v1.0    | New hospital receptionist | View the list of commands available              | Easily navigate data                                              |
-| v1.0    | Hospital receptionist     | Be able to put in patient and doctor information | Start tracking new patient progress                               |
-| v1.0    | Hospital receptionist     | Update patient and doctor information            | Fix any mistakes and update records                               |
-| v1.0    | Hospital receptionist     | Delete patient or doctor records                 | Maintain accuracy and cleanliness of data                         |
-| v2.0    | Doctor                    | View patient's information                       | So that I know how to treat them                                  |
-| v2.0    | Doctor                    | Update doctor availability                       | Inform the next patient for treatment                             |
-| v2.0    | Doctor                    | See patient symptoms                             | Provide good medication quickly                                   |
-| v2.0    | Hospital receptionist     | View the status of patients                      | Check whether they have been discharged                           |
-| v2.0    | Hospital management       | View the doctors that were visited the most      | Reward them with a break or a pay raise                           |
-| v2.0    | Hospital management       | View the type of most frequently visited doctors | Hire more doctors of that specialisation for increased efficiency |
+| Version | As a ...              | I want to ...                                    | So that I can ...                                                 |
+|---------|-----------------------|--------------------------------------------------|-------------------------------------------------------------------|
+| v1.0    | Hospital receptionist | View medical history of patients                 | Inform the doctor about their past conditions                     |
+| v1.0    | Hospital receptionist | View the list of commands available              | Easily navigate data                                              |
+| v1.0    | Hospital receptionist | Be able to put in patient and doctor information | Start tracking new patient progress                               |
+| v1.0    | Hospital receptionist | Update patient and doctor information            | Fix any mistakes and update records                               |
+| v1.0    | Hospital receptionist | Delete patient or doctor records                 | Maintain accuracy and cleanliness of data                         |
+| v2.0    | Hospital receptionist | View patient's information                       | So that I can inform the doctors                                  |
+| v2.0    | Hospital receptionist | Update doctor availability                       | Inform the next patient for treatment                             |
+| v2.0    | Hospital receptionist | See patient symptoms                             | Provide doctors with crucial information quickly                  |
+| v2.0    | Hospital receptionist | View the status of patients                      | Check whether they have been discharged                           |
+| v2.0    | Hospital receptionist | View the doctors that were visited the most      | Manage their assignments and work hours                           |
+| v2.0    | Hospital receptionist | View the type of most frequently visited doctors | Hire more doctors of that specialisation for increased efficiency |
 
 ## Non-Functional Requirements
 
