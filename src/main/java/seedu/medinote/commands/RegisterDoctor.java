@@ -35,6 +35,9 @@ public class RegisterDoctor {
             }
 
             if (doctorInfo.length == NEW_DOCTOR_PARAMETER_LENGTH) {
+                for (int i = 0; i < doctorInfo.length; i++) {
+                    doctorInfo[i] = reformatDoctorInfoParameters(doctorInfo[i].trim());
+                }
                 Doctor doctor = new Doctor (doctorInfo[0].trim(), doctorInfo[1].trim(),
                         "NA", "NA");
 
@@ -43,16 +46,17 @@ public class RegisterDoctor {
 
                     Scanner scanner = new Scanner(System.in);
                     while (true) {
-                        String userInput = scanner.nextLine().trim();
+                        doctorInfo[0] = scanner.nextLine().trim();
                         System.out.println(LINE_BREAK);
+                        doctorInfo[0] = reformatDoctorInfoParameters(doctorInfo[0]);
 
-                        if (!isNameInList(userInput)) {
-                            if (userInput.contains("/")) {
+                        if (!isNameInList(doctorInfo[0])) {
+                            if (doctorInfo[0].contains("/")) {
                                 System.out.println(NAME_MESSAGE);
                             } else {
-                                doctor = new Doctor(userInput, doctorInfo[1].trim(), "NA", "NA");
+                                doctor = new Doctor(doctorInfo[0], doctorInfo[1].trim(), "NA", "NA");
                                 DoctorListManager.addDoctor(doctor);
-                                System.out.println("\tDoctor " + userInput +
+                                System.out.println("\tDoctor " + doctorInfo[0] +
                                         SUCCESSFUL_REGISTRATION_MESSAGE);
                                 break;
                             }
@@ -80,6 +84,19 @@ public class RegisterDoctor {
 
         System.out.println(LINE_BREAK);
 
+    }
+
+    private static String reformatDoctorInfoParameters(String info) {
+        String[] splitInfo = info.split(" +");
+        return joinWords(splitInfo);
+    }
+
+    private static String joinWords(String[] separatedWords) {
+        String sentence = separatedWords[0];
+        for (int i = 1; i < separatedWords.length; i++) {
+            sentence = sentence.concat(" " + separatedWords[i]);
+        }
+        return sentence;
     }
 
     public static boolean isNameInList(String name) {
