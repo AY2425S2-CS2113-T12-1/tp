@@ -17,10 +17,13 @@ public class MediNote {
         initializeStorage();
         Ui.printGreetings();
         final Scanner userLineScanner = new Scanner(System.in);
-        String userInput = "";
+        String userInput;
 
-        while (!userInput.equals("exit")) {
+        while (userLineScanner.hasNextLine()) {
             userInput = userLineScanner.nextLine().trim();
+            if (userInput.equals("exit")) {
+                break;
+            }
             TaskManager.checkCommand(userInput);
         }
 
