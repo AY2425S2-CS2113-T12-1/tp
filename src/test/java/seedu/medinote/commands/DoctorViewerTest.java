@@ -116,7 +116,7 @@ public class DoctorViewerTest {
         assertTrue(output.toString().contains("\tHere is a list of viewable doctors:"));
         assertTrue(output.toString().contains("\t\t> Tim Cheese"));
         assertTrue(output.toString().contains("\t\t> John Pork"));
-        assertTrue(output.toString().contains("\tUse command format: doctor <NAME>."));
+        assertTrue(output.toString().contains("\tUse command format: doctor <NAME_1> / ... / <NAME_X>"));
     }
 
     @Test
