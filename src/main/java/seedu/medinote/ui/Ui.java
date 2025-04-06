@@ -15,6 +15,7 @@ public class Ui {
     private static final String WELCOME_TO_MEDINOTE =
             "\tWelcome to MediNote! Type command 'help' to see" + System.lineSeparator() +
             "\tavailable commands.";
+    private static final String ARROW_POINT = ">";
 
     public static void printHelpTable() {
         String format = "%-20s | %-80s%n"; // Formatting for alignment
@@ -27,56 +28,56 @@ public class Ui {
         printEmptyRow();
 
         printRow("register", "Registers new patient with necessary details:");
-        printRow("", "• <NAME>");
-        printRow("", "• <SYMPTOMS>");
-        printRow("", "• <TIMESTAMP>");
-        printRow("", "• <MEDICAL HISTORY>");
+        printRow("", ARROW_POINT + " <NAME>");
+        printRow("", ARROW_POINT + " <SYMPTOMS>");
+        printRow("", ARROW_POINT + " <TIMESTAMP>");
+        printRow("", ARROW_POINT + " <MEDICAL HISTORY>");
         printRow("", "Format: register <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>");
         printEmptyRow();
 
         printRow("oncall", "Register on-call doctor(s) with necessary details:");
-        printRow("", "• <NAME>");
-        printRow("", "• <SPECIALISATION>");
+        printRow("", ARROW_POINT + " <NAME>");
+        printRow("", ARROW_POINT + " <SPECIALISATION>");
         printRow("", "Format: oncall <NAME> / <SPECIALISATION>");
         printEmptyRow();
 
         printRow("patient", "Displays specific patient information such as:");
-        printRow("", "• Name");
-        printRow("", "• Symptoms");
-        printRow("", "• Timestamp");
-        printRow("", "• Medical history");
-        printRow("", "• Treatment status (if any)");
-        printRow("", "• Doctors assigned (if any)");
+        printRow("", ARROW_POINT + " Name");
+        printRow("", ARROW_POINT + " Symptoms");
+        printRow("", ARROW_POINT + " Timestamp");
+        printRow("", ARROW_POINT + " Medical history");
+        printRow("", ARROW_POINT + " Treatment status (if any)");
+        printRow("", ARROW_POINT + " Doctors assigned (if any)");
         printRow("", "Format: patient <NAME_1> / ... / <NAME_X>");
         printRow("", "Note: <NAME> inputted does not need to be case-sensitive");
         printEmptyRow();
 
         printRow("view patient", "Displays each patient's specific attribute one by one:");
         printRow("", "Available attributes:");
-        printRow("", "\t• name");
-        printRow("", "\t• symptoms");
-        printRow("", "\t• timestamp");
-        printRow("", "\t• history");
-        printRow("", "\t• treatment");
-        printRow("", "\t• doctor");
+        printRow("", "\t" + ARROW_POINT + " name");
+        printRow("", "\t" + ARROW_POINT + " symptoms");
+        printRow("", "\t" + ARROW_POINT + " timestamp");
+        printRow("", "\t" + ARROW_POINT + " history");
+        printRow("", "\t" + ARROW_POINT + " treatment");
+        printRow("", "\t" + ARROW_POINT + " doctor");
         printRow("", "Format: view patient <ATTRIBUTE>");
         printEmptyRow();
 
         printRow("doctor", "Displays specific doctor information such as:");
-        printRow("", "• Specialisation");
-        printRow("", "• Availability");
-        printRow("", "• Patients under the doctor (if any)");
+        printRow("", ARROW_POINT + " Specialisation");
+        printRow("", ARROW_POINT + " Availability");
+        printRow("", ARROW_POINT + " Patients under the doctor (if any)");
         printRow("", "Format: doctor <NAME_1> / ... / <NAME_X>");
         printRow("", "Note: <NAME> inputted does not need to be case-sensitive");
         printEmptyRow();
 
         printRow("view doctor", "Displays each doctor's specific attribute one by one:");
         printRow("", "Available attributes:");
-        printRow("", "\t• name");
-        printRow("", "\t• specialisation");
-        printRow("", "\t• availability");
-        printRow("", "\t• treating");
-        printRow("", "\t• numtreated");
+        printRow("", "\t" + ARROW_POINT + " name");
+        printRow("", "\t" + ARROW_POINT + " specialisation");
+        printRow("", "\t" + ARROW_POINT + " availability");
+        printRow("", "\t" + ARROW_POINT + " treating");
+        printRow("", "\t" + ARROW_POINT + " numtreated");
         printRow("", "Format: view doctor <ATTRIBUTE>");
         printEmptyRow();
 
@@ -87,23 +88,23 @@ public class Ui {
 
         printRow("list patient <ATRB>", "Displays a specific attribute for all patients.");
         printRow("", "Available attributes:");
-        printRow("", "\t• name");
-        printRow("", "\t• symptoms");
-        printRow("", "\t• timestamp");
-        printRow("", "\t• history");
-        printRow("", "\t• treatment");
-        printRow("", "\t• doctor");
+        printRow("", "\t" + ARROW_POINT + " name");
+        printRow("", "\t" + ARROW_POINT + " symptoms");
+        printRow("", "\t" + ARROW_POINT + " timestamp");
+        printRow("", "\t" + ARROW_POINT + " history");
+        printRow("", "\t" + ARROW_POINT + " treatment");
+        printRow("", "\t" + ARROW_POINT + " doctor");
         printRow("", "Format: list patient <ATTRIBUTE>");
         printEmptyRow();
 
         printRow("update patient", "Updates corresponding patient’s information on:");
-        printRow("", "• <TREATMENT STATUS> whether they are still in queue or being treated");
-        printRow("", "• <DOCTOR ASSIGNED> the doctor that they are assigned");
+        printRow("", ARROW_POINT + " <TREATMENT STATUS> whether they are still in queue or being treated");
+        printRow("", ARROW_POINT + " <DOCTOR ASSIGNED> the doctor that they are assigned");
         printEmptyRow();
 
         printRow("update doctor", "Updates corresponding doctor information on:");
-        printRow("", "• <AVAILABILITY> their current working status");
-        printRow("", "• <PATIENT NAME> the patient they are currently treating (if any)");
+        printRow("", ARROW_POINT + " <AVAILABILITY> their current working status");
+        printRow("", ARROW_POINT + " <PATIENT NAME> the patient they are currently treating (if any)");
         printEmptyRow();
 
         printRow("discharge patient", "Deletes patient and corresponding information from the database.");
@@ -116,16 +117,16 @@ public class Ui {
 
         printRow("popular", "Displays most popular doctors based on specified attributes");
         printRow("", "Available options:");
-        printRow("", "\t• doctor type");
-        printRow("", "\t• visited doctor");
+        printRow("", "\t" + ARROW_POINT + " doctor type");
+        printRow("", "\t" + ARROW_POINT + " visited doctor");
         printEmptyRow();
 
         printRow("stats", "Prints an overview of hospital metrics");
-        printRow("", "\t• Total number of patients");
-        printRow("", "\t• Number of patients currently being treated");
-        printRow("", "\t• Total number of doctors");
-        printRow("", "\t• Most active doctor (by patient count)");
-        printRow("", "\t• Average patients per doctor");
+        printRow("", "\t" + ARROW_POINT + " Total number of patients");
+        printRow("", "\t" + ARROW_POINT + " Number of patients currently being treated");
+        printRow("", "\t" + ARROW_POINT + " Total number of doctors");
+        printRow("", "\t" + ARROW_POINT + " Most active doctor (by patient count)");
+        printRow("", "\t" + ARROW_POINT + " Average patients per doctor");
         printEmptyRow();
 
         printRow("exit", "Exits the program");
