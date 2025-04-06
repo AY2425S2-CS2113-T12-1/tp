@@ -92,7 +92,9 @@ public class TaskManager {
             break;
 
         case "exit":
-            System.out.println("Exiting MediNote...");
+            if (!arguments.isBlank()) {
+                System.out.println("Invalid command. Type 'help' for a list of commands.");
+            }
             break;
 
         default:
