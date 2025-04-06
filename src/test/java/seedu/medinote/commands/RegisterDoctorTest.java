@@ -22,7 +22,7 @@ public class RegisterDoctorTest {
 
         System.setOut(out);
 
-        String expectedOutput = "\tDoctor Doctor 1 successfully registered as doctor!";
+        String expectedOutput = "\tDoctor Doctor 1 has been successfully registered as a doctor!";
 
         assertTrue(output.toString().contains(expectedOutput));
     }
