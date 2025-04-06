@@ -5,15 +5,15 @@ public class Ui {
     public static final String UI_LINE_BREAK = "===============================================" +
             "===============================================";
     private static final String MEDINOTE_ART =
-            "\t··················································\n" +
-            "\t: __  __            _  _  _   _         _        :\n" +
-            "\t:|  \\/  |  ___   __| |(_)| \\ | |  ___  | |_  ___ :\n" +
-            "\t:| |\\/| | / _ \\ / _` || ||  \\| | / _ \\ | __|/ _ \\:\n" +
-            "\t:| |  | ||  __/| (_| || || |\\  || (_) || |_|  __/:\n" +
-            "\t:|_|  |_| \\___| \\__,_||_||_| \\_| \\___/  \\__|\\___|:\n" +
+            "\t··················································" + System.lineSeparator() +
+            "\t: __  __            _  _  _   _         _        :" + System.lineSeparator() +
+            "\t:|  \\/  |  ___   __| |(_)| \\ | |  ___  | |_  ___ :" + System.lineSeparator() +
+            "\t:| |\\/| | / _ \\ / _` || ||  \\| | / _ \\ | __|/ _ \\:" + System.lineSeparator() +
+            "\t:| |  | ||  __/| (_| || || |\\  || (_) || |_|  __/:" + System.lineSeparator() +
+            "\t:|_|  |_| \\___| \\__,_||_||_| \\_| \\___/  \\__|\\___|:" + System.lineSeparator() +
             "\t··················································";
     private static final String WELCOME_TO_MEDINOTE =
-            "\tWelcome to MediNote! Type command 'help' to see\n" +
+            "\tWelcome to MediNote! Type command 'help' to see" + System.lineSeparator() +
             "\tavailable commands.";
 
     public static void printHelpTable() {
@@ -47,14 +47,37 @@ public class Ui {
         printRow("", "• Medical history");
         printRow("", "• Treatment status (if any)");
         printRow("", "• Doctors assigned (if any)");
+        printRow("", "Format: patient <NAME_1> / ... / <NAME_X>");
         printRow("", "Note: <NAME> inputted does not need to be case-sensitive");
+        printEmptyRow();
+
+        printRow("view patient", "Displays each patient's specific attribute one by one:");
+        printRow("", "Available attributes:");
+        printRow("", "\t• name");
+        printRow("", "\t• symptoms");
+        printRow("", "\t• timestamp");
+        printRow("", "\t• history");
+        printRow("", "\t• treatment");
+        printRow("", "\t• doctor");
+        printRow("", "Format: view patient <ATTRIBUTE>");
         printEmptyRow();
 
         printRow("doctor", "Displays specific doctor information such as:");
         printRow("", "• Specialisation");
         printRow("", "• Availability");
         printRow("", "• Patients under the doctor (if any)");
+        printRow("", "Format: doctor <NAME_1> / ... / <NAME_X>");
         printRow("", "Note: <NAME> inputted does not need to be case-sensitive");
+        printEmptyRow();
+
+        printRow("view doctor", "Displays each doctor's specific attribute one by one:");
+        printRow("", "Available attributes:");
+        printRow("", "\t• name");
+        printRow("", "\t• specialisation");
+        printRow("", "\t• availability");
+        printRow("", "\t• treating");
+        printRow("", "\t• numtreated");
+        printRow("", "Format: view doctor <ATTRIBUTE>");
         printEmptyRow();
 
         printRow("list patient", "Displays all the patients in the patients class array that are yet to be discharged");
