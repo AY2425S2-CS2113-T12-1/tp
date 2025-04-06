@@ -30,7 +30,7 @@ public class Ui {
         printRow("register", "Registers new patient with necessary details:");
         printRow("", ARROW_POINT + " <NAME>");
         printRow("", ARROW_POINT + " <SYMPTOMS>");
-        printRow("", ARROW_POINT + " <TIMESTAMP>");
+        printRow("", ARROW_POINT + " <ADMISSION TIME>");
         printRow("", ARROW_POINT + " <MEDICAL HISTORY>");
         printRow("", "Format: register <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>");
         printEmptyRow();
@@ -44,7 +44,7 @@ public class Ui {
         printRow("patient", "Displays specific patient information such as:");
         printRow("", ARROW_POINT + " Name");
         printRow("", ARROW_POINT + " Symptoms");
-        printRow("", ARROW_POINT + " Timestamp");
+        printRow("", ARROW_POINT + " Admission time");
         printRow("", ARROW_POINT + " Medical history");
         printRow("", ARROW_POINT + " Treatment status (if any)");
         printRow("", ARROW_POINT + " Doctors assigned (if any)");

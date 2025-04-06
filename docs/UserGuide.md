@@ -48,9 +48,9 @@ help                 | Shows a list of commands for navigating the database
 register             | Registers new patient with necessary details:                                   
                      | • <NAME>                                                                        
                      | • <SYMPTOMS>                                                                    
-                     | • <TIMESTAMP>                                                                   
+                     | • <ADMISSION TIME>                                                                   
                      | • <MEDICAL HISTORY>                                                             
-                     | Format: register <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>          
+                     | Format: register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>          
                      |                                                                                 
 oncall               | Register on-call doctor(s) with necessary details:                              
                      | • <NAME>                                                                        
@@ -60,7 +60,7 @@ oncall               | Register on-call doctor(s) with necessary details:
 patient              | Displays specific patient information such as:                                  
                      | • Name                                                                          
                      | • Symptoms                                                                      
-                     | • Timestamp                                                                     
+                     | • Admission time                                                                     
                      | • Medical history                                                               
                      | • Treatment status (if any)                                                     
                      | • Doctors assigned (if any)                                                     
@@ -214,13 +214,13 @@ Example output:<br>
     Details of specified patients:
         >Name: Mr. A
             >Symptoms: Cough
-            >Time Stamp: 01 JAN 2025
+            >Time of Admission: 01 JAN 2025
             >Medical History: NA
             >Treatment Status: NA
             >Doctor Assigned: NA
         >Name: Si En
             >Symptoms: Eye Fever
-            >Time Stamp: Tomorrow
+            >Time of Admission: Tomorrow
             >Medical History: None
             >Treatment Status: NA
             >Doctor Assigned: NA
@@ -231,10 +231,10 @@ Registers a new patient with necessary details:<br>
 
 - `<NAME>`
 - `<SYMPTOMS>`
-- `<TIMESTAMP>`
+- `<ADMISSION TIME>`
 - `<MEDICAL HISTORY>`
 
-Format: `register <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>`
+Format: `register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>`
 
 Example usage: 
 
@@ -359,7 +359,7 @@ Format: `exit`
 ## Command Summary
 
 * `help` — Show command reference table
-* `register <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>` — Register new patient
+* `register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>` — Register new patient
 * `oncall <NAME> / <SPECIALISATION> / <PATIENT NAME>` — Register new doctor
 * `patient <NAME>` — View full patient info
 * `doctor <NAME>` — View full doctor info
