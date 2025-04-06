@@ -5,7 +5,6 @@ import seedu.medinote.manager.PatientListManager;
 import seedu.medinote.storage.saveData;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class RegisterPatient {
