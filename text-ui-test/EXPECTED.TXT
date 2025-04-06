@@ -10,3 +10,4 @@
 	available commands.
 ==============================================================================================
 All data saved successfully.
+Exiting MediNote...
