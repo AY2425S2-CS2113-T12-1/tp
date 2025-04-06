@@ -247,13 +247,12 @@ Adds a new on-call doctor with necessary details:<br>
 
 - `<NAME>`
 - `<SPECIALISATION>`
-- `<PATIENT NAME>` (the patient they are currently treating, if any)
 
-Format: `oncall <NAME> / <SPECIALISATION> / <PATIENT NAME>`
+Format: `oncall <NAME> / <SPECIALISATION>`
 
 Example usage:
 
-`oncall Simon Claw/Cardiologist/Mr Lim`
+`oncall Simon Claw/Cardiologist`
 
 ### Discharge a patient: `discharge patient <NAME>`
 Deletes patient and their corresponding information from the database.

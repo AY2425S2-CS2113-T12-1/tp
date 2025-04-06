@@ -11,7 +11,7 @@ public class RegisterDoctor {
     private static final int NEW_DOCTOR_PARAMETER_LENGTH = 2;
     private static final String MISSING_DOCTOR_DETAILS = "\tCompulsory doctor details are incomplete.";
     private static final String CORRECT_DOCTOR_DETAILS_FORMAT =
-            "\tExpected Format: oncall <name> / <specialization>";
+            "\tExpected Format: oncall <name> / <specialisation>";
 
 
     public static void registerDoctor(String doctorDetails) {
