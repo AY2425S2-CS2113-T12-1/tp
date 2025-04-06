@@ -45,7 +45,7 @@ public class DoctorViewer {
             int indexInDoctorList = 0;
             boolean doesDoctorExist = false;
             for (Doctor doctor : doctorList) {
-                if (doctor.getName().equals(targetName)) {
+                if (doctor.getName().equalsIgnoreCase(targetName)) {
                     nameIndexList.add(indexInDoctorList);
                     doesDoctorExist = true;
                     break;
