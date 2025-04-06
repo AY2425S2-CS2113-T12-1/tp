@@ -5,6 +5,7 @@ import seedu.medinote.manager.PatientListManager;
 import seedu.medinote.storage.saveData;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class RegisterPatient {
@@ -35,6 +36,9 @@ public class RegisterPatient {
             }
 
             if (patientInfo.length == NEW_PATIENT_PARAMETER_LENGTH) {
+                for (int i = 0; i < patientInfo.length; i++) {
+                    patientInfo[i] = reformatPatientInfoParameters(patientInfo[i].trim());
+                }
                 Patient patient = new Patient(patientInfo[0].trim(), patientInfo[1].trim(),
                         patientInfo[2].trim(), patientInfo[3].trim(), "NA", "NA");
 
@@ -43,17 +47,18 @@ public class RegisterPatient {
 
                     Scanner scanner = new Scanner(System.in);
                     while (true) {
-                        String userInput = scanner.nextLine().trim();
+                        patientInfo[0] = scanner.nextLine().trim();
                         System.out.println(LINE_BREAK);
+                        patientInfo[0] = reformatPatientInfoParameters(patientInfo[0]);
 
-                        if (!isNameInList(userInput)) {
-                            if (userInput.contains("/")) {
+                        if (!isNameInList(patientInfo[0])) {
+                            if (patientInfo[0].contains("/")) {
                                 System.out.println(NAME_MESSAGE);
                             } else {
-                                patient = new Patient(userInput, patientInfo[1].trim(), patientInfo[2].trim(),
+                                patient = new Patient(patientInfo[0], patientInfo[1].trim(), patientInfo[2].trim(),
                                         patientInfo[3].trim(), "NA", "NA");
                                 PatientListManager.addPatient(patient);
-                                System.out.println("\tPatient " + userInput +
+                                System.out.println("\tPatient " + patientInfo[0] +
                                         SUCCESSFUL_REGISTRATION_MESSAGE);
                                 break;
                             }
@@ -81,6 +86,19 @@ public class RegisterPatient {
 
         System.out.println(LINE_BREAK);
 
+    }
+
+    private static String reformatPatientInfoParameters(String info) {
+        String[] splitInfo = info.split(" +");
+        return joinWords(splitInfo);
+    }
+
+    private static String joinWords(String[] separatedWords) {
+        String sentence = separatedWords[0];
+        for (int i = 1; i < separatedWords.length; i++) {
+            sentence = sentence.concat(" " + separatedWords[i]);
+        }
+        return sentence;
     }
 
     public static boolean isNameInList(String name) {

@@ -32,11 +32,25 @@ public class DoctorViewer {
 
         for (int i = 0; i < targetNamesArray.length; i++) {
             targetNamesArray[i] = targetNamesArray[i].trim();
+            targetNamesArray[i] = reformatInfoParameters(targetNamesArray[i]);
         }
 
         ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
         ArrayList<Integer> nameIndexList = findValidViewableDoctorIndexes(targetNamesArray, doctorList);
         printViewableDoctors(targetNamesArray, nameIndexList, doctorList);
+    }
+
+    private static String reformatInfoParameters(String info) {
+        String[] splitInfo = info.split(" +");
+        return joinWords(splitInfo);
+    }
+
+    private static String joinWords(String[] separatedWords) {
+        String sentence = separatedWords[0];
+        for (int i = 1; i < separatedWords.length; i++) {
+            sentence = sentence.concat(" " + separatedWords[i]);
+        }
+        return sentence;
     }
 
     private static ArrayList<Integer> findValidViewableDoctorIndexes(String[] targetNamesArray,
