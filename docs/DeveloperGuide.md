@@ -145,3 +145,6 @@ MediNote aims to improve the management capacity and efficiency of hospitals.
 * <b>Mainstream OS</b>: Windows, Linux, Unix, macOS
 
 ## Instructions for manual testing
+
+### Download and Launch
+1. Download the `.jar` 
