@@ -17,7 +17,7 @@ public class RegisterPatient {
             "\tExpected Format: register <name> / <symptoms> / <admission time> / <medical history>";
     private static final String DUPLICATE_PATIENT_MESSAGE = "\tPatient has the same name as an existing patient.\n" +
             "\tPlease give the patient another name below (without ANY parameters):";
-    private static final String SUCCESSFUL_REGISTRATION_MESSAGE = " has been successfully registered as a patient";
+    private static final String SUCCESSFUL_REGISTRATION_MESSAGE = " has been successfully registered as a patient!";
     private static final String FAILED_REGISTRATION_MESSAGE = "\tName already exists. " +
             "Please input a different name, without parameters:";
     private static final String NAME_MESSAGE = "\tPlease ONLY enter the new name, without parameters!";

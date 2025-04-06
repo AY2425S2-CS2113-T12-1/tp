@@ -17,7 +17,7 @@ public class RegisterDoctor {
             "\tExpected Format: oncall <name> / <specialisation>";
     private static final String DUPLICATE_DOCTOR_MESSAGE = "\tDoctor has the same name as an existing doctor.\n" +
             "\tPlease give the doctor another name below (without ANY parameters):";
-    private static final String SUCCESSFUL_REGISTRATION_MESSAGE = " has been successfully registered as a doctor";
+    private static final String SUCCESSFUL_REGISTRATION_MESSAGE = " has been successfully registered as a doctor!";
     private static final String FAILED_REGISTRATION_MESSAGE = "\tName already exists. " +
             "Please input a different name, without parameters:";
     private static final String NAME_MESSAGE = "\tPlease ONLY enter the new name, without parameters!";
