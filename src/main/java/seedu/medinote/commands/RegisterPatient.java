@@ -36,7 +36,6 @@ public class RegisterPatient {
                 } catch (Exception e) {
                     System.out.println("\tError saving patient data: " + e.getMessage());
                 }
-                // Call view patient and print out details. Omit name
             } else {
                 throw new IllegalArgumentException(MISSING_PATIENT_DETAILS + "\n"
                         + CORRECT_PATIENT_DETAILS_FORMAT);

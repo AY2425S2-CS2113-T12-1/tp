@@ -111,10 +111,6 @@ public class Ui {
         printRow("delete doctor", "Deletes doctor and corresponding information from the database");
         printEmptyRow();
 
-        printRow("clear patients", "Clears all patient entries from the database");
-        printRow("clear doctors", "Clears all doctor entries from the database");
-        printEmptyRow();
-
         printRow("popular", "Displays most popular doctors based on specified attributes");
         printRow("", "Available options:");
         printRow("", "\t" + ARROW_POINT + " doctor type");
