@@ -10,7 +10,8 @@ public class DoctorViewer {
     private static final String LINE_BREAK = "===============================================" +
             "===============================================";
     private static final String VIEWABLE_DOCTORS_HEADER = "\tHere is a list of viewable doctors:";
-    private static final String VIEW_DOCTOR_FORMAT_SUGGESTION = "\tUse command format: doctor <NAME>.";
+    private static final String VIEW_DOCTOR_FORMAT_SUGGESTION =
+            "\tUse command format: doctor <NAME_1> / ... / <NAME_X>";
     private static final String NO_DOCTORS_MESSAGE = "\tCurrently no viewable doctors! Use oncall to add a doctor.";
     private static final int INVALID_INDEX_IN_DOCTOR_LIST = -1;
     private static final String NAME_POINT = "\t\t>Name: ";
@@ -66,9 +67,12 @@ public class DoctorViewer {
                                              ArrayList<Integer> nameIndexList,
                                              ArrayList<Doctor> doctorList) {
         System.out.println(LINE_BREAK);
-        System.out.println("\tDetails of specified doctors:");
+        boolean isPrintableHeaderUsed = false;
         for (Integer integer : nameIndexList) {
             if (integer >= 0) {
+                if (!isPrintableHeaderUsed) {
+                    System.out.println("\tDetails of specified doctors:");
+                }
                 printThisDoctor(doctorList.get(integer));
             }
         }

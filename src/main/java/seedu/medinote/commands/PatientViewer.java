@@ -9,7 +9,8 @@ public class PatientViewer {
     private static final String LINE_BREAK = "===============================================" +
             "===============================================";
     private static final String VIEWABLE_PATIENTS_HEADER = "\tHere is a list of viewable patients:";
-    private static final String VIEW_PATIENT_FORMAT_SUGGESTION = "\tUse command format: patient <NAME>.";
+    private static final String VIEW_PATIENT_FORMAT_SUGGESTION =
+            "\tUse command format: patient <NAME_1> / ... / <NAME_X>";
     private static final String NO_PATIENTS_MESSAGE =
             "\tCurrently no viewable patients! Use register to add a patient.";
     private static final int INVALID_INDEX_IN_PATIENT_LIST = -1;
@@ -68,9 +69,12 @@ public class PatientViewer {
                                              ArrayList<Integer> nameIndexList,
                                              ArrayList<Patient> patientList) {
         System.out.println(LINE_BREAK);
-        System.out.println("\tDetails of specified patients:");
+        boolean isPrintableHeaderUsed = false;
         for (Integer integer : nameIndexList) {
             if (integer >= 0) {
+                if (!isPrintableHeaderUsed) {
+                    System.out.println("\tDetails of specified patients:");
+                }
                 printThisPatient(patientList.get(integer));
             }
         }
