@@ -83,7 +83,7 @@ public class TaskManager {
             } else if (arguments.startsWith("doctor ")) {
                 ViewDoctorAttributes.printDoctorAttributes(arguments.substring(7));
             } else {
-                System.out.println("Invalid view command inputed. Try: view <patient Name> <attibute>");
+                System.out.println("Invalid view command. Try: view <patient Name> <attribute>");
             }
             break;
 

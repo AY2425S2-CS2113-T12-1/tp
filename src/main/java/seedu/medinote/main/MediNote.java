@@ -18,7 +18,6 @@ public class MediNote {
         Ui.printGreetings();
         final Scanner userLineScanner = new Scanner(System.in);
         String userInput = "";
-        //assert false : "test assertion failed";
 
         while (!userInput.equals("exit")) {
             userInput = userLineScanner.nextLine().trim();
