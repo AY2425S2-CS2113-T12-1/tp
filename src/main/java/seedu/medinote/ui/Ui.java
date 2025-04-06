@@ -80,8 +80,20 @@ public class Ui {
         printRow("", "Format: view doctor <ATTRIBUTE>");
         printEmptyRow();
 
-        printRow("list patient", "Displays all the patients in the patients class array that are yet to be discharged");
+        printRow("list patient",
+                "Displays all the patients in the patients class array that are yet to be discharged");
         printRow("list doctor", "Displays all doctors available in the hospital");
+        printEmptyRow();
+
+        printRow("list patient <ATRB>", "Displays a specific attribute for all patients.");
+        printRow("", "Available attributes:");
+        printRow("", "\t• name");
+        printRow("", "\t• symptoms");
+        printRow("", "\t• timestamp");
+        printRow("", "\t• history");
+        printRow("", "\t• treatment");
+        printRow("", "\t• doctor");
+        printRow("", "Format: list patient <ATTRIBUTE>");
         printEmptyRow();
 
         printRow("update patient", "Updates corresponding patient’s information on:");
@@ -100,6 +112,20 @@ public class Ui {
 
         printRow("clear patients", "Clears all patient entries from the database");
         printRow("clear doctors", "Clears all doctor entries from the database");
+        printEmptyRow();
+
+        printRow("popular", "Displays most popular doctors based on specified attributes");
+        printRow("", "Available options:");
+        printRow("", "\t• doctor type");
+        printRow("", "\t• visited doctor");
+        printEmptyRow();
+
+        printRow("stats", "Prints an overview of hospital metrics");
+        printRow("", "\t• Total number of patients");
+        printRow("", "\t• Number of patients currently being treated");
+        printRow("", "\t• Total number of doctors");
+        printRow("", "\t• Most active doctor (by patient count)");
+        printRow("", "\t• Average patients per doctor");
         printEmptyRow();
 
         printRow("exit", "Exits the program");
