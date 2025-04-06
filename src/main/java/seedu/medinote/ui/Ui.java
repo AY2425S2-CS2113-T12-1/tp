@@ -4,6 +4,17 @@ public class Ui {
 
     public static final String UI_LINE_BREAK = "===============================================" +
             "===============================================";
+    private static final String MEDINOTE_ART =
+            "\t··················································\n" +
+            "\t: __  __            _  _  _   _         _        :\n" +
+            "\t:|  \\/  |  ___   __| |(_)| \\ | |  ___  | |_  ___ :\n" +
+            "\t:| |\\/| | / _ \\ / _` || ||  \\| | / _ \\ | __|/ _ \\:\n" +
+            "\t:| |  | ||  __/| (_| || || |\\  || (_) || |_|  __/:\n" +
+            "\t:|_|  |_| \\___| \\__,_||_||_| \\_| \\___/  \\__|\\___|:\n" +
+            "\t··················································";
+    private static final String WELCOME_TO_MEDINOTE =
+            "\tWelcome to MediNote! Type command 'help' to see\n" +
+            "\tavailable commands.";
 
     public static void printHelpTable() {
         String format = "%-20s | %-80s%n"; // Formatting for alignment
@@ -79,6 +90,13 @@ public class Ui {
 
     public static void printEmptyRow() {
         System.out.printf("%-20s | %-80s%n", "", "");
+    }
+
+    public static void printGreetings() {
+        System.out.println(UI_LINE_BREAK);
+        System.out.println(MEDINOTE_ART);
+        System.out.println(WELCOME_TO_MEDINOTE);
+        System.out.println(UI_LINE_BREAK);
     }
 
 }

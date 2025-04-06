@@ -1,6 +1,7 @@
 package seedu.medinote.main;
 
 import java.util.Scanner;
+import seedu.medinote.ui.Ui;
 
 import seedu.medinote.storage.ensureFilesExist;
 import seedu.medinote.storage.loadData;
@@ -14,7 +15,7 @@ public class MediNote {
     public static void main(String[] args) {
         // Initialize storage files and load data
         initializeStorage();
-
+        Ui.printGreetings();
         final Scanner userLineScanner = new Scanner(System.in);
         String userInput = "";
         //assert false : "test assertion failed";
