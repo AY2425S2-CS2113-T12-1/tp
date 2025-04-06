@@ -45,7 +45,7 @@ public class PatientViewerTest {
         assertTrue(output.toString().contains("\tDetails of specified patients:"));
         assertTrue(output.toString().contains("\t\t>Name: Simon Claw"));
         assertTrue(output.toString().contains("\t\t\t>Symptoms: High Fever"));
-        assertTrue(output.toString().contains("\t\t\t>Time Stamp: 5 Jan 530pm"));
+        assertTrue(output.toString().contains("\t\t\t>Time of Admission: 5 Jan 530pm"));
         assertTrue(output.toString().contains("\t\t\t>Medical History: Nut allergy"));
         assertTrue(output.toString().contains("\t\t\t>Treatment Status: NA1"));
         assertTrue(output.toString().contains("\t\t\t>Doctor Assigned: NA1"));
@@ -73,14 +73,14 @@ public class PatientViewerTest {
         assertTrue(output.toString().contains("\tDetails of specified patients:"));
         assertTrue(output.toString().contains("\t\t>Name: Simon Claw"));
         assertTrue(output.toString().contains("\t\t\t>Symptoms: High Fever"));
-        assertTrue(output.toString().contains("\t\t\t>Time Stamp: 5 Jan 530pm"));
+        assertTrue(output.toString().contains("\t\t\t>Time of Admission: 5 Jan 530pm"));
         assertTrue(output.toString().contains("\t\t\t>Medical History: Nut allergy"));
         assertTrue(output.toString().contains("\t\t\t>Treatment Status: NA1"));
         assertTrue(output.toString().contains("\t\t\t>Doctor Assigned: NA1"));
 
         assertTrue(output.toString().contains("\t\t>Name: Agent 55"));
         assertTrue(output.toString().contains("\t\t\t>Symptoms: Bronchitis"));
-        assertTrue(output.toString().contains("\t\t\t>Time Stamp: 8 April 640am"));
+        assertTrue(output.toString().contains("\t\t\t>Time of Admission: 8 April 640am"));
         assertTrue(output.toString().contains("\t\t\t>Medical History: NA2"));
         assertTrue(output.toString().contains("\t\t\t>Treatment Status: NA2"));
         assertTrue(output.toString().contains("\t\t\t>Doctor Assigned: NA2"));
@@ -150,7 +150,7 @@ public class PatientViewerTest {
         assertTrue(output.toString().contains("\tDetails of specified patients:"));
         assertTrue(output.toString().contains("\t\t>Name: Simon Claw"));
         assertTrue(output.toString().contains("\t\t\t>Symptoms: High Fever"));
-        assertTrue(output.toString().contains("\t\t\t>Time Stamp: 5 Jan 530pm"));
+        assertTrue(output.toString().contains("\t\t\t>Time of Admission: 5 Jan 530pm"));
         assertTrue(output.toString().contains("\t\t\t>Medical History: Nut allergy"));
         assertTrue(output.toString().contains("\t\t\t>Treatment Status: NA1"));
         assertTrue(output.toString().contains("\t\t\t>Doctor Assigned: NA1"));

@@ -38,6 +38,104 @@ or add the desired information from or into the database.
 
 Format: `help`
 
+Example output:
+```
+==============================================================================================
+Keyword              | Action                                                                          
+==============================================================================================
+help                 | Shows a list of commands for navigating the database                            
+                     |                                                                                 
+register             | Registers new patient with necessary details:                                   
+                     | • <NAME>                                                                        
+                     | • <SYMPTOMS>                                                                    
+                     | • <ADMISSION TIME>                                                                   
+                     | • <MEDICAL HISTORY>                                                             
+                     | Format: register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>          
+                     |                                                                                 
+oncall               | Register on-call doctor(s) with necessary details:                              
+                     | • <NAME>                                                                        
+                     | • <SPECIALISATION>                                                              
+                     | Format: oncall <NAME> / <SPECIALISATION>                                        
+                     |                                                                                 
+patient              | Displays specific patient information such as:                                  
+                     | • Name                                                                          
+                     | • Symptoms                                                                      
+                     | • Admission time                                                                     
+                     | • Medical history                                                               
+                     | • Treatment status (if any)                                                     
+                     | • Doctors assigned (if any)                                                     
+                     | Format: patient <NAME_1> / ... / <NAME_X>                                       
+                     | Note: <NAME> inputted does not need to be case-sensitive                        
+                     |                                                                                 
+view patient         | Displays each patient's specific attribute one by one:                          
+                     | Available attributes:                                                           
+                     | 	• name                                                                         
+                     | 	• symptoms                                                                     
+                     | 	• timestamp                                                                    
+                     | 	• history                                                                      
+                     | 	• treatment                                                                    
+                     | 	• doctor                                                                       
+                     | Format: view patient <ATTRIBUTE>                                                
+                     |                                                                                 
+doctor               | Displays specific doctor information such as:                                   
+                     | • Specialisation                                                                
+                     | • Availability                                                                  
+                     | • Patients under the doctor (if any)                                            
+                     | Format: doctor <NAME_1> / ... / <NAME_X>                                        
+                     | Note: <NAME> inputted does not need to be case-sensitive                        
+                     |                                                                                 
+view doctor          | Displays each doctor's specific attribute one by one:                           
+                     | Available attributes:                                                           
+                     | 	• name                                                                         
+                     | 	• specialisation                                                               
+                     | 	• availability                                                                 
+                     | 	• treating                                                                     
+                     | 	• numtreated                                                                   
+                     | Format: view doctor <ATTRIBUTE>                                                 
+                     |                                                                                 
+list patient         | Displays all the patients in the patients class array that are yet to be discharged
+list doctor          | Displays all doctors available in the hospital                                  
+                     |                                                                                 
+list patient <ATRB>  | Displays a specific attribute for all patients.                                 
+                     | Available attributes:                                                           
+                     | 	• name                                                                         
+                     | 	• symptoms                                                                     
+                     | 	• timestamp                                                                    
+                     | 	• history                                                                      
+                     | 	• treatment                                                                    
+                     | 	• doctor                                                                       
+                     | Format: list patient <ATTRIBUTE>                                                
+                     |                                                                                 
+update patient       | Updates corresponding patient’s information on:                                 
+                     | • <TREATMENT STATUS> whether they are still in queue or being treated           
+                     | • <DOCTOR ASSIGNED> the doctor that they are assigned                           
+                     |                                                                                 
+update doctor        | Updates corresponding doctor information on:                                    
+                     | • <AVAILABILITY> their current working status                                   
+                     | • <PATIENT NAME> the patient they are currently treating (if any)               
+                     |                                                                                 
+discharge patient    | Deletes patient and corresponding information from the database.                
+delete doctor        | Deletes doctor and corresponding information from the database                  
+                     |                                                                                 
+clear patients       | Clears all patient entries from the database                                    
+clear doctors        | Clears all doctor entries from the database                                     
+                     |                                                                                 
+popular              | Displays most popular doctors based on specified attributes                     
+                     | Available options:                                                              
+                     | 	• doctor type                                                                  
+                     | 	• visited doctor                                                               
+                     |                                                                                 
+stats                | Prints an overview of hospital metrics                                          
+                     | 	• Total number of patients                                                     
+                     | 	• Number of patients currently being treated                                   
+                     | 	• Total number of doctors                                                      
+                     | 	• Most active doctor (by patient count)                                        
+                     | 	• Average patients per doctor                                                  
+                     |                                                                                 
+exit                 | Exits the program                                                               
+==============================================================================================
+```
+
 ### Listing all current patients: `list patient`
 Lists all patients currently admitted, along with all of their attributes:<br>
 
@@ -116,13 +214,13 @@ Example output:<br>
     Details of specified patients:
         >Name: Mr. A
             >Symptoms: Cough
-            >Time Stamp: 01 JAN 2025
+            >Time of Admission: 01 JAN 2025
             >Medical History: NA
             >Treatment Status: NA
             >Doctor Assigned: NA
         >Name: Si En
             >Symptoms: Eye Fever
-            >Time Stamp: Tomorrow
+            >Time of Admission: Tomorrow
             >Medical History: None
             >Treatment Status: NA
             >Doctor Assigned: NA
@@ -133,10 +231,10 @@ Registers a new patient with necessary details:<br>
 
 - `<NAME>`
 - `<SYMPTOMS>`
-- `<TIMESTAMP>`
+- `<ADMISSION TIME>`
 - `<MEDICAL HISTORY>`
 
-Format: `register <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>`
+Format: `register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>`
 
 Example usage: 
 
@@ -261,7 +359,7 @@ Format: `exit`
 ## Command Summary
 
 * `help` — Show command reference table
-* `register <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>` — Register new patient
+* `register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>` — Register new patient
 * `oncall <NAME> / <SPECIALISATION> / <PATIENT NAME>` — Register new doctor
 * `patient <NAME>` — View full patient info
 * `doctor <NAME>` — View full doctor info
