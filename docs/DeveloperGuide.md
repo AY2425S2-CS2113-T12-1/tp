@@ -147,4 +147,30 @@ MediNote aims to improve the management capacity and efficiency of hospitals.
 ## Instructions for manual testing
 
 ### Download and Launch
-1. Download the `.jar` 
+1. Download the `.jar` file and copy into an empty folder.
+2. Open the folder containing the `.jar` file and run terminal/command prompt.<br>
+   On Windows, right-click the folder and select "Open in terminal".
+3. Run `java -jar tP_V2p1.jar` in the command prompt/terminal.
+
+### Available Commands to Test<br>
+Refer to UserGuide for specific command syntax.
+1. `help`: Lists all commands and their usage.
+2. `register`: Register new patient.
+3. `oncall`: Register new doctor.
+4. `list patient`&`list doctor`: Lists all current patients and doctors.
+5. `patient`: View specific patients.
+6. `doctor`: View specific doctors.
+7. `discharge patient`: Remove patient from system.
+8. `delete doctor`: Remove doctor from system.
+9. `update patient`: Update a patient's info.
+10. `update doctor`: Update a doctor's info.
+11. `view patient <ATTRIBUTE>`: View each patient's <ATTRIBUTE> individually.
+12. `view doctor <ATTRIBUTE>`: View each doctor's <ATTRIBUTE> individually.
+13. `list patient <ATTRIBUTE>`: List specific patient attribute across all.
+14. `popular doctor type`: Show most common doctor specialisation. 
+15. `popular visited doctor`: Show most visited doctor.
+16. `stats`: Show hospital-wide metrics.
+17. `exit`: Exit the program.
+
+Note: These instructions provide a baseline explanation of the available commands. Testers should <br>
+explore different usages and combinations of the commands during exploratory testing. 
