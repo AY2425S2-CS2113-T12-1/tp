@@ -3,7 +3,7 @@ package seedu.medinote.commands;
 import java.util.ArrayList;
 import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.person.Doctor;
-import seedu.medinote.storage.saveData;
+import seedu.medinote.storage.SaveData;
 
 public class DeleteDoctor {
     public static void deleteDoctor(String docName) {
@@ -26,7 +26,7 @@ public class DeleteDoctor {
             if(currdoctorName.equalsIgnoreCase(docName)) {
                 DoctorListManager.removeDoctor(doctor);
                 try {
-                    saveData.saveDoctorsData(doctorList);
+                    SaveData.saveDoctorsData(doctorList);
                     System.out.println("Doctor data saved successfully.");
                 } catch (Exception e) {
                     System.out.println("Error saving doctor data: " + e.getMessage());

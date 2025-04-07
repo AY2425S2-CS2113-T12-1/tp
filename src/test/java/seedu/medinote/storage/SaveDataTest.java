@@ -17,11 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SaveDataTest {
 
-    private saveData dataSaver;
+    private SaveData dataSaver;
 
     @BeforeEach
     void setUp() throws IOException {
-        dataSaver = new saveData();
+        dataSaver = new SaveData();
         TestUtil.createTestFiles();
     }
 
@@ -40,10 +40,10 @@ class SaveDataTest {
                 "Busy", "Sarah Connor"));
 
         // Execute method
-        saveData.saveDoctorsData(doctors);
+        SaveData.saveDoctorsData(doctors);
 
         // Verify file content
-        String content = Files.readString(Paths.get(saveData.DOCTOR_FILE_PATH));
+        String content = Files.readString(Paths.get(SaveData.DOCTOR_FILE_PATH));
         assertTrue(content.contains("Dr. Smith|Cardiology|Available|John Doe|"));
         assertTrue(content.contains("Dr. Lee|Neurology|Busy|Sarah Connor|"));
     }
@@ -63,7 +63,7 @@ class SaveDataTest {
         dataSaver.savePatientsData(patients);
 
         // Verify file content
-        String content = Files.readString(Paths.get(saveData.PATIENT_FILE_PATH));
+        String content = Files.readString(Paths.get(SaveData.PATIENT_FILE_PATH));
         assertTrue(content.contains("John Doe|Headache|2023-01-01|None|In Treatment|Dr. Smith"));
         assertTrue(content.contains("Sarah Connor|Fever|2023-01-02|Allergies|Waiting|None"));
     }
@@ -71,10 +71,10 @@ class SaveDataTest {
     @Test
     void saveDoctorsData_emptyList_savesEmptyFile() throws IOException {
         // Execute method with empty list
-        saveData.saveDoctorsData(new ArrayList<>());
+        SaveData.saveDoctorsData(new ArrayList<>());
 
         // Verify file is empty except for header
-        String content = Files.readString(Paths.get(saveData.DOCTOR_FILE_PATH));
+        String content = Files.readString(Paths.get(SaveData.DOCTOR_FILE_PATH));
         String[] lines = content.split(System.lineSeparator());
         assertEquals(1, lines.length); // Only header line
     }

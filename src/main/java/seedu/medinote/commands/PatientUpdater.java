@@ -4,7 +4,7 @@ import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.person.Doctor;
 import seedu.medinote.person.Patient;
 import seedu.medinote.manager.PatientListManager;
-import seedu.medinote.storage.saveData;
+import seedu.medinote.storage.SaveData;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,7 +51,8 @@ public class PatientUpdater {
 
         Patient target = findPatientByName(name);
         if (target == null) {
-            System.out.println("\nPatient \"" + name + "\" not found. If the name contains spaces, try using a hyphen like \"John-Tan\".");
+            System.out.println("\nPatient \"" + name + "\" not found. If the name contains spaces, try using a hyphen" +
+                    " like \"John-Tan\".");
             return;
         }
 
@@ -67,20 +68,20 @@ public class PatientUpdater {
         for (String key : updates.keySet()) {
             String value = updates.get(key);
             switch (key.toLowerCase()) {
-                case "status":
-                    target.setTreatmentStatus(value);
-                    updated = true;
-                    break;
-                case "doctor":
-                    target.setDoctorAssigned(value);
-                    Doctor linkedDoctor = findDoctorByName(value);
-                    if (linkedDoctor != null) {
-                        linkedDoctor.assignPatient(target.getName());
-                    }
-                    updated = true;
-                    break;
-                default:
-                    System.out.println("\nUnknown attribute: " + key);
+            case "status":
+                target.setTreatmentStatus(value);
+                updated = true;
+                break;
+            case "doctor":
+                target.setDoctorAssigned(value);
+                Doctor linkedDoctor = findDoctorByName(value);
+                if (linkedDoctor != null) {
+                    linkedDoctor.assignPatient(target.getName());
+                }
+                updated = true;
+                break;
+            default:
+                System.out.println("\nUnknown attribute: " + key);
             }
         }
 
@@ -88,7 +89,7 @@ public class PatientUpdater {
         if (updated) {
             System.out.println("\nPatient \"" + name + "\" updated successfully.");
             try {
-                new saveData().savePatientsData(PatientListManager.getPatientList());
+                new SaveData().savePatientsData(PatientListManager.getPatientList());
             } catch (IOException e) {
                 System.out.println("\nFailed to save updated patient data.");
             }
@@ -124,9 +125,7 @@ public class PatientUpdater {
         String[] pairs = input.split(" ");
 
         for (String pair : pairs) {
-            if (!pair.contains("=")) continue;
             String[] parts = pair.split("=", 2);
-            if (parts.length < 2) continue;
             map.put(parts[0].trim(), parts[1].trim());
         }
 

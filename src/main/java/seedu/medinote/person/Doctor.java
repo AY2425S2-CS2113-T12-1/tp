@@ -24,7 +24,8 @@ public class Doctor {
     }
 
     public void assignPatient(String name) {
-        if (patientsBeingTreated.trim().isEmpty() || patientsBeingTreated.equalsIgnoreCase("none") || patientsBeingTreated.equalsIgnoreCase("na")) {
+        if (patientsBeingTreated.trim().isEmpty() || patientsBeingTreated.equalsIgnoreCase("none")
+                || patientsBeingTreated.equalsIgnoreCase("na")) {
             patientsBeingTreated = name;
         } else if (!patientsBeingTreated.contains(name)) {
             patientsBeingTreated += ", " + name;
@@ -42,10 +43,10 @@ public class Doctor {
     }
 
     public String getPatientsBeingTreated() {
-        if (patientsBeingTreated.isEmpty()) {
+        if (patientsBeingTreated == null || patientsBeingTreated.trim().isEmpty()) {
             return "None";
         }
-        return String.join(patientsBeingTreated);
+        return patientsBeingTreated; // Remove the String.join() call
     }
 
     public Integer getNumPatientsTreated() {

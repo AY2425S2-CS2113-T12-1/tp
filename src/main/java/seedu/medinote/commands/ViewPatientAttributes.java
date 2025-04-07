@@ -40,29 +40,29 @@ public class ViewPatientAttributes {
             String result;
 
             switch (attribute) {
-                case "name":
-                    result = p.getName();
-                    break;
-                case "symptoms":
-                    result = p.getSymptoms();
-                    break;
-                case "timestamp":
-                    result = p.getTimeStamp();
-                    break;
-                case "history":
-                    result = p.getMedicalHistory();
-                    break;
-                case "treatment":
-                    result = p.getTreatmentStatus();
-                    break;
-                case "doctor":
-                    result = p.getDoctorAssigned();
-                    break;
-                default:
-                    System.out.println(LINE_BREAK);
-                    System.out.println("Unknown attribute: " + attribute);
-                    System.out.println(LINE_BREAK);
-                    return;
+            case "name":
+                result = p.getName();
+                break;
+            case "symptoms":
+                result = p.getSymptoms();
+                break;
+            case "timestamp":
+                result = p.getTimeStamp();
+                break;
+            case "history":
+                result = p.getMedicalHistory();
+                break;
+            case "treatment":
+                result = p.getTreatmentStatus();
+                break;
+            case "doctor":
+                result = p.getDoctorAssigned();
+                break;
+            default:
+                System.out.println(LINE_BREAK);
+                System.out.println("Unknown attribute: " + attribute);
+                System.out.println(LINE_BREAK);
+                return;
             }
 
             System.out.println(label + ": " + result);

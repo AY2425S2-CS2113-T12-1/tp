@@ -3,10 +3,10 @@ package seedu.medinote.main;
 import java.util.Scanner;
 import seedu.medinote.ui.Ui;
 
-import seedu.medinote.storage.ensureFilesExist;
-import seedu.medinote.storage.loadData;
+import seedu.medinote.storage.EnsureFilesExist;
+import seedu.medinote.storage.LoadData;
 import seedu.medinote.manager.TaskManager;
-import seedu.medinote.storage.saveData;
+import seedu.medinote.storage.SaveData;
 import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.manager.PatientListManager;
 
@@ -36,11 +36,11 @@ public class MediNote {
     private static void initializeStorage() {
         try {
             // Ensure files exist
-            ensureFilesExist.ensureDoctorsFileExists();
-            ensureFilesExist.ensurePatientsFileExists();
+            EnsureFilesExist.ensureDoctorsFileExists();
+            EnsureFilesExist.ensurePatientsFileExists();
 
             // Load existing data
-            loadData dataLoader = new loadData();
+            LoadData dataLoader = new LoadData();
             DoctorListManager.getDoctorList().addAll(dataLoader.loadDoctorData());
             PatientListManager.getPatientList().addAll(dataLoader.loadPatientData());
 
@@ -52,8 +52,8 @@ public class MediNote {
 
     private static void saveAllData() {
         try {
-            saveData.saveDoctorsData(DoctorListManager.getDoctorList());
-            new saveData().savePatientsData(PatientListManager.getPatientList());
+            SaveData.saveDoctorsData(DoctorListManager.getDoctorList());
+            new SaveData().savePatientsData(PatientListManager.getPatientList());
             System.out.println("All data saved successfully.");
         } catch (Exception e) {
             System.out.println("Error saving data: " + e.getMessage());

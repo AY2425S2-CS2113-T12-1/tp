@@ -40,23 +40,23 @@ public class ViewDoctorAttributes {
             String result;
 
             switch (attribute) {
-                case "name":
-                    result = d.getName();
-                    break;
-                case "specialization":
-                    result = d.getSpecialisation();
-                    break;
-                case "availability":
-                    result = d.getAvailability();
-                    break;
-                case "treating":
-                    result = d.getPatientsBeingTreated();
-                    break;
-                default:
-                    System.out.println(LINE_BREAK);
-                    System.out.println("Unknown attribute: " + attribute);
-                    System.out.println(LINE_BREAK);
-                    return;
+            case "name":
+                result = d.getName();
+                break;
+            case "specialization":
+                result = d.getSpecialisation();
+                break;
+            case "availability":
+                result = d.getAvailability();
+                break;
+            case "treating":
+                result = d.getPatientsBeingTreated();
+                break;
+            default:
+                System.out.println(LINE_BREAK);
+                System.out.println("Unknown attribute: " + attribute);
+                System.out.println(LINE_BREAK);
+                return;
             }
 
             System.out.println(label + ": " + result);

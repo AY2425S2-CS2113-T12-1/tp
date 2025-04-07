@@ -2,7 +2,7 @@ package seedu.medinote.commands;
 
 import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.person.Doctor;
-import seedu.medinote.storage.saveData;
+import seedu.medinote.storage.SaveData;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,7 +49,8 @@ public class DoctorUpdater {
 
         Doctor target = findDoctorByName(name);
         if (target == null) {
-            System.out.println("\nDoctor \"" + name + "\" not found. If the name contains spaces, try using a hyphen like \"Dr-Lim\".");
+            System.out.println("\nDoctor \"" + name + "\" not found. If the name contains spaces, try using a hyphen" +
+                    " like \"Dr-Lim\".");
             return;
         }
 
@@ -65,16 +66,16 @@ public class DoctorUpdater {
         for (String key : updates.keySet()) {
             String value = updates.get(key);
             switch (key.toLowerCase()) {
-                case "availability":
-                    target.setAvailability(value);
-                    updated = true;
-                    break;
-                case "treating":
-                    target.assignPatient(value);
-                    updated = true;
-                    break;
-                default:
-                    System.out.println("\nUnknown attribute: " + key);
+            case "availability":
+                target.setAvailability(value);
+                updated = true;
+                break;
+            case "treating":
+                target.assignPatient(value);
+                updated = true;
+                break;
+            default:
+                System.out.println("\nUnknown attribute: " + key);
             }
         }
 
@@ -82,7 +83,7 @@ public class DoctorUpdater {
         if (updated) {
             System.out.println("\nDoctor \"" + name + "\" updated successfully.");
             try {
-                saveData.saveDoctorsData(DoctorListManager.getDoctorList());
+                SaveData.saveDoctorsData(DoctorListManager.getDoctorList());
             } catch (IOException e) {
                 System.out.println("\nFailed to save updated doctor data.");
             }
@@ -108,9 +109,7 @@ public class DoctorUpdater {
         String[] pairs = input.split(" ");
 
         for (String pair : pairs) {
-            if (!pair.contains("=")) continue;
             String[] parts = pair.split("=", 2);
-            if (parts.length < 2) continue;
             map.put(parts[0].trim(), parts[1].trim());
         }
 
