@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+actor User
+participant ":Main"
+participant ":TaskManager"
+participant ":DischargePatient"
+participant ":PatientListManager"
+participant ":SaveData"
+
+
+User -> ":Main" : "discharge patient Michael"
+activate ":Main"
+
+":Main" -> ":TaskManager" : checkCommand("discharge patient Michael")
+activate ":TaskManager"
+
+":TaskManager" -> ":DischargePatient" : dischargePatient("Michael")
+activate ":DischargePatient"
+
+":DischargePatient" -> ":PatientListManager" : getPatientList()
+activate ":PatientListManager"
+
+":PatientListManager" --> ":DischargePatient"
+deactivate ":PatientListManager"
+
+":DischargePatient" -> ":PatientListManager" : removePatient(patient)
+activate ":PatientListManager"
+
+":PatientListManager" --> ":DischargePatient"
+deactivate ":PatientListManager"
+
+":DischargePatient" -> ":SaveData" : savePatientsData(patientList)
+activate ":SaveData"
+
+":SaveData" -> ":SaveData" : Save to file
+activate ":SaveData"
+
+":SaveData" --> ":SaveData"
+deactivate ":SaveData"
+
+":SaveData" --> ":DischargePatient"
+deactivate ":SaveData"
+
+":DischargePatient" --> ":TaskManager"
+deactivate ":DischargePatient"
+
+":TaskManager" --> ":Main"
+deactivate ":TaskManager"
+
+":Main" --> User : Deletes patient info, "Patient data saved successfully."
+deactivate ":Main"
+@enduml
