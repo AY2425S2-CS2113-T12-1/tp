@@ -1,0 +1,21 @@
+@startuml
++class Patient {
+- name
+- symptoms
+- timeStamp
+- medicalHistory
+- treatmentStatus
+- doctorAssigned
+
+{method} + getName()
+{method} + getSymptoms()
+{method} + getTimeStamp()
+{method} + getMedicalHistory()
+{method} + getTreatmentStatus()
+{method} + getDoctorAssigned()
+{method} + setTreatmentStatus()
+{method} + setDoctorAssigned()
+}
+
+
+@enduml

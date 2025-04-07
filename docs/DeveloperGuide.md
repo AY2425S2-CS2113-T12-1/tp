@@ -89,6 +89,17 @@ In the context of this example:
 | commands | RegisterPatient | Contains bulk of code logic                                           |
 | storage  | SaveData        | Persists data to text files                                           |
 
+### Person Classes
+In MediNote, we have two main person classes: `PATIENT` and `DOCTOR`.
+1. `PATIENT` Class<br>
+![Class Diagram of Patient Class](./pictures/PatientClass.png)
+
+2. `DOCTOR` Class<br>
+![Class Diagram of Doctor Class](./pictures/DoctorClass.png)
+
+In each of the classes, there are methods to get every attribute. Some methods set certain attributes 
+that can be updated in the PatientUpdater and DoctorUpdater classes respectively.
+
 ### Management of Tracked Doctors
 
 The `DoctorListManager` class main purpose is to maintain `ArrayList<Doctor> doctorList`, 
@@ -112,6 +123,34 @@ The <i>Sequence Diagram</i> below shows how the components interact with each ot
  issues the command `list doctor`
 
 ![Sequence Diagram of list doctor](./pictures/DoctorListManagerSequenceExample.png)
+
+### Registration of New Patients into Hospital
+The main purpose of the `RegisterPatient` class is to admit new patients into the hospital.<br>
+It contains methods to check for valid user input, and it does not allow multiple inputs of the same name (regardless of upper or lowercase).
+
+- **Registration of New Patients** 
+  - `RegisterPatient` contains `registerPatient(String)`, where the input is the details of the new patient.
+  - It checks that the user input is valid by checking it against the `Patient` parameters.
+  - It then calls on `reformatPatientInfoParameters(String)` to get rid of any redundant white spaces in user input.
+  - Next, it checks if name of patient already exists in the database. If so, it prompts the user for a new input name.
+  - Once there are no clashes with existing data, patient is added to the `ArrayList<Patient> patientList` and the new data will be saved into the text file.
+
+The <i>Sequence Diagram</i> below shows how the classes interact with each other for the scenario where the user
+issues the command `register John Pork /...`
+
+![Sequence Diagram of Registration of Patients](./pictures/RegisterPatientSD.png)
+### Adding of New Doctors into Hospital
+The main purpose of the `RegisterDoctor` class is to add new doctors into the hospital.<br>
+It contains methods to check for valid user input, and it does not allow multiple inputs of the same name (regardless of upper or lowercase).
+
+- **Registration of New Doctors**
+   - `RegisterDoctor` contains `registerDoctor(String)`, where the input is the details of the newly added doctor.
+   - It checks that the user input is valid by checking it against the `Doctor` parameters.
+   - It then calls on `reformatDoctorInfoParameters(String)` to get rid of any redundant white spaces in user input.
+   - Next, it checks if name of doctor already exists in the database. If so, it prompts the user for a new input name.
+   - Once there are no clashes with existing data, doctor is added to the `ArrayList<Doctor> doctorList` and the new data will be saved into the text file.
+
+The <i>Sequence Diagram</i> is similar to that of the registration of new patients.`
 
 ### Application Startup Process (Loading Data)
 
@@ -189,8 +228,6 @@ It extracts the patient name and fields to be updated. It then:
 - `findDoctorByName(...)`: Used to fetch the doctor object for assignment.
 - `parseKeyValuePairs(...)`: Parses dynamic field inputs into a `HashMap`.
 
----
-
 ## DoctorUpdater
 
 The `DoctorUpdater` class allows the user to modify existing doctor records by updating their availability and current patients being treated.
@@ -252,6 +289,62 @@ Supported attributes:
 
 For each doctor, it prints the requested attribute for easy comparison across doctors.
 
+---
+## DeleteDoctor
+The `DeleteDoctor` class allows user to remove a doctor's information from the database as well as from their names
+from their patient's information.
+![DeleteDoctorSequenceDiagram.png](pictures/DeleteDoctorSequenceDiagram.png)
+### Key Method:
+
+#### `deleteDoctor(String docName)`
+Parses command in the format: ```delete doctor Michael```
+
+It:
+- Looks for and finds the doctor's name in the doctor list
+- Removes the doctor from the doctorList
+- Removes the doctor's name from their patient's information, if they have any patients
+- Saves changes using `saveData.saveDoctorsData(...)`
+---
+## DischargePatient
+The `DischargePatient` class lets users discharge patients from the hospital and remove their information from 
+the database. They are removed from the patient list as well as their doctor's information.
+![DischargePatientSequenceDiagram.png](pictures/DischargePatientSequenceDiagram.png)
+### Key Method:
+
+#### `dischargePatient(String patientName)`
+Parses command in the format: ```discharge patient Nathan```
+
+It:
+- Looks for and finds the patient's name in the patient list
+- Removes patient from patientList
+- Removes patient's name from their doctor's information
+- Saves changes using `saveData.savePatientsData(...)`
+---
+## ViewDoctorFrequencies
+The `ViewDoctorFrequencies` class lets users view the most visited type of doctor as well as the most visited doctor
+by name. 
+![ViewMostFrequentSpecialisationSequenceDiagram.png](pictures/ViewMostFrequentSpecialisationSequenceDiagram.png)
+This sequence diagram is for the `viewMostFrequentSpecialisation()` function, which is described below.
+
+### Key Methods:
+
+#### `viewMostFrequentSpecialisation()`
+Parses command in the format: ```popular doctor type```
+
+It:
+- Gets the list of doctors
+- Goes through the list, getting the specialisation of each doctor while also adding to two lists
+  - Unrepeated list of specialisations from the list of doctors
+  - Corresponding list of counts for how many patients have been treated in that specialisation
+- Finds highest count and prints the list of most visited specialisations
+#### `viewMostFrequentDoctor()`
+Parses command in the format: ```popular visited doctor```
+
+It: 
+- Gets the list of doctors
+- Goes through the list, getting number of patients the doctor has treated and finding the max # treated
+- Prints the doctor(s) with most patients treated and currently treating
+---
 ![Sequence_OverallStatistics.png](diagrams/Sequence_OverallStatistics.png)
 ## User Stories
 
