@@ -269,6 +269,8 @@ Updates the details about a particular Patient or Doctor in question.
 
 Format: `update <patient / doctor> <NAME> <Details to be updated according to registration format>`
 
+Note: If patient's doctor info is updated, must also update doctor's patient info and vice versa.
+
 ### Popular
 
 #### Display most popular doctor type: `popular doctor type`

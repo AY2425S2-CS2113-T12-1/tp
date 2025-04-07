@@ -5,9 +5,8 @@ import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.person.Doctor;
 
 public class ViewDoctorFrequencies {
-    private static final ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
-
     public static void viewMostFrequentSpecialisation() {
+        ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
         assert doctorList != null: "Doctor list should not be null.";
         assert (!doctorList.isEmpty()): "Doctor list should not be empty.";
 
@@ -23,10 +22,10 @@ public class ViewDoctorFrequencies {
             int index = specialisations.indexOf(specialisation);
 
             if (index != -1) { //if specialisation exists, increment count
-                counts.set(index, counts.get(index) + 1);
+                counts.set(index, counts.get(index) + doctor.getNumPatientsTreated());
             } else { // new specialisation, add it to list and set count to 1
                 specialisations.add(specialisation);
-                counts.add(1);
+                counts.add(doctor.getNumPatientsTreated());
             }
         }
 
@@ -52,6 +51,7 @@ public class ViewDoctorFrequencies {
     }
 
     public static void viewMostFrequentDoctor() {
+        ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
         assert doctorList != null: "Doctor list should not be null.";
         assert (!doctorList.isEmpty()): "Doctor list should not be empty.";
 
