@@ -35,4 +35,5 @@ public class EnsureFilesExist {
                     "name|symptoms|timeStamp|medicalHistory|treatmentStatus|doctorAssigned\n".getBytes());
         }
     }
+
 }
