@@ -26,7 +26,7 @@ public class DoctorUpdater {
         int doctorIndex = searchForDoctor(parameters[0], doctorList);
 
         if (doctorIndex < 0) {
-            System.out.println("\tPatient specified does not exist!");
+            System.out.println("\tDoctor specified does not exist!");
             return;
         }
 

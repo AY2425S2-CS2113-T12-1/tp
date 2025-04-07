@@ -42,11 +42,14 @@ class LoadDataTest {
         ArrayList<Doctor> doctors = dataLoader.loadDoctorData();
 
         assertEquals(2, doctors.size());
+        // New Java assert
+        assert doctors.get(0) != null : "First doctor should not be null";
+        assert doctors.get(1) != null : "Second doctor should not be null";
+
         assertEquals("Dr. Smith", doctors.get(0).getName());
         assertEquals("Cardiology", doctors.get(0).getSpecialisation());
         assertEquals("Available", doctors.get(0).getAvailability());
         assertEquals("John Doe", doctors.get(0).getPatientBeingTreated());
-
         assertEquals("Dr. Lee", doctors.get(1).getName());
         assertEquals("Neurology", doctors.get(1).getSpecialisation());
     }
@@ -63,11 +66,13 @@ class LoadDataTest {
         ArrayList<Patient> patients = dataLoader.loadPatientData();
 
         assertEquals(2, patients.size());
+        // New Java assert
+        assert patients.stream().noneMatch(p -> p.getName().isEmpty()) : "Patient names should not be empty";
+
         assertEquals("John Doe", patients.get(0).getName());
         assertEquals("Headache", patients.get(0).getSymptoms());
         assertEquals("2025-01-01", patients.get(0).getTimeStamp());
         assertEquals("In Treatment", patients.get(0).getTreatmentStatus());
-
         assertEquals("Sarah Connor", patients.get(1).getName());
         assertEquals("Fever", patients.get(1).getSymptoms());
         assertEquals("Waiting", patients.get(1).getTreatmentStatus());

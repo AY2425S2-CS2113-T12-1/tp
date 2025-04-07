@@ -32,7 +32,7 @@ public class Ui {
         printRow("", ARROW_POINT + " <SYMPTOMS>");
         printRow("", ARROW_POINT + " <ADMISSION TIME>");
         printRow("", ARROW_POINT + " <MEDICAL HISTORY>");
-        printRow("", "Format: register <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>");
+        printRow("", "Format: register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>");
         printEmptyRow();
 
         printRow("oncall", "Register on-call doctor(s) with necessary details:");
@@ -84,17 +84,6 @@ public class Ui {
         printRow("list patient",
                 "Displays all the patients in the patients class array that are yet to be discharged");
         printRow("list doctor", "Displays all doctors available in the hospital");
-        printEmptyRow();
-
-        printRow("list patient <ATRB>", "Displays a specific attribute for all patients.");
-        printRow("", "Available attributes:");
-        printRow("", "\t" + ARROW_POINT + " name");
-        printRow("", "\t" + ARROW_POINT + " symptoms");
-        printRow("", "\t" + ARROW_POINT + " timestamp");
-        printRow("", "\t" + ARROW_POINT + " history");
-        printRow("", "\t" + ARROW_POINT + " treatment");
-        printRow("", "\t" + ARROW_POINT + " doctor");
-        printRow("", "Format: list patient <ATTRIBUTE>");
         printEmptyRow();
 
         printRow("update patient", "Updates corresponding patient’s information on:");
