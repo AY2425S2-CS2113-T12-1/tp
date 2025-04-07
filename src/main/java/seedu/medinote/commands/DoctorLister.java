@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import seedu.medinote.person.Doctor;
 
+//Handles updating existing patient information using CLI commands.
+//Accepts flexible field=value style updates for treatment status and doctor assignment.
+
 public class DoctorLister {
     public static final String LINE_BREAK = "================================";
 
