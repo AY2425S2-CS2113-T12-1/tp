@@ -15,99 +15,139 @@ public class loadData {
     private static final int PATIENT_FIELD_COUNT = 6;
 
     /**
-     * Loads doctor data from file and returns an ArrayList of Doctor objects.
+     * Loads doctor data from the storage file and returns an ArrayList of valid Doctor objects.
+     * This method will:
+     * - Skip any malformed lines while logging errors
+     * - Handle empty lines gracefully
+     * - Preserve all valid doctor records
+     * - Provide detailed error reporting
      *
-     * @return ArrayList of Doctor objects
-     * @throws IOException         If there's an error reading the file
-     * @throws DataFormatException If the data format is invalid
+     * @return ArrayList containing all successfully loaded Doctor objects
+     * @throws IOException if there's an error accessing the file
      */
-    public ArrayList<Doctor> loadDoctorData() throws IOException, DataFormatException {
+    public ArrayList<Doctor> loadDoctorData() throws IOException {
         ArrayList<Doctor> doctors = new ArrayList<>();
 
-        // Check if file exists and is not empty
         if (!Files.exists(Paths.get(saveData.DOCTOR_FILE_PATH))) {
-            return doctors; // Return empty list if file doesn't exist
+            return doctors;
         }
 
         try (BufferedReader br = new BufferedReader(new FileReader(saveData.DOCTOR_FILE_PATH))) {
             String line;
-            boolean hasHeader = false;
+            int lineNumber = 0;
 
-            // Check if first line is header
-            br.mark(1000); // Mark the current position
+            // Fixed header handling
+            br.mark(1000);
             String firstLine = br.readLine();
-            if (firstLine != null && firstLine.startsWith("name|")) {
-                hasHeader = true;
+            boolean hasHeader = (firstLine != null && firstLine.startsWith("name|"));
+
+            if (!hasHeader) {
+                br.reset();
+                lineNumber = 0;  // Reset counter if no header
             } else {
-                br.reset(); // Reset to the beginning if no header
+                lineNumber = 1;  // Header is line 1
             }
 
             while ((line = br.readLine()) != null) {
+                lineNumber++;
                 line = line.trim();
+                if (line.isEmpty()) continue;
 
-                String[] fields = line.split(FIELD_SEPARATOR, -1); // -1 keeps empty fields
-                if (fields.length != DOCTOR_FIELD_COUNT) {
-                    throw new DataFormatException("Invalid doctor data format in line: " + line);
+                try {
+                    String[] fields = line.split(FIELD_SEPARATOR, -1);
+
+                    if (fields.length != DOCTOR_FIELD_COUNT) {
+                        System.err.printf("Invalid doctor data at line %d (expected %d fields): %s%n",
+                                lineNumber, DOCTOR_FIELD_COUNT, line);
+                        continue;
+                    }
+
+                    // Field validation
+                    if (fields[0].trim().isEmpty()) {
+                        throw new IllegalArgumentException("Doctor name cannot be empty");
+                    }
+                    if (fields[1].trim().isEmpty()) {
+                        throw new IllegalArgumentException("Specialisation cannot be empty");
+                    }
+
+                    doctors.add(new Doctor(
+                            fields[0].trim(), // name
+                            fields[1].trim(), // specialisation
+                            fields[2].trim(), // availability
+                            fields[3].trim()  // patientsBeingTreated
+                    ));
+
+                } catch (Exception e) {
+                    System.err.printf("Skipping line %d: %s (%s)%n",
+                            lineNumber, line, e.getMessage());
                 }
-
-                Doctor doctor = new Doctor(
-                        fields[0].trim(), // name
-                        fields[1].trim(), // specialisation
-                        fields[2].trim(), // availability
-                        fields[3].trim()  // patientsBeingTreated
-                );
-                doctors.add(doctor);
             }
         }
+        System.out.printf("Loaded %d valid doctor records%n", doctors.size());
         return doctors;
-
     }
 
     /**
-     * Loads patient data from file and returns an ArrayList of Patient objects.
+     * Loads patient data from the storage file and returns an ArrayList of valid Patient objects.
+     * This method will:
+     * - Skip any malformed lines while logging errors
+     * - Handle empty lines gracefully
+     * - Preserve all valid patient records
+     * - Provide detailed error reporting
      *
-     * @return ArrayList of Patient objects
-     * @throws IOException         If there's an error reading the file
-     * @throws DataFormatException If the data format is invalid
+     * @return ArrayList containing all successfully loaded Patient objects
+     * @throws IOException if there's an error accessing the file
      */
-    public ArrayList<Patient> loadPatientData() throws IOException, DataFormatException {
+    public ArrayList<Patient> loadPatientData() throws IOException {
         ArrayList<Patient> patients = new ArrayList<>();
 
-        // Check if file exists and is not empty
         if (!Files.exists(Paths.get(saveData.PATIENT_FILE_PATH))) {
-            return patients; // Return empty list if file doesn't exist
+            return patients;
         }
 
         try (BufferedReader br = new BufferedReader(new FileReader(saveData.PATIENT_FILE_PATH))) {
             String line;
-            boolean hasHeader = false;
+            int lineNumber = 0;
 
-            // Check if first line is header
-            br.mark(1000); // Mark the current position
+            // Header handling - FIXED
+            br.mark(1000);
             String firstLine = br.readLine();
-            if (firstLine != null && firstLine.startsWith("name|")) {
-                hasHeader = true;
+            boolean hasHeader = (firstLine != null && firstLine.startsWith("name|"));
+
+            if (!hasHeader) {
+                br.reset();
+                lineNumber = 0;  // Reset counter if no header
             } else {
-                br.reset(); // Reset to the beginning if no header
+                lineNumber = 1;  // Header is line 1
             }
 
             while ((line = br.readLine()) != null) {
+                lineNumber++;
                 line = line.trim();
+                if (line.isEmpty()) continue;
 
-                String[] fields = line.split(FIELD_SEPARATOR, -1); // -1 keeps empty fields
-                if (fields.length != PATIENT_FIELD_COUNT) {
-                    throw new DataFormatException("Invalid patient data format in line: " + line);
+                try {
+                    String[] fields = line.split(FIELD_SEPARATOR, -1);
+
+                    if (fields.length != PATIENT_FIELD_COUNT) {
+                        System.err.printf("Malformed data at line %d (expected %d fields): %s%n",
+                                lineNumber, PATIENT_FIELD_COUNT, line);
+                        continue;
+                    }
+
+                    patients.add(new Patient(
+                            fields[0].trim(), // name
+                            fields[1].trim(), // symptoms
+                            fields[2].trim(), // timeStamp
+                            fields[3].trim(), // medicalHistory
+                            fields[4].trim(), // treatmentStatus
+                            fields[5].trim()  // doctorAssigned
+                    ));
+
+                } catch (Exception e) {
+                    System.err.printf("Error at line %d: %s (%s)%n",
+                            lineNumber, line, e.getMessage());
                 }
-
-                Patient patient = new Patient(
-                        fields[0].trim(), // name
-                        fields[1].trim(), // symptoms
-                        fields[2].trim(), // timeStamp
-                        fields[3].trim(), // medicalHistory
-                        fields[4].trim(), // treatmentStatus
-                        fields[5].trim()  // doctorAssigned
-                );
-                patients.add(patient);
             }
         }
         return patients;
@@ -121,6 +161,7 @@ public class loadData {
         public DataFormatException(String message) {
             super(message);
         }
+
     }
 
 }

@@ -37,7 +37,7 @@ public class MediNote {
         try {
             // Ensure files exist
             ensureFilesExist.ensureDoctorsFileExists();
-            seedu.medinote.storage.ensureFilesExist.ensurePatientsFileExists();
+            ensureFilesExist.ensurePatientsFileExists();
 
             // Load existing data
             loadData dataLoader = new loadData();
