@@ -30,7 +30,7 @@ public class PatientListManager {
 
                 assert doctor.getName() != null : "Doctor name should not be empty/null.";
                 doctor.setCurrentPatient("na"); // remove patient from doctor's attribute
-                assert doctor.getPatientsBeingTreated().equalsIgnoreCase("na") : "Patient was not removed" + 
+                assert doctor.getPatientBeingTreated().equalsIgnoreCase("na") : "Patient was not removed" +
                     " from doctor's info.";
             }
         }

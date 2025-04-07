@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+actor User
+participant ":Main"
+participant ":TaskManager"
+participant ":RegisterPatient"
+participant ":PatientListManager"
+participant ":saveData"
+
+
+User -> ":Main" : "register John Pork/..."
+activate ":Main"
+
+":Main" -> ":TaskManager" : checkCommand("register John Pork/...")
+activate ":TaskManager"
+
+":TaskManager" -> ":RegisterPatient" : registerPatient("John Pork/...")
+activate ":RegisterPatient"
+
+":RegisterPatient" -> ":RegisterPatient" : reformatPatientInfoParameters("John Pork/...")
+activate ":RegisterPatient"
+
+":RegisterPatient" --> ":RegisterPatient"
+deactivate ":RegisterPatient"
+
+":RegisterPatient" -> ":PatientListManager" : addPatient(Patient("John Pork", ...)
+activate ":PatientListManager"
+
+":PatientListManager" --> ":RegisterPatient"
+deactivate ":PatientListManager"
+":RegisterPatient" -> ":saveData" : savePatientsData()
+activate ":saveData"
+
+":saveData" -> ":saveData" : Save to file
+activate ":saveData"
+
+":saveData" --> ":saveData"
+deactivate ":saveData"
+
+":saveData" --> ":RegisterPatient"
+deactivate ":saveData"
+
+":RegisterPatient" --> ":TaskManager"
+deactivate ":RegisterPatient"
+
+":TaskManager" --> ":Main"
+deactivate ":TaskManager"
+
+":Main" --> User :Show details of registered patient
+deactivate ":Main"
+@enduml

@@ -1,6 +1,55 @@
 # Developer Guide
 
 ## Acknowledgements
+CS2113 Teaching Team
+
+
+## Setting up, getting started
+
+### Setting up the project in your computer
+
+#### Setting up
+
+---------------------------------------------------------------------------------------------
+| Tool                | Recommended Version Notes   | Notes                                   
+|---------------------|-----------------------------|----------------------------------------
+| Java JDK            | 17 or higher                | Required for compiling and running
+| IntelliJ IDEA       | 2021.2+                     | Preferred IDE for full Java support
+| JUnit 5             | 5.x                         | For running the test suite
+| Git                 | Latest                      | For version control and collaboration   
+| Gradle              | Latest                      | For dependency and build management     
+
+
+#### Getting started
+
+1. **Fork this [repo](https://github.com/AY2425S2-CS2113-T12-1/tp.git)**
+2. **Clone the fork into your computer**
+3. **If you plan to use Intellij IDEA (highly recommended):**
+   - ***Configure the JDK:*** Follow the guide 
+   [[se-edu/guides] IDEA: Configuring the JDK](https://se-education.org/guides/tutorials/intellijJdk.html) 
+   to ensure Intellij is configured to use JDK 17.
+   - ***Import the project as a Gradle project:*** Follow the guide 
+   [[se-edu/guides] IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)
+   to import the project into IDEA.
+
+   **! Note: Importing a Gradle project is slightly different from importing a normal Java project.**
+
+   - ***Verify the setup:***
+        Run the `MediNote` and try a few commands.
+        Run the tests to ensure they all pass.
+
+#### Before writing code
+
+1. **Configuring the coding style**
+   -If using IDEA, follow the guide [[se-edu/guides] IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html)
+   to set up IDEA’s coding style to match ours.
+2. **Set up CI**
+   -This project comes with a GitHub Actions config files (in `.github/workflows` folder). 
+When GitHub detects those files, it will run the CI for your project automatically
+at each push to the `master` branch or to any PR. No set up required.
+3. **Learn the design**
+   -When you are ready to start coding, we recommend that you get some sense
+of the overall design by reading about ***MediNote’s*** architecture.
 
 ## Design & implementation
 
@@ -40,6 +89,17 @@ In the context of this example:
 | commands | RegisterPatient | Contains bulk of code logic                                           |
 | storage  | SaveData        | Persists data to text files                                           |
 
+### Person Classes
+In MediNote, we have two main person classes: `PATIENT` and `DOCTOR`.
+1. `PATIENT` Class<br>
+![Class Diagram of Patient Class](./pictures/PatientClass.png)
+
+2. `DOCTOR` Class<br>
+![Class Diagram of Doctor Class](./pictures/DoctorClass.png)
+
+In each of the classes, there are methods to get every attribute. Some methods set certain attributes 
+that can be updated in the PatientUpdater and DoctorUpdater classes respectively.
+
 ### Management of Tracked Doctors
 
 The `DoctorListManager` class main purpose is to maintain `ArrayList<Doctor> doctorList`, 
@@ -63,6 +123,34 @@ The <i>Sequence Diagram</i> below shows how the components interact with each ot
  issues the command `list doctor`
 
 ![Sequence Diagram of list doctor](./pictures/DoctorListManagerSequenceExample.png)
+
+### Registration of New Patients into Hospital
+The main purpose of the `RegisterPatient` class is to admit new patients into the hospital.<br>
+It contains methods to check for valid user input, and it does not allow multiple inputs of the same name (regardless of upper or lowercase).
+
+- **Registration of New Patients** 
+  - `RegisterPatient` contains `registerPatient(String)`, where the input is the details of the new patient.
+  - It checks that the user input is valid by checking it against the `Patient` parameters.
+  - It then calls on `reformatPatientInfoParameters(String)` to get rid of any redundant white spaces in user input.
+  - Next, it checks if name of patient already exists in the database. If so, it prompts the user for a new input name.
+  - Once there are no clashes with existing data, patient is added to the `ArrayList<Patient> patientList` and the new data will be saved into the text file.
+
+The <i>Sequence Diagram</i> below shows how the classes interact with each other for the scenario where the user
+issues the command `register John Pork /...`
+
+![Sequence Diagram of Registration of Patients](./pictures/RegisterPatientSD.png)
+### Adding of New Doctors into Hospital
+The main purpose of the `RegisterDoctor` class is to add new doctors into the hospital.<br>
+It contains methods to check for valid user input, and it does not allow multiple inputs of the same name (regardless of upper or lowercase).
+
+- **Registration of New Doctors**
+   - `RegisterDoctor` contains `registerDoctor(String)`, where the input is the details of the newly added doctor.
+   - It checks that the user input is valid by checking it against the `Doctor` parameters.
+   - It then calls on `reformatDoctorInfoParameters(String)` to get rid of any redundant white spaces in user input.
+   - Next, it checks if name of doctor already exists in the database. If so, it prompts the user for a new input name.
+   - Once there are no clashes with existing data, doctor is added to the `ArrayList<Doctor> doctorList` and the new data will be saved into the text file.
+
+The <i>Sequence Diagram</i> is similar to that of the registration of new patients.`
 
 ### Application Startup Process (Loading Data)
 
@@ -117,6 +205,147 @@ MediNote provides a way to compile the list of patients and which patients the d
 MediNote provides a way to easily track and edit patient and doctor assignments in the hospital.
 MediNote aims to improve the management capacity and efficiency of hospitals.
 
+##  PatientUpdater
+
+The `PatientUpdater` class allows users to dynamically update a patient's information through CLI input. It accepts multiple key-value fields and ensures consistency by also updating the assigned doctor record if needed.
+![Sequence_PatientUpdater.png](diagrams/Sequence_PatientUpdater.png)
+### Key Method:
+
+#### `updatePatient(String input)`
+Parses commands in the format:
+```
+update patient John Tan status=In-Progress doctor=Dr Lim
+```
+It extracts the patient name and fields to be updated. It then:
+
+- Finds the patient from `PatientListManager`
+- Updates the patient's `treatmentStatus` or `assignedDoctor`
+- If a doctor is assigned, it also updates the doctor's record
+- Changes are persisted using `saveData.savePatientsData(...)`
+
+### Supporting Methods:
+- `findPatientByName(...)`: Case-insensitive lookup of the target patient.
+- `findDoctorByName(...)`: Used to fetch the doctor object for assignment.
+- `parseKeyValuePairs(...)`: Parses dynamic field inputs into a `HashMap`.
+
+## DoctorUpdater
+
+The `DoctorUpdater` class allows the user to modify existing doctor records by updating their availability and current patients being treated.
+![Sequence_DoctorUpdater.png](diagrams/Sequence_DoctorUpdater.png)
+### Key Method:
+
+#### `updateDoctor(String input)`
+Accepts input in this format:
+```
+update doctor Dr Tan availability=Busy treating=Mr A
+```
+It:
+
+- Finds the doctor by name
+- Updates their availability and patient-treatment fields
+- Saves changes using `saveData.saveDoctorsData(...)`
+
+### Supporting Methods:
+- `findDoctorByName(...)`: Searches the global doctor list using a case-insensitive match.
+- `parseKeyValuePairs(...)`: Validates and extracts field updates.
+
+---
+
+## ViewPatientAttributes
+
+The `ViewPatientAttributes` class enables users to filter and view a specific attribute across all patients. This is useful for summarizing patient information quickly.
+![Sequence_ViewPatient.png](diagrams/Sequence_ViewPatient.png)
+### Key Method:
+
+#### `viewPatientAttribute(String input)`
+Accepts the format:
+```
+view patient <attribute>
+```
+
+Supported attributes:
+
+- `name`, `symptoms`, `timestamp`, `history`, `treatment`, `doctor`
+
+For each patient, it prints the value of the selected field in a tabulated manner.
+
+---
+
+## ViewDoctorAttributes
+
+This class provides a filtered view of selected attributes from all doctor records for quick summary inspection.
+![Sequence_ViewDoctor.png](diagrams/Sequence_ViewDoctor.png)
+### Key Method:
+
+#### `viewDoctorAttribute(String input)`
+Accepts the format:
+```
+view doctor <attribute>
+```
+
+Supported attributes:
+
+- `name`, `specialization`, `availability`, `treating`
+
+For each doctor, it prints the requested attribute for easy comparison across doctors.
+
+---
+## DeleteDoctor
+The `DeleteDoctor` class allows user to remove a doctor's information from the database as well as from their names
+from their patient's information.
+![DeleteDoctorSequenceDiagram.png](pictures/DeleteDoctorSequenceDiagram.png)
+### Key Method:
+
+#### `deleteDoctor(String docName)`
+Parses command in the format: ```delete doctor Michael```
+
+It:
+- Looks for and finds the doctor's name in the doctor list
+- Removes the doctor from the doctorList
+- Removes the doctor's name from their patient's information, if they have any patients
+- Saves changes using `saveData.saveDoctorsData(...)`
+---
+## DischargePatient
+The `DischargePatient` class lets users discharge patients from the hospital and remove their information from 
+the database. They are removed from the patient list as well as their doctor's information.
+![DischargePatientSequenceDiagram.png](pictures/DischargePatientSequenceDiagram.png)
+### Key Method:
+
+#### `dischargePatient(String patientName)`
+Parses command in the format: ```discharge patient Nathan```
+
+It:
+- Looks for and finds the patient's name in the patient list
+- Removes patient from patientList
+- Removes patient's name from their doctor's information
+- Saves changes using `saveData.savePatientsData(...)`
+---
+## ViewDoctorFrequencies
+The `ViewDoctorFrequencies` class lets users view the most visited type of doctor as well as the most visited doctor
+by name. 
+![ViewMostFrequentSpecialisationSequenceDiagram.png](pictures/ViewMostFrequentSpecialisationSequenceDiagram.png)
+This sequence diagram is for the `viewMostFrequentSpecialisation()` function, which is described below.
+
+### Key Methods:
+
+#### `viewMostFrequentSpecialisation()`
+Parses command in the format: ```popular doctor type```
+
+It:
+- Gets the list of doctors
+- Goes through the list, getting the specialisation of each doctor while also adding to two lists
+  - Unrepeated list of specialisations from the list of doctors
+  - Corresponding list of counts for how many patients have been treated in that specialisation
+- Finds highest count and prints the list of most visited specialisations
+#### `viewMostFrequentDoctor()`
+Parses command in the format: ```popular visited doctor```
+
+It: 
+- Gets the list of doctors
+- Goes through the list, getting number of patients the doctor has treated and finding the max # treated
+- Prints the doctor(s) with most patients treated and currently treating
+---
+![Sequence_OverallStatistics.png](diagrams/Sequence_OverallStatistics.png)
 ## User Stories
 
 | Version | As a ...              | I want to ...                                    | So that I can ...                                                 |

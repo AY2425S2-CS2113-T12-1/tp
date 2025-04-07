@@ -31,7 +31,7 @@ public class SaveData {
                         doctor.getName(),
                         doctor.getSpecialisation(),
                         doctor.getAvailability(),
-                        doctor.getPatientsBeingTreated(),
+                        doctor.getPatientBeingTreated(),
                         doctor.getNumPatientsTreated().toString());
                 fw.write(record + LINE_SEPARATOR);
             }
@@ -49,6 +49,8 @@ public class SaveData {
         EnsureFilesExist.ensurePatientsFileExists();
 
         try (FileWriter fw = new FileWriter(PATIENT_FILE_PATH)) {
+            // Write header
+            fw.write("name|symptoms|timeStamp|medicalHistory|treatmentStatus|doctorAssigned" + LINE_SEPARATOR);
             for (Patient patient : patients) {
                 String record = String.join(FIELD_SEPARATOR,
                         patient.getName(),

@@ -31,6 +31,7 @@ via a Command Line Interface (CLI).
 - [Display Hospital Summary Stats: `stats`](#hospital-summary-statistics-dashboard-stats)
 - [To Exit Application: `exit`](#to-exit-exit)
 
+
 ### Show a list of commands: `help`
 Shows a list of commands for navigating around the database.
 Provides an explanation on how different commands work to bring out 
@@ -95,16 +96,7 @@ view doctor          | Displays each doctor's specific attribute one by one:
                      |                                                                                 
 list patient         | Displays all the patients in the patients class array that are yet to be discharged
 list doctor          | Displays all doctors available in the hospital                                  
-                     |                                                                                 
-list patient <ATRB>  | Displays a specific attribute for all patients.                                 
-                     | Available attributes:                                                           
-                     | 	• name                                                                         
-                     | 	• symptoms                                                                     
-                     | 	• timestamp                                                                    
-                     | 	• history                                                                      
-                     | 	• treatment                                                                    
-                     | 	• doctor                                                                       
-                     | Format: list patient <ATTRIBUTE>                                                
+                     |                                                                                                                               
                      |                                                                                 
 update patient       | Updates corresponding patient’s information on:                                 
                      | • <TREATMENT STATUS> whether they are still in queue or being treated           
@@ -274,8 +266,31 @@ Example usage:
 
 ### Update details about Patient or Doctor: `update`
 Updates the details about a particular Patient or Doctor in question.
+1. For patients:<br>
+   1. `status`: Sets the treatment status of specified patient.
+   2. `doctor`: Sets the assigned doctor of specified patient.
 
-Format: `update <patient / doctor> <NAME> <Details to be updated according to registration format>`
+2. For doctors:<br>
+   1. `availability`: Sets the availability of the specified doctor.
+   2. `assignment`: Sets the patients the specified doctor is assigned to.
+
+Format for patients: `update patient <NAME> / status=<NEW_STATUS> / doctor=<NEW_DOCTOR>`<br>
+Example output:
+```
+update patient john pork / status=cooked / doctor=pengu
+	Successfully changed john pork treatment status to cooked
+	Successfully changed john pork assigned doctor to pengu
+```
+
+Format for doctors: `update doctor <NAME> / availability=<AVAILABILITY> / assignment=<NEW_PATIENTS>`<br>
+Example output:
+```
+update doctor jonathan porcupine / availability=occupied / assignment=joen pork
+	Successfully changed jonathan porcupine availability to occupied
+	Successfully changed jonathan porcupine current patients to joen pork
+```
+
+Note: If patient's doctor info is updated, must also update doctor's patient info and vice versa.
 
 ### Popular
 
@@ -288,23 +303,6 @@ Format & Example usage: `popular doctor type`
 Displays the doctor(s) with most patients treated. Includes patients currently being treated.
 
 Format & Example usage: `popular visited doctor`
-
-### List patient attributes: `list patient <ATTRIBUTE>`
-Displays a specific attribute for all patients.<br>
-
-Available `<ATTRIBUTE>` values:
-- `name`
-- `symptoms`
-- `timestamp`
-- `history`
-- `treatment`
-- `doctor`
-
-Format: `list patient <ATTRIBUTE>`
-
-Example:
-- `list patient symptoms`
-- `list patient timestamp`
 
 ### View patient attributes: `view patient <ATTRIBUTE>`
 Displays each patient's specific attribute one by one with formatting.<br>
@@ -365,11 +363,10 @@ Format: `exit`
 * `doctor <NAME>` — View full doctor info
 * `list patient` — List all patients with full details
 * `list doctor` — List all doctors
-* `list patient <ATTRIBUTE>` — List specific patient attribute across all
 * `view patient <ATTRIBUTE>` — View each patient's attribute individually
 * `view doctor <ATTRIBUTE>` — View each doctor's attribute individually
-* `update patient <NAME> <TREATMENT STATUS> <DOCTOR ASSIGNED>` — Update a patient’s info
-* `update doctor <NAME> <AVAILABILITY> <PATIENT NAME>` — Update a doctor’s info
+* `update patient <NAME> / status=<NEW> / doctor=<NEW>` — Update a patient’s info
+* `update doctor <NAME> / availability=<NEW> / assignment=<NEW>` — Update a doctor’s info
 * `discharge patient <NAME>` — Delete patient from system
 * `delete doctor <NAME>` — Delete doctor from system
 * `popular doctor type` — Show most common doctor specialisation
