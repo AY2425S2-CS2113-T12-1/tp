@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import seedu.medinote.person.Patient;
 import seedu.medinote.manager.PatientListManager;
-import seedu.medinote.storage.saveData;
+import seedu.medinote.storage.SaveData;
 
 public class DischargePatient {
     public static void dischargePatient(String patientName) {
@@ -29,7 +29,7 @@ public class DischargePatient {
                 System.out.println("Patient " + patientName + " has been discharged " +
                         "and removed from their doctor's assignment.");
                 try {
-                    new saveData().savePatientsData(patientList);
+                    new SaveData().savePatientsData(patientList);
                     System.out.println("Patient data saved successfully.");
                 } catch (Exception e) {
                     System.out.println("Error saving patient data: " + e.getMessage());

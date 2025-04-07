@@ -1,71 +1,67 @@
 package seedu.medinote.commands;
 
-import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.person.Doctor;
+import seedu.medinote.manager.DoctorListManager;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ViewDoctorAttributes {
-    private static final String LINE_BREAK = "===============================================" +
-            "===============================================";
 
-    public static void printDoctorAttributes(String attribute) {
-        List<Doctor> doctors = DoctorListManager.getDoctorList();
-        attribute = attribute.trim().toLowerCase();
+    private static final String LINE_BREAK = "==================================================";
 
-        if (doctors.isEmpty()) {
+    // Prints each doctor's attribute value for the requested attribute
+    // Accepted attributes: name, specialization, availability, treating
+    public static void viewDoctorAttribute(String input) {
+        String[] parts = input.trim().split(" ", 3);
+
+        if (parts.length < 3) {
             System.out.println(LINE_BREAK);
-            System.out.println("No doctors found in the system.");
+            System.out.println("Please specify an attribute to view. Usage: view doctor <attribute>");
             System.out.println(LINE_BREAK);
             return;
         }
 
-        switch (attribute) {
-        case "name":
-            for (int i = 0; i < doctors.size(); i++) {
-                System.out.println(LINE_BREAK);
-                System.out.println((i + 1) + ". " + doctors.get(i).getName());
-                System.out.println(LINE_BREAK);
-            }
-            break;
-        case "specialisation":
-            for (int i = 0; i < doctors.size(); i++) {
-                System.out.println(LINE_BREAK);
-                System.out.print((i + 1) + ". " + doctors.get(i).getName() + ": ");
-                System.out.println(doctors.get(i).getSpecialisation());
-                System.out.println(LINE_BREAK);
-            }
-            break;
-        case "availability":
-            for (int i = 0; i < doctors.size(); i++) {
-                System.out.println(LINE_BREAK);
-                System.out.print((i + 1) + ". " + doctors.get(i).getName() + ": ");
-                System.out.println(doctors.get(i).getAvailability());
-                System.out.println(LINE_BREAK);
-            }
-            break;
-        case "patients":
-            for (int i = 0; i < doctors.size(); i++) {
-                System.out.println(LINE_BREAK);
-                System.out.print((i + 1) + ". " + doctors.get(i).getName() + ": ");
-                System.out.println(doctors.get(i).getPatientsBeingTreated());
-                System.out.println(LINE_BREAK);
-            }
-            break;
-        case "count":
-            for (int i = 0; i < doctors.size(); i++) {
-                System.out.println(LINE_BREAK);
-                System.out.print((i + 1) + ". " + doctors.get(i).getName() + ": ");
-                System.out.println(doctors.get(i).getNumPatientsTreated() + " number of patients treated");
-                System.out.println(LINE_BREAK);
-            }
-            break;
-        default:
-            System.out.println(LINE_BREAK);
-            System.out.print("Invalid Attribute Input. Available options: ");
-            System.out.println("name, specialisation, availability, patients, count");
-            System.out.println(LINE_BREAK);
-        }
-    }
+        String attribute = parts[2].toLowerCase();
+        ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
 
+        if (doctorList.isEmpty()) {
+            System.out.println(LINE_BREAK);
+            System.out.println("No doctors available to view.");
+            System.out.println(LINE_BREAK);
+            return;
+        }
+
+        System.out.println(LINE_BREAK);
+        System.out.println("Viewing attribute: " + attribute);
+        System.out.println(LINE_BREAK);
+
+        for (Doctor d : doctorList) {
+            String label = d.getName();
+            String result;
+
+            switch (attribute) {
+            case "name":
+                result = d.getName();
+                break;
+            case "specialization":
+                result = d.getSpecialisation();
+                break;
+            case "availability":
+                result = d.getAvailability();
+                break;
+            case "treating":
+                result = d.getPatientsBeingTreated();
+                break;
+            default:
+                System.out.println(LINE_BREAK);
+                System.out.println("Unknown attribute: " + attribute);
+                System.out.println(LINE_BREAK);
+                return;
+            }
+
+            System.out.println(label + ": " + result);
+        }
+
+        System.out.println(LINE_BREAK);
+    }
 }

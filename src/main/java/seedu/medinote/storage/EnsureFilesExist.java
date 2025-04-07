@@ -5,18 +5,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class ensureFilesExist {
+public class EnsureFilesExist {
     public static void ensureDoctorsFileExists() throws IOException {
         File dir = new File("./hospitalData");
 
         if (!dir.exists()) {
             dir.mkdirs();
         }
-        File file = new File(saveData.DOCTOR_FILE_PATH);
+        File file = new File(SaveData.DOCTOR_FILE_PATH);
         if (!file.exists()) {
             file.createNewFile();
             // Optional: Write header
-            Files.write(Paths.get(saveData.DOCTOR_FILE_PATH),
+            Files.write(Paths.get(SaveData.DOCTOR_FILE_PATH),
                     "name|specialisation|availability|patientsBeingTreated|numPatientsTreated\n".getBytes());
         }
     }
@@ -27,12 +27,13 @@ public class ensureFilesExist {
         if (!dir.exists()) {
             dir.mkdirs();
         }
-        File file = new File(saveData.PATIENT_FILE_PATH);
+        File file = new File(SaveData.PATIENT_FILE_PATH);
         if (!file.exists()) {
             file.createNewFile();
             // Optional: Write header
-            Files.write(Paths.get(saveData.PATIENT_FILE_PATH),
+            Files.write(Paths.get(SaveData.PATIENT_FILE_PATH),
                     "name|symptoms|timeStamp|medicalHistory|treatmentStatus|doctorAssigned\n".getBytes());
         }
     }
+
 }

@@ -23,6 +23,17 @@ public class Doctor {
         return name;
     }
 
+    public void assignPatient(String name) {
+        if (patientsBeingTreated.trim().isEmpty() || patientsBeingTreated.equalsIgnoreCase("none")
+                || patientsBeingTreated.equalsIgnoreCase("na")) {
+            patientsBeingTreated = name;
+        } else if (!patientsBeingTreated.contains(name)) {
+            patientsBeingTreated += ", " + name;
+        }
+        numPatientsTreated++;
+    }
+
+
     public String getSpecialisation() {
         return specialisation;
     }
@@ -32,12 +43,17 @@ public class Doctor {
     }
 
     public String getPatientsBeingTreated() {
-        return patientsBeingTreated;
+        if (patientsBeingTreated == null || patientsBeingTreated.trim().isEmpty()) {
+            return "None";
+        }
+        return patientsBeingTreated; // Remove the String.join() call
     }
 
     public Integer getNumPatientsTreated() {
         return numPatientsTreated;
     }
+
+
     public void setAvailability(String availability) {
         this.availability = availability;
     }

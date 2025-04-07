@@ -3,7 +3,7 @@ package seedu.medinote.commands;
 import java.util.ArrayList;
 import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.person.Doctor;
-import seedu.medinote.storage.saveData;
+import seedu.medinote.storage.SaveData;
 
 public class DeleteDoctor {
     public static void deleteDoctor(String docName) {
@@ -16,8 +16,10 @@ public class DeleteDoctor {
         }
 
         ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
-        assert doctorList != null: "Doctor list should not be null.";
-        assert (!doctorList.isEmpty()): "Doctor list should not be empty.";
+        if (doctorList.isEmpty()) {
+            System.out.println("No doctors available to delete.");
+            return;
+        }
 
         for(Doctor doctor : doctorList) {
             assert doctor != null: "Doctor object should not be empty.";
@@ -26,7 +28,7 @@ public class DeleteDoctor {
             if(currdoctorName.equalsIgnoreCase(docName)) {
                 DoctorListManager.removeDoctor(doctor);
                 try {
-                    saveData.saveDoctorsData(doctorList);
+                    SaveData.saveDoctorsData(doctorList);
                     System.out.println("Doctor data saved successfully.");
                 } catch (Exception e) {
                     System.out.println("Error saving doctor data: " + e.getMessage());
@@ -36,7 +38,6 @@ public class DeleteDoctor {
         }
 
         System.out.println("Doctor with name \"" + docName + "\" was not found");
-
     }
 
 }
