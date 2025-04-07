@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+actor User
+participant ":Main"
+participant ":TaskManager"
+participant ":DeleteDoctor"
+participant ":DoctorListManager"
+participant ":SaveData"
+
+
+User -> ":Main" : "delete doctor Nathan"
+activate ":Main"
+
+":Main" -> ":TaskManager" : checkCommand("delete doctor Nathan")
+activate ":TaskManager"
+
+":TaskManager" -> ":DeleteDoctor" : deleteDoctor("Nathan")
+activate ":DeleteDoctor"
+
+":DeleteDoctor" -> ":DoctorListManager" : getDoctorList()
+activate ":DoctorListManager"
+
+":DoctorListManager" --> ":DeleteDoctor"
+deactivate ":DoctorListManager"
+
+":DeleteDoctor" -> ":DoctorListManager" : removeDoctor(doctor)
+activate ":DoctorListManager"
+
+":DoctorListManager" --> ":DeleteDoctor"
+deactivate ":DoctorListManager"
+
+":DeleteDoctor" -> ":SaveData" : saveDoctorsData(doctorList)
+activate ":SaveData"
+
+":SaveData" -> ":SaveData" : Save to file
+activate ":SaveData"
+
+":SaveData" --> ":SaveData"
+deactivate ":SaveData"
+
+":SaveData" --> ":DeleteDoctor"
+deactivate ":SaveData"
+
+":DeleteDoctor" --> ":TaskManager"
+deactivate ":DeleteDoctor"
+
+":TaskManager" --> ":Main"
+deactivate ":TaskManager"
+
+":Main" --> User : Deletes doctor info, "Doctor data saved successfully."
+deactivate ":Main"
+@enduml
