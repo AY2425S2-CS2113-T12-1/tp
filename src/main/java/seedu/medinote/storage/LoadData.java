@@ -61,8 +61,9 @@ public class LoadData {
                     // Strict format validation
                     if (fields.length != DOCTOR_FIELD_COUNT) {
                         hasFormatError = true;
-                        errorMessages.append("Line " + lineNumber + ": Expected " + DOCTOR_FIELD_COUNT +
+                        System.err.println("Line " + lineNumber + ": Expected " + DOCTOR_FIELD_COUNT +
                                 " fields, found " + fields.length + " - " + line + System.lineSeparator());
+                        continue;
                     }
 
                     // Field content validation
@@ -87,9 +88,12 @@ public class LoadData {
             }
         }
 
-        if (hasFormatError) {
+        if (hasFormatError && doctors.isEmpty()) {
             System.err.print(errorMessages.toString());
-            throw new DataFormatException("Invalid doctor data format detected");
+            throw new DataFormatException("Invalid doctor data format: No valid records loaded");
+        } else if (hasFormatError) {
+            System.err.print(errorMessages.toString());
+            System.err.println("Some doctor records were skipped due to format issues.");
         }
 
         System.out.println("Loaded " + doctors.size() + " valid doctor records");

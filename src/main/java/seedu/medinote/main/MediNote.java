@@ -31,7 +31,6 @@ public class MediNote {
         // Save data before exiting
         saveAllData();
         System.out.println("Exiting MediNote...");
-
     }
 
     private static void initializeStorage() {
@@ -48,7 +47,6 @@ public class MediNote {
         } catch (Exception e) {
             System.out.println("Error initializing data: " + e.getMessage());
         }
-
     }
 
     private static void saveAllData() {
@@ -59,7 +57,6 @@ public class MediNote {
         } catch (Exception e) {
             System.out.println("Error saving data: " + e.getMessage());
         }
-
     }
 
 }
