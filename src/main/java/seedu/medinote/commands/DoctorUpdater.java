@@ -4,6 +4,7 @@ import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.person.Doctor;
 import seedu.medinote.storage.SaveData;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,10 +50,11 @@ public class DoctorUpdater {
 
         Doctor target = findDoctorByName(name);
         if (target == null) {
-            System.out.println("\nDoctor \"" + name + "\" not found. If the name contains spaces, try using a hyphen " +
-                    "like \"Dr-Lim\".");
+            System.out.println("\nDoctor \"" + name + "\" not found. If the name contains spaces, try using a hyphen" +
+                    " like \"Dr-Lim\".");
             return;
         }
+
 
         // Parse updates like "availability=Busy treating=Mr-A"
         HashMap<String, String> updates = parseKeyValuePairs(updatesString);
