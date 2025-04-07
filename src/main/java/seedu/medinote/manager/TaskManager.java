@@ -47,11 +47,23 @@ public class TaskManager {
             break;
         case "update":
             if (arguments.startsWith("patient ")) {
-                PatientUpdater.updatePatient("update " + arguments);
+                String[] argumentSplit = arguments.split(" ", 2);
+                String parameters = argumentSplit.length > 1 ? argumentSplit[1] : "";
+                PatientUpdater.updatePatient(parameters);
             } else if (arguments.startsWith("doctor ")) {
-                DoctorUpdater.updateDoctor("update " + arguments);
+                String[] argumentSplit = arguments.split(" ", 2);
+                String parameters = argumentSplit.length > 1 ? argumentSplit[1] : "";
+                DoctorUpdater.updateDoctor(parameters);
             } else {
-                System.out.println("Update doctor/patient attributes missing.");
+                System.out.println("\tExample format: update patient <NAME> /" +
+                        " status=<NEW_STATUS> / doctor=<NEW_DOCTOR>");
+                System.out.println("\tstatus: updates the treatment status of patient.");
+                System.out.println("\tdoctor: updates the doctor assigned to this patient.");
+                System.out.println("\tOR");
+                System.out.println("\tExample format: update doctor <NAME> /" +
+                        " availability=<AVAILABILITY> / assignment=<NEW_PATIENTS>");
+                System.out.println("\tavailability: updates the availability of the doctor.");
+                System.out.println("\tassignment: updates the patients assigned to this doctor.");
             }
             break;
         case "discharge":
@@ -88,10 +100,6 @@ public class TaskManager {
             break;
 
         case "stats":
-            if (!arguments.isBlank()) {
-                System.out.println("Invalid command. The 'stats' command does not take any arguments.");
-                return;
-            }
             OverallStatistics.showStatistics();
             break;
 
@@ -106,5 +114,4 @@ public class TaskManager {
             break;
         }
     }
-
 }

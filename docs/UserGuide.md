@@ -266,8 +266,29 @@ Example usage:
 
 ### Update details about Patient or Doctor: `update`
 Updates the details about a particular Patient or Doctor in question.
+1. For patients:<br>
+   1. `status`: Sets the treatment status of specified patient.
+   2. `doctor`: Sets the assigned doctor of specified patient.
 
-Format: `update <patient / doctor> <NAME> <Details to be updated according to registration format>`
+2. For doctors:<br>
+   1. `availability`: Sets the availability of the specified doctor.
+   2. `assignment`: Sets the patients the specified doctor is assigned to.
+
+Format for patients: `update patient <NAME> / status=<NEW_STATUS> / doctor=<NEW_DOCTOR>`<br>
+Example output:
+```
+update patient john pork / status=cooked / doctor=pengu
+	Successfully changed john pork treatment status to cooked
+	Successfully changed john pork assigned doctor to pengu
+```
+
+Format for doctors: `update doctor <NAME> / availability=<AVAILABILITY> / assignment=<NEW_PATIENTS>`<br>
+Example output:
+```
+update doctor jonathan porcupine / availability=occupied / assignment=joen pork
+	Successfully changed jonathan porcupine availability to occupied
+	Successfully changed jonathan porcupine current patients to joen pork
+```
 
 Note: If patient's doctor info is updated, must also update doctor's patient info and vice versa.
 
@@ -344,8 +365,8 @@ Format: `exit`
 * `list doctor` — List all doctors
 * `view patient <ATTRIBUTE>` — View each patient's attribute individually
 * `view doctor <ATTRIBUTE>` — View each doctor's attribute individually
-* `update patient <NAME> <TREATMENT STATUS> <DOCTOR ASSIGNED>` — Update a patient’s info
-* `update doctor <NAME> <AVAILABILITY> <PATIENT NAME>` — Update a doctor’s info
+* `update patient <NAME> / status=<NEW> / doctor=<NEW>` — Update a patient’s info
+* `update doctor <NAME> / availability=<NEW> / assignment=<NEW>` — Update a doctor’s info
 * `discharge patient <NAME>` — Delete patient from system
 * `delete doctor <NAME>` — Delete doctor from system
 * `popular doctor type` — Show most common doctor specialisation

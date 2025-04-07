@@ -8,14 +8,12 @@ import seedu.medinote.person.Doctor;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DoctorUpdaterTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
 
     @BeforeEach
     void setup() {
@@ -32,28 +30,22 @@ class DoctorUpdaterTest {
 
     @Test
     void updateDoctor_updatesAvailability() {
-        DoctorUpdater.updateDoctor("update doctor Dr Lim availability=Busy");
+        DoctorUpdater.updateDoctor("Dr Lim / availability=Busy");
         Doctor doctor = DoctorListManager.getDoctorList().get(0);
-        assertEquals("Busy", doctor.getAvailability());
+        assertEquals("busy", doctor.getAvailability());
     }
 
 
     @Test
     void updateDoctor_invalidField_warnsUser() {
-        DoctorUpdater.updateDoctor("update doctor Dr Lim unknown=field");
-        assertTrue(outContent.toString().contains("Unknown attribute"));
+        DoctorUpdater.updateDoctor("Dr Lim / unknown=field");
+        assertTrue(outContent.toString().contains("\tIncorrect attribute specified!"));
     }
 
     @Test
     void updateDoctor_notFound_warnsUser() {
-        DoctorUpdater.updateDoctor("update doctor Dr Ghost availability=Available");
-        assertTrue(outContent.toString().contains("not found"));
+        DoctorUpdater.updateDoctor("Dr Ghost / availability=Available");
+        assertTrue(outContent.toString().contains("\tDoctor specified does not exist!"));
     }
 
-    @Test
-    void parseKeyValuePairs_valid() {
-        HashMap<String, String> map = DoctorUpdater.parseKeyValuePairs("availability=Available treating=Mike");
-        assertEquals("Available", map.get("availability"));
-        assertEquals("Mike", map.get("treating"));
-    }
 }
