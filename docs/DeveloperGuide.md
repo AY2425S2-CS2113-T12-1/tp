@@ -189,8 +189,6 @@ It extracts the patient name and fields to be updated. It then:
 - `findDoctorByName(...)`: Used to fetch the doctor object for assignment.
 - `parseKeyValuePairs(...)`: Parses dynamic field inputs into a `HashMap`.
 
----
-
 ## DoctorUpdater
 
 The `DoctorUpdater` class allows the user to modify existing doctor records by updating their availability and current patients being treated.
@@ -252,6 +250,62 @@ Supported attributes:
 
 For each doctor, it prints the requested attribute for easy comparison across doctors.
 
+---
+## DeleteDoctor
+The `DeleteDoctor` class allows user to remove a doctor's information from the database as well as from their names
+from their patient's information.
+![DeleteDoctorSequenceDiagram.png](pictures/DeleteDoctorSequenceDiagram.png)
+### Key Method:
+
+#### `deleteDoctor(String docName)`
+Parses command in the format: ```delete doctor Michael```
+
+It:
+- Looks for and finds the doctor's name in the doctor list
+- Removes the doctor from the doctorList
+- Removes the doctor's name from their patient's information, if they have any patients
+- Saves changes using `saveData.saveDoctorsData(...)`
+---
+## DischargePatient
+The `DischargePatient` class lets users discharge patients from the hospital and remove their information from 
+the database. They are removed from the patient list as well as their doctor's information.
+![DischargePatientSequenceDiagram.png](pictures/DischargePatientSequenceDiagram.png)
+### Key Method:
+
+#### `dischargePatient(String patientName)`
+Parses command in the format: ```discharge patient Nathan```
+
+It:
+- Looks for and finds the patient's name in the patient list
+- Removes patient from patientList
+- Removes patient's name from their doctor's information
+- Saves changes using `saveData.savePatientsData(...)`
+---
+## ViewDoctorFrequencies
+The `ViewDoctorFrequencies` class lets users view the most visited type of doctor as well as the most visited doctor
+by name. 
+![ViewMostFrequentSpecialisationSequenceDiagram.png](pictures/ViewMostFrequentSpecialisationSequenceDiagram.png)
+This sequence diagram is for the `viewMostFrequentSpecialisation()` function, which is described below.
+
+### Key Methods:
+
+#### `viewMostFrequentSpecialisation()`
+Parses command in the format: ```popular doctor type```
+
+It:
+- Gets the list of doctors
+- Goes through the list, getting the specialisation of each doctor while also adding to two lists
+  - Unrepeated list of specialisations from the list of doctors
+  - Corresponding list of counts for how many patients have been treated in that specialisation
+- Finds highest count and prints the list of most visited specialisations
+#### `viewMostFrequentDoctor()`
+Parses command in the format: ```popular visited doctor```
+
+It: 
+- Gets the list of doctors
+- Goes through the list, getting number of patients the doctor has treated and finding the max # treated
+- Prints the doctor(s) with most patients treated and currently treating
+---
 ![Sequence_OverallStatistics.png](diagrams/Sequence_OverallStatistics.png)
 ## User Stories
 
