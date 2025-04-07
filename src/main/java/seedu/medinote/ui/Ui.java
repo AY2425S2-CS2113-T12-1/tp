@@ -32,7 +32,7 @@ public class Ui {
         printRow("", ARROW_POINT + " <SYMPTOMS>");
         printRow("", ARROW_POINT + " <ADMISSION TIME>");
         printRow("", ARROW_POINT + " <MEDICAL HISTORY>");
-        printRow("", "Format: register <NAME> / <SYMPTOMS> / <TIMESTAMP> / <MEDICAL HISTORY>");
+        printRow("", "Format: register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>");
         printEmptyRow();
 
         printRow("oncall", "Register on-call doctor(s) with necessary details:");
