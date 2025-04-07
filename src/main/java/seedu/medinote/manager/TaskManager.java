@@ -46,12 +46,12 @@ public class TaskManager {
             }
             break;
         case "update":
-            if (arguments.startsWith("patient")) {
-                PatientUpdater.updatePatient(arguments.substring(8));
-            } else if (arguments.startsWith("doctor")) {
-                DoctorUpdater.updateDoctor(arguments.substring(7));
+            if (arguments.startsWith("patient ")) {
+                PatientUpdater.updatePatient("update " + arguments);
+            } else if (arguments.startsWith("doctor ")) {
+                DoctorUpdater.updateDoctor("update " + arguments);
             } else {
-                System.out.println("Invalid update command.");
+                System.out.println("Please ONLY enter the new name, without parameters!");
             }
             break;
         case "discharge":
@@ -79,9 +79,9 @@ public class TaskManager {
             break;
         case "view":
             if (arguments.startsWith("patient ")) {
-                ViewPatientAttributes.printPatientAttributes(arguments.substring(8));
+                ViewPatientAttributes.viewPatientAttribute("view patient " + arguments.substring(8));
             } else if (arguments.startsWith("doctor ")) {
-                ViewDoctorAttributes.printDoctorAttributes(arguments.substring(7));
+                ViewDoctorAttributes.viewDoctorAttribute("view doctor " + arguments.substring(7));
             } else {
                 System.out.println("Invalid view command. Try: view <patient Name> <attribute>");
             }

@@ -1,79 +1,73 @@
 package seedu.medinote.commands;
 
-import seedu.medinote.manager.PatientListManager;
 import seedu.medinote.person.Patient;
-import java.util.List;
+import seedu.medinote.manager.PatientListManager;
+
+import java.util.ArrayList;
 
 public class ViewPatientAttributes {
-    private static final String LINE_BREAK = "===============================================" +
-            "===============================================";
 
-    public static void printPatientAttributes(String attribute){
-        List<Patient> patients = PatientListManager.getPatientList();
-        attribute = attribute.trim().toLowerCase();
+    private static final String LINE_BREAK = "==================================================";
 
-        if(patients.isEmpty()){
+    // Prints each patient's individual attribute value for the requested attribute
+    // Accepted attributes: name, symptoms, timestamp, history, treatment, doctor
+    public static void viewPatientAttribute(String input) {
+        String[] parts = input.trim().split(" ", 3);
+
+        if (parts.length < 3) {
             System.out.println(LINE_BREAK);
-            System.out.println("No patients found in the system.");
+            System.out.println("Please specify an attribute to view. Usage: view patient <attribute>");
             System.out.println(LINE_BREAK);
             return;
         }
 
-        switch (attribute){
-        case "name":
-            for (int i = 0; i < patients.size(); i++) {
-                System.out.println(LINE_BREAK);
-                System.out.println((i + 1) + ". " + patients.get(i).getName());
-                System.out.println(LINE_BREAK);
-            }
-            break;
-        case "symptoms":
-            for (int i = 0; i < patients.size(); i++) {
-                System.out.println(LINE_BREAK);
-                System.out.println((i + 1) + ". " + patients.get(i).getName() + patients.get(i).getSymptoms());
-                System.out.println(LINE_BREAK);
-            }
-            break;
-        case "treatment":
-            for (int i = 0; i < patients.size(); i++) {
-                System.out.println(LINE_BREAK);
-                System.out.print((i + 1) + ". " + patients.get(i).getName() + ": ");
-                System.out.println(patients.get(i).getTreatmentStatus());
-                System.out.println(LINE_BREAK);
-            }
-            break;
-        case "timestamp":
-            for (int i = 0; i < patients.size(); i++) {
-                System.out.println(LINE_BREAK);
-                System.out.print((i + 1) + ". " + patients.get(i).getName() +  ": ");
-                System.out.println(patients.get(i).getTimeStamp());
-                System.out.println(LINE_BREAK);
-            }
-            break;
-        case "history":
-            for (int i = 0; i < patients.size(); i++) {
-                System.out.println(LINE_BREAK);
-                System.out.print((i + 1) + ". " + patients.get(i).getName() + ": ");
-                System.out.println(patients.get(i).getMedicalHistory());
-                System.out.println(LINE_BREAK);
-            }
-            break;
+        String attribute = parts[2].toLowerCase();
+        ArrayList<Patient> patientList = PatientListManager.getPatientList();
 
-        case "doctor":
-            for (int i = 0; i < patients.size(); i++) {
-                System.out.println(LINE_BREAK);
-                System.out.print((i + 1) + ". " + patients.get(i).getName() + ": ");
-                System.out.println(patients.get(i).getDoctorAssigned());
-                System.out.println(LINE_BREAK);
-            }
-            break;
-        default:
+        if (patientList.isEmpty()) {
             System.out.println(LINE_BREAK);
-            System.out.print("Invalid Attribute Input. Available options:  ");
-            System.out.println("name, symptoms, timestamp, history, treatment, doctor");
+            System.out.println("No patients available to view.");
             System.out.println(LINE_BREAK);
+            return;
         }
 
-    }
+        System.out.println(LINE_BREAK);
+        System.out.println("Viewing attribute: " + attribute);
+        System.out.println(LINE_BREAK);
 
+        for (Patient p : patientList) {
+            String label = p.getName();
+            String result;
+
+            switch (attribute) {
+                case "name":
+                    result = p.getName();
+                    break;
+                case "symptoms":
+                    result = p.getSymptoms();
+                    break;
+                case "timestamp":
+                    result = p.getTimeStamp();
+                    break;
+                case "history":
+                    result = p.getMedicalHistory();
+                    break;
+                case "treatment":
+                    result = p.getTreatmentStatus();
+                    break;
+                case "doctor":
+                    result = p.getDoctorAssigned();
+                    break;
+                default:
+                    System.out.println(LINE_BREAK);
+                    System.out.println("Unknown attribute: " + attribute);
+                    System.out.println(LINE_BREAK);
+                    return;
+            }
+
+            System.out.println(label + ": " + result);
+        }
+
+        System.out.println(LINE_BREAK);
+    }
 }
