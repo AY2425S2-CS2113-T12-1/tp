@@ -22,6 +22,11 @@ public class DoctorUpdater {
 
         String nameAndRest = input.substring(prefix.length()).trim();
 
+        if (nameAndRest.isBlank()) {
+            System.out.println("\nMissing arguments. Use format: update doctor <name> <field=value>...");
+            return;
+        }
+
         // Extract full name and update fields from remainder
         String[] split = nameAndRest.split(" ");
         StringBuilder nameBuilder = new StringBuilder();
@@ -49,8 +54,8 @@ public class DoctorUpdater {
 
         Doctor target = findDoctorByName(name);
         if (target == null) {
-            System.out.println("\nDoctor \"" + name + "\" not found. If the name contains spaces, try using a hyphen" +
-                    " like \"Dr-Lim\".");
+            System.out.println("\nDoctor \"" + name + "\" not found. If the name contains spaces," +
+                    " try using a hyphen like \"Dr-Lim\".");
             return;
         }
 
@@ -71,7 +76,8 @@ public class DoctorUpdater {
                 updated = true;
                 break;
             case "treating":
-                target.assignPatient(value);
+                String nameToAssign = value.replaceFirst("(?i)^patient\s+", "").trim();
+                target.assignPatient(nameToAssign);
                 updated = true;
                 break;
             default:
@@ -92,10 +98,15 @@ public class DoctorUpdater {
         }
     }
 
-    private static Doctor findDoctorByName(String name) {
+    static Doctor findDoctorByName(String inputName) {
         ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
         for (Doctor d : doctorList) {
-            if (d.getName().equalsIgnoreCase(name)) {
+            String storedName = d.getName().trim();
+            if (storedName.toLowerCase().startsWith("doctor ")) {
+                storedName = storedName.substring(7);  // remove 7 characters
+            }
+
+            if (storedName.equalsIgnoreCase(inputName)) {
                 return d;
             }
         }
@@ -104,7 +115,7 @@ public class DoctorUpdater {
 
     //Parses a space-separated string of field=value pairs into a HashMap.
     //Only valid pairs with '=' are included.
-    private static HashMap<String, String> parseKeyValuePairs(String input) {
+    static HashMap<String, String> parseKeyValuePairs(String input) {
         HashMap<String, String> map = new HashMap<>();
         String[] pairs = input.split(" ");
 
@@ -115,4 +126,5 @@ public class DoctorUpdater {
 
         return map;
     }
+
 }
