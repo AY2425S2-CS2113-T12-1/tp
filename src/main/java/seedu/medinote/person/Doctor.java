@@ -4,18 +4,33 @@ public class Doctor {
     private String name;
     private String specialisation;
     private String availability;
-    private String patientsBeingTreated;
+    private String patientBeingTreated;
     private Integer numPatientsTreated; // includes patients currently treating
 
-    public Doctor(String name, String specialisation, String availability, String patientsBeingTreated) {
+    public Doctor(String name, String specialisation, String availability, String patientBeingTreated) {
         this.name = name;
         this.specialisation = specialisation;
         this.availability = availability;
-        this.patientsBeingTreated = patientsBeingTreated;
-        if(patientsBeingTreated.trim().isEmpty() || patientsBeingTreated.equalsIgnoreCase("na")) {
+        this.patientBeingTreated = patientBeingTreated;
+        if (patientBeingTreated.trim().isEmpty() || patientBeingTreated.equalsIgnoreCase("na")) {
             this.numPatientsTreated = 0;
         } else {
             this.numPatientsTreated = 1;
+        }
+    }
+
+    // Constructor used during loading from file
+    public Doctor(String name, String specialisation, String availability,
+                  String patientBeingTreated, String numPatientsTreatedStr) {
+        this.name = name;
+        this.specialisation = specialisation;
+        this.availability = availability;
+        this.patientBeingTreated = patientBeingTreated;
+
+        try {
+            this.numPatientsTreated = Integer.parseInt(numPatientsTreatedStr.trim());
+        } catch (NumberFormatException e) {
+            this.numPatientsTreated = 0; // Fallback in case of malformed number
         }
     }
 
@@ -24,11 +39,11 @@ public class Doctor {
     }
 
     public void assignPatient(String name) {
-        if (patientsBeingTreated.trim().isEmpty() || patientsBeingTreated.equalsIgnoreCase("none")
-                || patientsBeingTreated.equalsIgnoreCase("na")) {
-            patientsBeingTreated = name;
-        } else if (!patientsBeingTreated.contains(name)) {
-            patientsBeingTreated += ", " + name;
+        if (patientBeingTreated.trim().isEmpty() || patientBeingTreated.equalsIgnoreCase("none")
+                || patientBeingTreated.equalsIgnoreCase("na")) {
+            patientBeingTreated = name;
+        } else if (!patientBeingTreated.contains(name)) {
+            patientBeingTreated += ", " + name;
         }
         numPatientsTreated++;
     }
@@ -42,11 +57,11 @@ public class Doctor {
         return availability;
     }
 
-    public String getPatientsBeingTreated() {
-        if (patientsBeingTreated == null || patientsBeingTreated.trim().isEmpty()) {
+    public String getPatientBeingTreated() {
+        if (patientBeingTreated == null || patientBeingTreated.trim().isEmpty()) {
             return "None";
         }
-        return patientsBeingTreated; // Remove the String.join() call
+        return patientBeingTreated; // Remove the String.join() call
     }
 
     public Integer getNumPatientsTreated() {
@@ -59,8 +74,8 @@ public class Doctor {
     }
 
     public void setCurrentPatient(String patientName) {
-        patientsBeingTreated = patientName.trim();
-        if(!(patientName.trim().isEmpty() || patientName.equalsIgnoreCase("na"))) {
+        patientBeingTreated = patientName.trim();
+        if (!(patientName.trim().isEmpty() || patientName.equalsIgnoreCase("na"))) {
             numPatientsTreated++;
         }
 
