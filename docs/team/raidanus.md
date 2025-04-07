@@ -52,23 +52,14 @@ Code Contributed: [Reposense link to RaidaNUS code dashboard](https://nus-cs2113
 ### 🧪 Testing Contributions
 
 - Wrote **JUnit tests** for:
-    - `PatientUpdater`
     - `DoctorUpdater`
-
-- Covered scenarios including:
-    - Case-insensitive name matching
-    - Missing field errors
-    - Multiple simultaneous field updates
-    - Edge cases with invalid fields and unknown entries
-    - Save failure handling using `IOException` mock cases
-
 ---
 
 ### 📘 Documentation Contributions
 
 - **User Guide Structure and Skeleton**  
-  Personally authored the **entire User Guide skeleton**, establishing the format, layout, and sectioning 
-- (e.g., command format tables, categorization, spacing). Ensured professional documentation quality and a uniform experience across command documentation.
+   authored the **User Guide skeleton**
+- Ensured professional documentation quality and a uniform experience across command documentation.
 
 - **Command Descriptions**  
   Wrote and refined detailed UG entries for:
@@ -77,8 +68,6 @@ Code Contributed: [Reposense link to RaidaNUS code dashboard](https://nus-cs2113
     - `view patient`
     - `view doctor`
     - `stats`
-    - Common errors and input expectations
-
 
 ---
 
