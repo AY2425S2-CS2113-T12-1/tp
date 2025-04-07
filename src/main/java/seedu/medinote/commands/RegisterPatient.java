@@ -135,20 +135,22 @@ public class RegisterPatient {
     }
 
     private static boolean isValidDate(String date) {
-        ArrayList<Integer> dayList = new ArrayList<Integer>() {{
-            add(31);
-            add(28);
-            add(31);
-            add(30);
-            add(31);
-            add(30);
-            add(31);
-            add(31);
-            add(30);
-            add(31);
-            add(30);
-            add(31);
-        }};
+        ArrayList<Integer> dayList = new ArrayList<Integer>() {
+            {
+                add(31);
+                add(28);
+                add(31);
+                add(30);
+                add(31);
+                add(30);
+                add(31);
+                add(31);
+                add(30);
+                add(31);
+                add(30);
+                add(31);
+            }
+        };
         String[] splitDateTime = date.split(" ");
         String[] splitDate = splitDateTime[0].split("-");
 
