@@ -47,7 +47,6 @@ public class LoadData {
 
             if (!hasHeader) {
                 br.reset();
-                lineNumber = 0;
             } else {
                 lineNumber = 1;
             }
@@ -62,9 +61,8 @@ public class LoadData {
                     // Strict format validation
                     if (fields.length != DOCTOR_FIELD_COUNT) {
                         hasFormatError = true;
-                        errorMessages.append(String.format(
-                                "Line %d: Expected %d fields, found %d - %s%n",
-                                lineNumber, DOCTOR_FIELD_COUNT, fields.length, line));
+                        errorMessages.append("Line " + lineNumber + ": Expected " + DOCTOR_FIELD_COUNT +
+                                " fields, found " + fields.length + " - " + line + System.lineSeparator());
                     }
 
                     // Field content validation
@@ -83,8 +81,8 @@ public class LoadData {
                     ));
 
                 } catch (IllegalArgumentException e) {
-                    errorMessages.append(String.format(
-                            "Line %d: %s - %s%n", lineNumber, e.getMessage(), line));
+                    errorMessages.append("Line " + lineNumber + ": " + e.getMessage() + " - "
+                            + line + System.lineSeparator());
                 }
             }
         }
@@ -94,8 +92,9 @@ public class LoadData {
             throw new DataFormatException("Invalid doctor data format detected");
         }
 
-        System.out.printf("Loaded %d valid doctor records%n", doctors.size());
+        System.out.println("Loaded " + doctors.size() + " valid doctor records");
         return doctors;
+
     }
 
     /**
@@ -127,7 +126,6 @@ public class LoadData {
 
             if (!hasHeader) {
                 br.reset();
-                lineNumber = 0;  // Reset counter if no header
             } else {
                 lineNumber = 1;  // Header is line 1
             }
@@ -140,8 +138,8 @@ public class LoadData {
                     String[] fields = line.split(FIELD_SEPARATOR, -1);
 
                     if (fields.length != PATIENT_FIELD_COUNT) {
-                        System.err.printf("Malformed data at line %d (expected %d fields): %s%n",
-                                lineNumber, PATIENT_FIELD_COUNT, line);
+                        System.err.println("Malformed data at line " + lineNumber + " (expected " +
+                                PATIENT_FIELD_COUNT + " fields): " + line);
                     }
 
                     patients.add(new Patient(
@@ -154,8 +152,7 @@ public class LoadData {
                     ));
 
                 } catch (Exception e) {
-                    System.err.printf("Error at line %d: %s (%s)%n",
-                            lineNumber, line, e.getMessage());
+                    System.err.println("Error at line " + lineNumber + ": " + line + " (" + e.getMessage() + ")");
                 }
             }
         }
