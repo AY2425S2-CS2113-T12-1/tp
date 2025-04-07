@@ -93,7 +93,7 @@ class LoadDataTest {
                 StandardOpenOption.TRUNCATE_EXISTING);
 
         // Execute and verify exception
-        assertThrows(LoadData.DataFormatException.class, () -> dataLoader.loadDoctorData());
+        assertThrows(LoadData.DataFormatException.class,() -> dataLoader.loadDoctorData());
     }
 
     @Test
