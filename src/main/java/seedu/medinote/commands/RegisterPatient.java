@@ -4,6 +4,9 @@ import seedu.medinote.person.Patient;
 import seedu.medinote.manager.PatientListManager;
 import seedu.medinote.storage.SaveData;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,6 +24,9 @@ public class RegisterPatient {
     private static final String FAILED_REGISTRATION_MESSAGE = "\tName already exists. " +
             "Please input a different name, without parameters:";
     private static final String NAME_MESSAGE = "\tPlease ONLY enter the new name, without parameters!";
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final String INVALID_DATETIME_FORMAT_MESSAGE = "\tPlease use the correct format:" +
+            " yyyy-MM-dd HH:mm:ss (e.g. 2025-04-01 23:59:59), or key in a valid date time!";
 
     public static void registerPatient(String patientDetails) {
         System.out.println(LINE_BREAK);
@@ -38,8 +44,14 @@ public class RegisterPatient {
                 for (int i = 0; i < patientInfo.length; i++) {
                     patientInfo[i] = reformatPatientInfoParameters(patientInfo[i].trim());
                 }
-                Patient patient = new Patient(patientInfo[0].trim(), patientInfo[1].trim(),
-                        patientInfo[2].trim(), patientInfo[3].trim(), "NA", "NA");
+
+                if (!isValidDateTimeFormat(patientInfo[2])) {
+                    throw new IllegalArgumentException(INVALID_DATETIME_FORMAT_MESSAGE);
+                }
+
+                if (!isValidDate(patientInfo[2])) {
+                    throw new IllegalArgumentException(INVALID_DATETIME_FORMAT_MESSAGE);
+                }
 
                 if (isNameInList(patientInfo[0].trim())) {
                     System.out.println(DUPLICATE_PATIENT_MESSAGE);
@@ -54,7 +66,7 @@ public class RegisterPatient {
                             if (patientInfo[0].contains("/")) {
                                 System.out.println(NAME_MESSAGE);
                             } else {
-                                patient = new Patient(patientInfo[0], patientInfo[1].trim(), patientInfo[2].trim(),
+                                Patient patient = new Patient(patientInfo[0], patientInfo[1].trim(), patientInfo[2].trim(),
                                         patientInfo[3].trim(), "NA", "NA");
                                 PatientListManager.addPatient(patient);
                                 System.out.println("\tPatient " + patientInfo[0] +
@@ -66,8 +78,10 @@ public class RegisterPatient {
                         }
                     }
                 } else {
+                    Patient patient = new Patient(patientInfo[0], patientInfo[1],
+                    patientInfo[2], patientInfo[3], "NA", "NA");
                     PatientListManager.addPatient(patient);
-                    System.out.println("\tPatient " + patientInfo[0].trim() + SUCCESSFUL_REGISTRATION_MESSAGE);
+                    System.out.println("\tPatient " + patientInfo[0] + SUCCESSFUL_REGISTRATION_MESSAGE);
                 }
 
                 try {
@@ -110,4 +124,47 @@ public class RegisterPatient {
         return false;
     }
 
+
+    private static boolean isValidDateTimeFormat(String dateTime) {
+        try {
+            LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    private static boolean isValidDate(String date) {
+        ArrayList<Integer> dayList = new ArrayList<Integer>() {{
+            add(31);
+            add(28);
+            add(31);
+            add(30);
+            add(31);
+            add(30);
+            add(31);
+            add(31);
+            add(30);
+            add(31);
+            add(30);
+            add(31);
+        }};
+        String[] splitDateTime = date.split(" ");
+        String[] splitDate = splitDateTime[0].split("-");
+
+        if (Integer.parseInt(splitDate[2]) <= dayList.get(Integer.parseInt(splitDate[1])-1)) {
+            return true;
+        }
+
+        if (Integer.parseInt(splitDate[1]) == 2) {
+            if (isLeapYear(Integer.parseInt(splitDate[0])) && Integer.parseInt(splitDate[2]) == 29) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
 }
