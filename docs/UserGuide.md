@@ -31,12 +31,6 @@ via a Command Line Interface (CLI).
 - [Display Hospital Summary Stats: `stats`](#hospital-summary-statistics-dashboard-stats)
 - [To Exit Application: `exit`](#to-exit-exit)
 
-## ! Note:
-For NAME, format MUST BE:
-*     Mr-Tan
-*     John-Doe
-*     Avery-Miller-Dove
-*     Dr-Hudson
 
 ### Show a list of commands: `help`
 Shows a list of commands for navigating around the database.

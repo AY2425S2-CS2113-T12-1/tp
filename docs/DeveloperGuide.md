@@ -89,6 +89,17 @@ In the context of this example:
 | commands | RegisterPatient | Contains bulk of code logic                                           |
 | storage  | SaveData        | Persists data to text files                                           |
 
+### Person Classes
+In MediNote, we have two main person classes: `PATIENT` and `DOCTOR`.
+1. `PATIENT` Class<br>
+![Class Diagram of Patient Class](./pictures/PatientClass.png)
+
+2. `DOCTOR` Class<br>
+![Class Diagram of Doctor Class](./pictures/DoctorClass.png)
+
+In each of the classes, there are methods to get every attribute. Some methods set certain attributes 
+that can be updated in the PatientUpdater and DoctorUpdater classes respectively.
+
 ### Management of Tracked Doctors
 
 The `DoctorListManager` class main purpose is to maintain `ArrayList<Doctor> doctorList`, 
@@ -112,6 +123,34 @@ The <i>Sequence Diagram</i> below shows how the components interact with each ot
  issues the command `list doctor`
 
 ![Sequence Diagram of list doctor](./pictures/DoctorListManagerSequenceExample.png)
+
+### Registration of New Patients into Hospital
+The main purpose of the `RegisterPatient` class is to admit new patients into the hospital.<br>
+It contains methods to check for valid user input, and it does not allow multiple inputs of the same name (regardless of upper or lowercase).
+
+- **Registration of New Patients** 
+  - `RegisterPatient` contains `registerPatient(String)`, where the input is the details of the new patient.
+  - It checks that the user input is valid by checking it against the `Patient` parameters.
+  - It then calls on `reformatPatientInfoParameters(String)` to get rid of any redundant white spaces in user input.
+  - Next, it checks if name of patient already exists in the database. If so, it prompts the user for a new input name.
+  - Once there are no clashes with existing data, patient is added to the `ArrayList<Patient> patientList` and the new data will be saved into the text file.
+
+The <i>Sequence Diagram</i> below shows how the classes interact with each other for the scenario where the user
+issues the command `register John Pork /...`
+
+![Sequence Diagram of Registration of Patients](./pictures/RegisterPatientSD.png)
+### Adding of New Doctors into Hospital
+The main purpose of the `RegisterDoctor` class is to add new doctors into the hospital.<br>
+It contains methods to check for valid user input, and it does not allow multiple inputs of the same name (regardless of upper or lowercase).
+
+- **Registration of New Doctors**
+   - `RegisterDoctor` contains `registerDoctor(String)`, where the input is the details of the newly added doctor.
+   - It checks that the user input is valid by checking it against the `Doctor` parameters.
+   - It then calls on `reformatDoctorInfoParameters(String)` to get rid of any redundant white spaces in user input.
+   - Next, it checks if name of doctor already exists in the database. If so, it prompts the user for a new input name.
+   - Once there are no clashes with existing data, doctor is added to the `ArrayList<Doctor> doctorList` and the new data will be saved into the text file.
+
+The <i>Sequence Diagram</i> is similar to that of the registration of new patients.`
 
 ### Application Startup Process (Loading Data)
 
