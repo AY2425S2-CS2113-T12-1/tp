@@ -28,7 +28,7 @@ public class DoctorListManager {
         ArrayList<Patient> patientList = PatientListManager.getPatientList();
 
         for(Patient patient : patientList) {
-            if(doctor.getPatientsBeingTreated().equalsIgnoreCase(patient.getName())) {
+            if(doctor.getPatientBeingTreated().equalsIgnoreCase(patient.getName())) {
                 assert patient.getName() != null : "Patient name should not be null.";
                 patient.setDoctorAssigned("None");
                 assert patient.getDoctorAssigned().equalsIgnoreCase("None") : "Doctor info was not " +
