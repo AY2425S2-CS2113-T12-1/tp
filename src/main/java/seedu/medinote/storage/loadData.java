@@ -51,7 +51,6 @@ public class loadData {
             while ((line = br.readLine()) != null) {
                 lineNumber++;
                 line = line.trim();
-                if (line.isEmpty()) continue;
 
                 try {
                     String[] fields = line.split(FIELD_SEPARATOR, -1);
@@ -124,7 +123,6 @@ public class loadData {
             while ((line = br.readLine()) != null) {
                 lineNumber++;
                 line = line.trim();
-                if (line.isEmpty()) continue;
 
                 try {
                     String[] fields = line.split(FIELD_SEPARATOR, -1);
