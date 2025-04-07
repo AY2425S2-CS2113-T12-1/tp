@@ -49,7 +49,7 @@ help                 | Shows a list of commands for navigating the database
 register             | Registers new patient with necessary details:                                   
                      | • <NAME>                                                                        
                      | • <SYMPTOMS>                                                                    
-                     | • <ADMISSION TIME>                                                                   
+                     | • <ADMISSION TIME> in yyyy-MM-dd HH:mm:ss format                                                                  
                      | • <MEDICAL HISTORY>                                                             
                      | Format: register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>          
                      |                                                                                 
@@ -223,16 +223,16 @@ Registers a new patient with necessary details:<br>
 
 - `<NAME>`
 - `<SYMPTOMS>`
-- `<ADMISSION TIME>`
+- `<ADMISSION TIME>` in yyyy-MM-dd HH:mm:ss format
 - `<MEDICAL HISTORY>`
 
 Format: `register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>`
 
 Example usage: 
 
-`register John Pork/High Fever/5 Jan 2025 1730/Allergic to cheese`
+`register John Pork/High Fever/2025-01-05 23:59:59/Allergic to cheese`
 
-`register Tim Cheese/Constipation/5:23pm 7 Feb 2026/NA`
+`register Tim Cheese/Constipation/2024-07-02 13:23:55/NA`
 
 ### Adding a new doctor: `oncall`
 Adds a new on-call doctor with necessary details:<br>
