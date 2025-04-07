@@ -2,7 +2,6 @@ package seedu.medinote.commands;
 
 import seedu.medinote.manager.DoctorListManager;
 import seedu.medinote.person.Doctor;
-import seedu.medinote.person.Patient;
 
 import java.util.ArrayList;
 

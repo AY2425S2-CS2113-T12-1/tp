@@ -55,11 +55,13 @@ public class TaskManager {
                 String parameters = argumentSplit.length > 1 ? argumentSplit[1] : "";
                 DoctorUpdater.updateDoctor(parameters);
             } else {
-                System.out.println("\tExample format: update patient <NAME> / status=<NEW_STATUS> / doctor=<NEW_DOCTOR>");
+                System.out.println("\tExample format: update patient <NAME> /" +
+                        " status=<NEW_STATUS> / doctor=<NEW_DOCTOR>");
                 System.out.println("\tstatus: updates the treatment status of patient.");
                 System.out.println("\tdoctor: updates the doctor assigned to this patient.");
                 System.out.println("\tOR");
-                System.out.println("\tExample format: update doctor <NAME> / availability=<AVAILABILITY> / assignment=<NEW_PATIENTS>");
+                System.out.println("\tExample format: update doctor <NAME> /" +
+                        " availability=<AVAILABILITY> / assignment=<NEW_PATIENTS>");
                 System.out.println("\tavailability: updates the availability of the doctor.");
                 System.out.println("\tassignment: updates the patients assigned to this doctor.");
             }
