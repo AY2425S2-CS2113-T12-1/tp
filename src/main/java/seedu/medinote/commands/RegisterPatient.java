@@ -26,7 +26,7 @@ public class RegisterPatient {
     private static final String NAME_MESSAGE = "\tPlease ONLY enter the new name, without parameters!";
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final String INVALID_DATETIME_FORMAT_MESSAGE = "\tPlease use the correct format:" +
-            " yyyy-MM-dd HH:mm:ss (e.g. 2025-04-01 23:59:59), or key in a valid date time!";
+            " yyyy-MM-dd HH:mm:ss (e.g. 2025-04-01 23:59:59), \n\tor key in a valid date time!";
 
     public static void registerPatient(String patientDetails) {
         System.out.println(LINE_BREAK);
@@ -66,8 +66,8 @@ public class RegisterPatient {
                             if (patientInfo[0].contains("/")) {
                                 System.out.println(NAME_MESSAGE);
                             } else {
-                                Patient patient = new Patient(patientInfo[0], patientInfo[1].trim(), patientInfo[2].trim(),
-                                        patientInfo[3].trim(), "NA", "NA");
+                                Patient patient = new Patient(patientInfo[0], patientInfo[1], patientInfo[2],
+                                        patientInfo[3], "NA", "NA");
                                 PatientListManager.addPatient(patient);
                                 System.out.println("\tPatient " + patientInfo[0] +
                                         SUCCESSFUL_REGISTRATION_MESSAGE);
@@ -79,7 +79,7 @@ public class RegisterPatient {
                     }
                 } else {
                     Patient patient = new Patient(patientInfo[0], patientInfo[1],
-                    patientInfo[2], patientInfo[3], "NA", "NA");
+                            patientInfo[2], patientInfo[3], "NA", "NA");
                     PatientListManager.addPatient(patient);
                     System.out.println("\tPatient " + patientInfo[0] + SUCCESSFUL_REGISTRATION_MESSAGE);
                 }

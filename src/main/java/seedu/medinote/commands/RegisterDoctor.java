@@ -54,7 +54,7 @@ public class RegisterDoctor {
                             if (doctorInfo[0].contains("/")) {
                                 System.out.println(NAME_MESSAGE);
                             } else {
-                                doctor = new Doctor(doctorInfo[0], doctorInfo[1].trim(), "NA", "NA");
+                                doctor = new Doctor(doctorInfo[0], doctorInfo[1], "NA", "NA");
                                 DoctorListManager.addDoctor(doctor);
                                 System.out.println("\tDoctor " + doctorInfo[0] +
                                         SUCCESSFUL_REGISTRATION_MESSAGE);
@@ -66,7 +66,7 @@ public class RegisterDoctor {
                     }
                 } else {
                     DoctorListManager.addDoctor(doctor);
-                    System.out.println("\tDoctor " + doctorInfo[0].trim() + SUCCESSFUL_REGISTRATION_MESSAGE);
+                    System.out.println("\tDoctor " + doctorInfo[0] + SUCCESSFUL_REGISTRATION_MESSAGE);
                 }
 
                 try {
