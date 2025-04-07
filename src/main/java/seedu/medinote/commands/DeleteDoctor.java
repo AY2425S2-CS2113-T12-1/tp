@@ -16,8 +16,10 @@ public class DeleteDoctor {
         }
 
         ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
-        assert doctorList != null: "Doctor list should not be null.";
-        assert (!doctorList.isEmpty()): "Doctor list should not be empty.";
+        if (doctorList.isEmpty()) {
+            System.out.println("No doctors available to delete.");
+            return;
+        }
 
         for(Doctor doctor : doctorList) {
             assert doctor != null: "Doctor object should not be empty.";
@@ -36,7 +38,6 @@ public class DeleteDoctor {
         }
 
         System.out.println("Doctor with name \"" + docName + "\" was not found");
-
     }
 
 }
