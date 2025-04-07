@@ -18,11 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LoadDataTest {
-    private loadData dataLoader;
+    private LoadData dataLoader;
 
     @BeforeEach
     void setUp() throws IOException {
-        dataLoader = new loadData();
+        dataLoader = new LoadData();
         TestUtil.createTestFiles();
     }
 
@@ -39,7 +39,7 @@ class LoadDataTest {
                 "Dr. Smith|Cardiology|Available|John Doe|5\n" +
                 "Dr. Lee|Neurology|Busy|Sarah Connor|10\n";
 
-        Files.write(Paths.get(saveData.DOCTOR_FILE_PATH),
+        Files.write(Paths.get(SaveData.DOCTOR_FILE_PATH),
                 testData.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
 
         // Execute method
@@ -64,7 +64,7 @@ class LoadDataTest {
                 "John Doe|Headache|2023-01-01|None|In Treatment|Dr. Smith\n" +
                 "Sarah Connor|Fever|2023-01-02|Allergies|Waiting|None\n";
 
-        Files.write(Paths.get(saveData.PATIENT_FILE_PATH), testData.getBytes(),
+        Files.write(Paths.get(SaveData.PATIENT_FILE_PATH), testData.getBytes(),
                 StandardOpenOption.TRUNCATE_EXISTING);
 
         // Execute method
@@ -89,17 +89,17 @@ class LoadDataTest {
                 "|patientsBeingTreated\n" + // Missing numPatientsTreated
                 "Dr. Smith|Cardiology|Available|John Doe\n";
 
-        Files.write(Paths.get(saveData.DOCTOR_FILE_PATH), testData.getBytes(),
+        Files.write(Paths.get(SaveData.DOCTOR_FILE_PATH), testData.getBytes(),
                 StandardOpenOption.TRUNCATE_EXISTING);
 
         // Execute and verify exception
-        assertThrows(loadData.DataFormatException.class, () -> dataLoader.loadDoctorData());
+        assertThrows(LoadData.DataFormatException.class,() -> dataLoader.loadDoctorData());
     }
 
     @Test
     void loadPatientData_emptyFile_returnsEmptyList() throws Exception {
         // Ensure file is empty
-        Files.write(Paths.get(saveData.PATIENT_FILE_PATH), "".getBytes(),
+        Files.write(Paths.get(SaveData.PATIENT_FILE_PATH), "".getBytes(),
                 StandardOpenOption.TRUNCATE_EXISTING);
 
         // Execute method

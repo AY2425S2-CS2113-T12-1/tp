@@ -2,7 +2,7 @@ package seedu.medinote.commands;
 
 import seedu.medinote.person.Patient;
 import seedu.medinote.manager.PatientListManager;
-import seedu.medinote.storage.saveData;
+import seedu.medinote.storage.SaveData;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -71,7 +71,7 @@ public class RegisterPatient {
                 }
 
                 try {
-                    new saveData().savePatientsData(PatientListManager.getPatientList());
+                    new SaveData().savePatientsData(PatientListManager.getPatientList());
                 } catch (Exception e) {
                     System.out.println("\tError saving patient data: " + e.getMessage());
                 }

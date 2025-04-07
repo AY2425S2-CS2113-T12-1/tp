@@ -2,7 +2,7 @@ package seedu.medinote.commands;
 
 import seedu.medinote.person.Doctor;
 import seedu.medinote.manager.DoctorListManager;
-import seedu.medinote.storage.saveData;
+import seedu.medinote.storage.SaveData;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -70,7 +70,7 @@ public class RegisterDoctor {
                 }
 
                 try {
-                    saveData.saveDoctorsData(DoctorListManager.getDoctorList());
+                    SaveData.saveDoctorsData(DoctorListManager.getDoctorList());
                 } catch (Exception e) {
                     System.out.println("\tError saving doctor data: " + e.getMessage());
                 }

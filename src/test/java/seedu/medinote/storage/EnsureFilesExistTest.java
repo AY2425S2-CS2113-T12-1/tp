@@ -24,11 +24,11 @@ class EnsureFilesExistTest {
     @Test
     void ensureDoctorsFileExists_fileCreatedSuccessfully() throws IOException {
         // Verify file doesn't exist initially
-        Path doctorsPath = Paths.get(saveData.DOCTOR_FILE_PATH);
+        Path doctorsPath = Paths.get(SaveData.DOCTOR_FILE_PATH);
         assertFalse(Files.exists(doctorsPath));
 
         // Execute method
-        ensureFilesExist.ensureDoctorsFileExists();
+        EnsureFilesExist.ensureDoctorsFileExists();
 
         // Verify file exists and has header
         assertTrue(Files.exists(doctorsPath));
@@ -40,11 +40,11 @@ class EnsureFilesExistTest {
     @Test
     void ensurePatientsFileExists_fileCreatedSuccessfully() throws IOException {
         // Verify file doesn't exist initially
-        Path patientsPath = Paths.get(saveData.PATIENT_FILE_PATH);
+        Path patientsPath = Paths.get(SaveData.PATIENT_FILE_PATH);
         assertFalse(Files.exists(patientsPath));
 
         // Execute method
-        ensureFilesExist.ensurePatientsFileExists();
+        EnsureFilesExist.ensurePatientsFileExists();
 
         // Verify file exists and has header
         assertTrue(Files.exists(patientsPath));
