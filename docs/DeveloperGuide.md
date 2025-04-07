@@ -1,6 +1,55 @@
 # Developer Guide
 
 ## Acknowledgements
+CS2113 Teaching Team
+
+
+## Setting up, getting started
+
+### Setting up the project in your computer
+
+#### Setting up
+
+---------------------------------------------------------------------------------------------
+| Tool                | Recommended Version Notes   | Notes                                   
+|---------------------|-----------------------------|----------------------------------------
+| Java JDK            | 17 or higher                | Required for compiling and running
+| IntelliJ IDEA       | 2021.2+                     | Preferred IDE for full Java support
+| JUnit 5             | 5.x                         | For running the test suite
+| Git                 | Latest                      | For version control and collaboration   
+| Gradle              | Latest                      | For dependency and build management     
+
+
+#### Getting started
+
+1. **Fork this [repo](https://github.com/AY2425S2-CS2113-T12-1/tp.git)**
+2. **Clone the fork into your computer**
+3. **If you plan to use Intellij IDEA (highly recommended):**
+   - ***Configure the JDK:*** Follow the guide 
+   [[se-edu/guides] IDEA: Configuring the JDK](https://se-education.org/guides/tutorials/intellijJdk.html) 
+   to ensure Intellij is configured to use JDK 17.
+   - ***Import the project as a Gradle project:*** Follow the guide 
+   [[se-edu/guides] IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)
+   to import the project into IDEA.
+
+   **! Note: Importing a Gradle project is slightly different from importing a normal Java project.**
+
+   - ***Verify the setup:***
+        Run the `MediNote` and try a few commands.
+        Run the tests to ensure they all pass.
+
+#### Before writing code
+
+1. **Configuring the coding style**
+   -If using IDEA, follow the guide [[se-edu/guides] IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html)
+   to set up IDEA’s coding style to match ours.
+2. **Set up CI**
+   -This project comes with a GitHub Actions config files (in `.github/workflows` folder). 
+When GitHub detects those files, it will run the CI for your project automatically
+at each push to the `master` branch or to any PR. No set up required.
+3. **Learn the design**
+   -When you are ready to start coding, we recommend that you get some sense
+of the overall design by reading about ***MediNote’s*** architecture.
 
 ## Design & implementation
 
@@ -117,6 +166,93 @@ MediNote provides a way to compile the list of patients and which patients the d
 MediNote provides a way to easily track and edit patient and doctor assignments in the hospital.
 MediNote aims to improve the management capacity and efficiency of hospitals.
 
+##  PatientUpdater
+
+The `PatientUpdater` class allows users to dynamically update a patient's information through CLI input. It accepts multiple key-value fields and ensures consistency by also updating the assigned doctor record if needed.
+![Sequence_PatientUpdater.png](diagrams/Sequence_PatientUpdater.png)
+### Key Method:
+
+#### `updatePatient(String input)`
+Parses commands in the format:
+```
+update patient John Tan status=In-Progress doctor=Dr Lim
+```
+It extracts the patient name and fields to be updated. It then:
+
+- Finds the patient from `PatientListManager`
+- Updates the patient's `treatmentStatus` or `assignedDoctor`
+- If a doctor is assigned, it also updates the doctor's record
+- Changes are persisted using `saveData.savePatientsData(...)`
+
+### Supporting Methods:
+- `findPatientByName(...)`: Case-insensitive lookup of the target patient.
+- `findDoctorByName(...)`: Used to fetch the doctor object for assignment.
+- `parseKeyValuePairs(...)`: Parses dynamic field inputs into a `HashMap`.
+
+---
+
+## DoctorUpdater
+
+The `DoctorUpdater` class allows the user to modify existing doctor records by updating their availability and current patients being treated.
+![Sequence_DoctorUpdater.png](diagrams/Sequence_DoctorUpdater.png)
+### Key Method:
+
+#### `updateDoctor(String input)`
+Accepts input in this format:
+```
+update doctor Dr Tan availability=Busy treating=Mr A
+```
+It:
+
+- Finds the doctor by name
+- Updates their availability and patient-treatment fields
+- Saves changes using `saveData.saveDoctorsData(...)`
+
+### Supporting Methods:
+- `findDoctorByName(...)`: Searches the global doctor list using a case-insensitive match.
+- `parseKeyValuePairs(...)`: Validates and extracts field updates.
+
+---
+
+## ViewPatientAttributes
+
+The `ViewPatientAttributes` class enables users to filter and view a specific attribute across all patients. This is useful for summarizing patient information quickly.
+![Sequence_ViewPatient.png](diagrams/Sequence_ViewPatient.png)
+### Key Method:
+
+#### `viewPatientAttribute(String input)`
+Accepts the format:
+```
+view patient <attribute>
+```
+
+Supported attributes:
+
+- `name`, `symptoms`, `timestamp`, `history`, `treatment`, `doctor`
+
+For each patient, it prints the value of the selected field in a tabulated manner.
+
+---
+
+## ViewDoctorAttributes
+
+This class provides a filtered view of selected attributes from all doctor records for quick summary inspection.
+![Sequence_ViewDoctor.png](diagrams/Sequence_ViewDoctor.png)
+### Key Method:
+
+#### `viewDoctorAttribute(String input)`
+Accepts the format:
+```
+view doctor <attribute>
+```
+
+Supported attributes:
+
+- `name`, `specialization`, `availability`, `treating`
+
+For each doctor, it prints the requested attribute for easy comparison across doctors.
+
+![Sequence_OverallStatistics.png](diagrams/Sequence_OverallStatistics.png)
 ## User Stories
 
 | Version | As a ...              | I want to ...                                    | So that I can ...                                                 |

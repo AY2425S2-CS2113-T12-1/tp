@@ -32,25 +32,23 @@ class SaveDataTest {
 
     @Test
     void saveDoctorsData_validData_savesCorrectly() throws IOException {
-        // Prepare test data
         ArrayList<Doctor> doctors = new ArrayList<>();
         doctors.add(new Doctor("Dr. Smith", "Cardiology",
                 "Available", "John Doe"));
         doctors.add(new Doctor("Dr. Lee", "Neurology",
                 "Busy", "Sarah Connor"));
 
-        // Execute method
         SaveData.saveDoctorsData(doctors);
 
-        // Verify file content
         String content = Files.readString(Paths.get(SaveData.DOCTOR_FILE_PATH));
+        // New Java assert
+        assert content.lines().count() == 3 : "Should have header plus 2 records";
         assertTrue(content.contains("Dr. Smith|Cardiology|Available|John Doe|"));
         assertTrue(content.contains("Dr. Lee|Neurology|Busy|Sarah Connor|"));
     }
 
     @Test
     void savePatientsData_validData_savesCorrectly() throws IOException {
-        // Prepare test data
         ArrayList<Patient> patients = new ArrayList<>();
         patients.add(new Patient("John Doe", "Headache",
                 "2025-01-01", "None",
@@ -59,11 +57,11 @@ class SaveDataTest {
                 "2025-01-02", "Allergies",
                 "Waiting", "None"));
 
-        // Execute method
         dataSaver.savePatientsData(patients);
 
-        // Verify file content
         String content = Files.readString(Paths.get(SaveData.PATIENT_FILE_PATH));
+        // New Java assert
+        assert content.split("\n").length == 3 : "Should have header plus 2 records";
         assertTrue(content.contains("John Doe|Headache|2025-01-01|None|In Treatment|Dr. Smith"));
         assertTrue(content.contains("Sarah Connor|Fever|2025-01-02|Allergies|Waiting|None"));
     }

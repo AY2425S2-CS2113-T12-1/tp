@@ -31,6 +31,13 @@ via a Command Line Interface (CLI).
 - [Display Hospital Summary Stats: `stats`](#hospital-summary-statistics-dashboard-stats)
 - [To Exit Application: `exit`](#to-exit-exit)
 
+## ! Note:
+For NAME, format MUST BE:
+*     Mr-Tan
+*     John-Doe
+*     Avery-Miller-Dove
+*     Dr-Hudson
+
 ### Show a list of commands: `help`
 Shows a list of commands for navigating around the database.
 Provides an explanation on how different commands work to bring out 
@@ -95,16 +102,7 @@ view doctor          | Displays each doctor's specific attribute one by one:
                      |                                                                                 
 list patient         | Displays all the patients in the patients class array that are yet to be discharged
 list doctor          | Displays all doctors available in the hospital                                  
-                     |                                                                                 
-list patient <ATRB>  | Displays a specific attribute for all patients.                                 
-                     | Available attributes:                                                           
-                     | 	• name                                                                         
-                     | 	• symptoms                                                                     
-                     | 	• timestamp                                                                    
-                     | 	• history                                                                      
-                     | 	• treatment                                                                    
-                     | 	• doctor                                                                       
-                     | Format: list patient <ATTRIBUTE>                                                
+                     |                                                                                                                               
                      |                                                                                 
 update patient       | Updates corresponding patient’s information on:                                 
                      | • <TREATMENT STATUS> whether they are still in queue or being treated           
@@ -289,23 +287,6 @@ Displays the doctor(s) with most patients treated. Includes patients currently b
 
 Format & Example usage: `popular visited doctor`
 
-### List patient attributes: `list patient <ATTRIBUTE>`
-Displays a specific attribute for all patients.<br>
-
-Available `<ATTRIBUTE>` values:
-- `name`
-- `symptoms`
-- `timestamp`
-- `history`
-- `treatment`
-- `doctor`
-
-Format: `list patient <ATTRIBUTE>`
-
-Example:
-- `list patient symptoms`
-- `list patient timestamp`
-
 ### View patient attributes: `view patient <ATTRIBUTE>`
 Displays each patient's specific attribute one by one with formatting.<br>
 
@@ -365,7 +346,6 @@ Format: `exit`
 * `doctor <NAME>` — View full doctor info
 * `list patient` — List all patients with full details
 * `list doctor` — List all doctors
-* `list patient <ATTRIBUTE>` — List specific patient attribute across all
 * `view patient <ATTRIBUTE>` — View each patient's attribute individually
 * `view doctor <ATTRIBUTE>` — View each doctor's attribute individually
 * `update patient <NAME> <TREATMENT STATUS> <DOCTOR ASSIGNED>` — Update a patient’s info

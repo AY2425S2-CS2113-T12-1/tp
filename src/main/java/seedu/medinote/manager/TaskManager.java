@@ -51,7 +51,7 @@ public class TaskManager {
             } else if (arguments.startsWith("doctor ")) {
                 DoctorUpdater.updateDoctor("update " + arguments);
             } else {
-                System.out.println("Please ONLY enter the new name, without parameters!");
+                System.out.println("Update doctor/patient attributes missing.");
             }
             break;
         case "discharge":
@@ -88,6 +88,10 @@ public class TaskManager {
             break;
 
         case "stats":
+            if (!arguments.isBlank()) {
+                System.out.println("Invalid command. The 'stats' command does not take any arguments.");
+                return;
+            }
             OverallStatistics.showStatistics();
             break;
 
@@ -102,4 +106,5 @@ public class TaskManager {
             break;
         }
     }
+
 }
