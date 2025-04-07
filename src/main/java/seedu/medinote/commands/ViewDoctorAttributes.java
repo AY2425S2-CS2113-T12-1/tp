@@ -50,7 +50,7 @@ public class ViewDoctorAttributes {
                 result = d.getAvailability();
                 break;
             case "treating":
-                result = d.getPatientBeingTreated();
+                result = d.getPatientsBeingTreated();
                 break;
             default:
                 System.out.println(LINE_BREAK);

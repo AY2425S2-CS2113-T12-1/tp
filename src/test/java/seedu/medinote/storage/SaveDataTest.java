@@ -53,10 +53,10 @@ class SaveDataTest {
         // Prepare test data
         ArrayList<Patient> patients = new ArrayList<>();
         patients.add(new Patient("John Doe", "Headache",
-                "2025-01-01", "None",
+                "2023-01-01", "None",
                 "In Treatment", "Dr. Smith"));
         patients.add(new Patient("Sarah Connor", "Fever",
-                "2025-01-02", "Allergies",
+                "2023-01-02", "Allergies",
                 "Waiting", "None"));
 
         // Execute method
@@ -64,8 +64,8 @@ class SaveDataTest {
 
         // Verify file content
         String content = Files.readString(Paths.get(SaveData.PATIENT_FILE_PATH));
-        assertTrue(content.contains("John Doe|Headache|2025-01-01|None|In Treatment|Dr. Smith"));
-        assertTrue(content.contains("Sarah Connor|Fever|2025-01-02|Allergies|Waiting|None"));
+        assertTrue(content.contains("John Doe|Headache|2023-01-01|None|In Treatment|Dr. Smith"));
+        assertTrue(content.contains("Sarah Connor|Fever|2023-01-02|Allergies|Waiting|None"));
     }
 
     @Test

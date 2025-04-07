@@ -13,7 +13,7 @@ public class DoctorTest {
         assertEquals("Doctor Test", testDoctor.getName());
         assertEquals("Specialisation Test", testDoctor.getSpecialisation());
         assertEquals("Availability Test", testDoctor.getAvailability());
-        assertEquals("Patients Test", testDoctor.getPatientBeingTreated());
+        assertEquals("Patients Test", testDoctor.getPatientsBeingTreated());
     }
 
     @Test
@@ -27,9 +27,9 @@ public class DoctorTest {
     @Test
     public void setCurrentPatient_newCurrentPatient_success() {
         Doctor testDoctor = new Doctor("NA", "NA", "NA", "NA");
-        assertEquals("NA", testDoctor.getPatientBeingTreated());
+        assertEquals("NA", testDoctor.getPatientsBeingTreated());
         testDoctor.setCurrentPatient("Siqiang");
-        assertEquals("Siqiang", testDoctor.getPatientBeingTreated());
+        assertEquals("Siqiang", testDoctor.getPatientsBeingTreated());
     }
 
 }

@@ -22,7 +22,7 @@ public class DoctorLister {
         System.out.println(doctorIndex + ". " + doctor.getName() + ":");
         System.out.println("\t>Specialisation: " + doctor.getSpecialisation());
         System.out.println("\t>Availability: " + doctor.getAvailability());
-        System.out.println("\t>Currently treating: " + doctor.getPatientBeingTreated());
+        System.out.println("\t>Currently treating: " + doctor.getPatientsBeingTreated());
         System.out.println(); // Add extra line break after each doctor
     }
 
