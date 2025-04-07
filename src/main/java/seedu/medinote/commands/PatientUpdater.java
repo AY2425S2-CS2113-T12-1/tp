@@ -24,6 +24,11 @@ public class PatientUpdater {
 
         String nameAndRest = input.substring(prefix.length()).trim();
 
+        if (nameAndRest.isBlank()) {
+            System.out.println("\nMissing arguments. Use format: update patient <name> <field=value>...");
+            return;
+        }
+
         // Extract full name and update fields from remainder
         String[] split = nameAndRest.split(" ");
         StringBuilder nameBuilder = new StringBuilder();
@@ -51,8 +56,8 @@ public class PatientUpdater {
 
         Patient target = findPatientByName(name);
         if (target == null) {
-            System.out.println("\nPatient \"" + name + "\" not found. If the name contains spaces, try using a hyphen" +
-                    " like \"John-Tan\".");
+            System.out.println("\nPatient \"" + name + "\" not found. If the name contains spaces," +
+                    " try using a hyphen like \"John-Tan\".");
             return;
         }
 
@@ -76,7 +81,9 @@ public class PatientUpdater {
                 target.setDoctorAssigned(value);
                 Doctor linkedDoctor = findDoctorByName(value);
                 if (linkedDoctor != null) {
-                    linkedDoctor.assignPatient(target.getName());
+                    String actualPatientName = target.getName().replaceFirst("(?i)^patient\s+",
+                            "").trim();
+                    linkedDoctor.assignPatient(actualPatientName);
                 }
                 updated = true;
                 break;
@@ -98,7 +105,7 @@ public class PatientUpdater {
         }
     }
 
-    private static Doctor findDoctorByName(String name) {
+    static Doctor findDoctorByName(String name) {
         ArrayList<Doctor> doctorList = DoctorListManager.getDoctorList();
         for (Doctor d : doctorList) {
             if (d.getName().equalsIgnoreCase(name)) {
@@ -108,10 +115,16 @@ public class PatientUpdater {
         return null;
     }
 
-    private static Patient findPatientByName(String name) {
+    static Patient findPatientByName(String inputName) {
         ArrayList<Patient> patientList = PatientListManager.getPatientList();
         for (Patient p : patientList) {
-            if (p.getName().equalsIgnoreCase(name)) {
+            String storedName = p.getName().trim();
+            // Strip "patient " prefix if present
+            if (storedName.toLowerCase().startsWith("patient ")) {
+                storedName = storedName.substring(8);  // remove 8 characters
+            }
+
+            if (storedName.equalsIgnoreCase(inputName)) {
                 return p;
             }
         }
@@ -120,7 +133,7 @@ public class PatientUpdater {
 
     //Parses a space-separated string of field=value pairs into a HashMap.
     //Only valid pairs with '=' are included.
-    private static HashMap<String, String> parseKeyValuePairs(String input) {
+    static HashMap<String, String> parseKeyValuePairs(String input) {
         HashMap<String, String> map = new HashMap<>();
         String[] pairs = input.split(" ");
 
@@ -131,4 +144,5 @@ public class PatientUpdater {
 
         return map;
     }
+
 }

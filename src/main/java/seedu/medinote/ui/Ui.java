@@ -86,17 +86,6 @@ public class Ui {
         printRow("list doctor", "Displays all doctors available in the hospital");
         printEmptyRow();
 
-        printRow("list patient <ATRB>", "Displays a specific attribute for all patients.");
-        printRow("", "Available attributes:");
-        printRow("", "\t" + ARROW_POINT + " name");
-        printRow("", "\t" + ARROW_POINT + " symptoms");
-        printRow("", "\t" + ARROW_POINT + " timestamp");
-        printRow("", "\t" + ARROW_POINT + " history");
-        printRow("", "\t" + ARROW_POINT + " treatment");
-        printRow("", "\t" + ARROW_POINT + " doctor");
-        printRow("", "Format: list patient <ATTRIBUTE>");
-        printEmptyRow();
-
         printRow("update patient", "Updates corresponding patient’s information on:");
         printRow("", ARROW_POINT + " <TREATMENT STATUS> whether they are still in queue or being treated");
         printRow("", ARROW_POINT + " <DOCTOR ASSIGNED> the doctor that they are assigned");
