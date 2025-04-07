@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class saveData {
+public class SaveData {
     public static final String DOCTOR_FILE_PATH = "./hospitalData/MediNote_Doctor_Data.txt";
     public static final String PATIENT_FILE_PATH = "./hospitalData/MediNote_Patient_Data.txt";
     private static final String FIELD_SEPARATOR = "|";
@@ -20,15 +20,18 @@ public class saveData {
      * @throws IOException If there's an error writing to file
      */
     public static void saveDoctorsData(ArrayList<Doctor> doctors) throws IOException {
-        seedu.medinote.storage.ensureFilesExist.ensureDoctorsFileExists();
+        EnsureFilesExist.ensureDoctorsFileExists();
 
         try (FileWriter fw = new FileWriter(DOCTOR_FILE_PATH)) {
+            // Write header
+            fw.write("name|specialisation|availability|patientsBeingTreated|numPatientsTreated" + LINE_SEPARATOR);
+
             for (Doctor doctor : doctors) {
                 String record = String.join(FIELD_SEPARATOR,
                         doctor.getName(),
                         doctor.getSpecialisation(),
                         doctor.getAvailability(),
-                        doctor.getPatientsBeingTreated(),
+                        doctor.getPatientBeingTreated(),
                         doctor.getNumPatientsTreated().toString());
                 fw.write(record + LINE_SEPARATOR);
             }
@@ -43,9 +46,11 @@ public class saveData {
      * @throws IOException If there's an error writing to file
      */
     public void savePatientsData(ArrayList<Patient> patients) throws IOException {
-        seedu.medinote.storage.ensureFilesExist.ensurePatientsFileExists();
+        EnsureFilesExist.ensurePatientsFileExists();
 
         try (FileWriter fw = new FileWriter(PATIENT_FILE_PATH)) {
+            // Write header
+            fw.write("name|symptoms|timeStamp|medicalHistory|treatmentStatus|doctorAssigned" + LINE_SEPARATOR);
             for (Patient patient : patients) {
                 String record = String.join(FIELD_SEPARATOR,
                         patient.getName(),

@@ -17,11 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SaveDataTest {
 
-    private saveData dataSaver;
+    private SaveData dataSaver;
 
     @BeforeEach
     void setUp() throws IOException {
-        dataSaver = new saveData();
+        dataSaver = new SaveData();
         TestUtil.createTestFiles();
     }
 
@@ -32,49 +32,47 @@ class SaveDataTest {
 
     @Test
     void saveDoctorsData_validData_savesCorrectly() throws IOException {
-        // Prepare test data
         ArrayList<Doctor> doctors = new ArrayList<>();
         doctors.add(new Doctor("Dr. Smith", "Cardiology",
                 "Available", "John Doe"));
         doctors.add(new Doctor("Dr. Lee", "Neurology",
                 "Busy", "Sarah Connor"));
 
-        // Execute method
-        saveData.saveDoctorsData(doctors);
+        SaveData.saveDoctorsData(doctors);
 
-        // Verify file content
-        String content = Files.readString(Paths.get(saveData.DOCTOR_FILE_PATH));
+        String content = Files.readString(Paths.get(SaveData.DOCTOR_FILE_PATH));
+        // New Java assert
+        assert content.lines().count() == 3 : "Should have header plus 2 records";
         assertTrue(content.contains("Dr. Smith|Cardiology|Available|John Doe|"));
         assertTrue(content.contains("Dr. Lee|Neurology|Busy|Sarah Connor|"));
     }
 
     @Test
     void savePatientsData_validData_savesCorrectly() throws IOException {
-        // Prepare test data
         ArrayList<Patient> patients = new ArrayList<>();
         patients.add(new Patient("John Doe", "Headache",
-                "2023-01-01", "None",
+                "2025-01-01", "None",
                 "In Treatment", "Dr. Smith"));
         patients.add(new Patient("Sarah Connor", "Fever",
-                "2023-01-02", "Allergies",
+                "2025-01-02", "Allergies",
                 "Waiting", "None"));
 
-        // Execute method
         dataSaver.savePatientsData(patients);
 
-        // Verify file content
-        String content = Files.readString(Paths.get(saveData.PATIENT_FILE_PATH));
-        assertTrue(content.contains("John Doe|Headache|2023-01-01|None|In Treatment|Dr. Smith"));
-        assertTrue(content.contains("Sarah Connor|Fever|2023-01-02|Allergies|Waiting|None"));
+        String content = Files.readString(Paths.get(SaveData.PATIENT_FILE_PATH));
+        // New Java assert
+        assert content.split("\n").length == 3 : "Should have header plus 2 records";
+        assertTrue(content.contains("John Doe|Headache|2025-01-01|None|In Treatment|Dr. Smith"));
+        assertTrue(content.contains("Sarah Connor|Fever|2025-01-02|Allergies|Waiting|None"));
     }
 
     @Test
     void saveDoctorsData_emptyList_savesEmptyFile() throws IOException {
         // Execute method with empty list
-        saveData.saveDoctorsData(new ArrayList<>());
+        SaveData.saveDoctorsData(new ArrayList<>());
 
         // Verify file is empty except for header
-        String content = Files.readString(Paths.get(saveData.DOCTOR_FILE_PATH));
+        String content = Files.readString(Paths.get(SaveData.DOCTOR_FILE_PATH));
         String[] lines = content.split(System.lineSeparator());
         assertEquals(1, lines.length); // Only header line
     }

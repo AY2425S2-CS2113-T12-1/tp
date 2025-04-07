@@ -112,7 +112,8 @@ public class DoctorViewer {
         System.out.println(NAME_POINT + doctor.getName());
         System.out.println(SPECIALISATION_POINT + doctor.getSpecialisation());
         System.out.println(AVAILABILITY_POINT + doctor.getAvailability());
-        System.out.println(CURRENTLY_TREATING_POINT + doctor.getPatientsBeingTreated());
+        System.out.println(CURRENTLY_TREATING_POINT + doctor.getPatientBeingTreated());
+        System.out.println(); // Add extra line break to match test expectations
     }
 
     private static void showExistingDoctors() {

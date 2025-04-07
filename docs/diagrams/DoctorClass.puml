@@ -1,0 +1,19 @@
+@startuml
++class Doctor {
+- name
+- specialisation
+- availability
+- patientBeingTreated
+- numPatientsTreated
+
+{method} + getName()
+{method} + getSpecialisation()
+{method} + getAvailability()
+{method} + getPatientsBeingTreated()
+{method} + getNumPatientsTreated)
+{method} + setAvailability()
+{method} + setCurrentPatient()
+}
+
+
+@enduml

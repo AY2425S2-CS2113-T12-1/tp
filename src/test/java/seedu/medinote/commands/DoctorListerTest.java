@@ -43,7 +43,7 @@ public class DoctorListerTest {
         doctorList.add(new Doctor("Stark", "Eye", "Busy", "NA"));
 
         DoctorLister doctorLister = new DoctorLister();
-        doctorLister.listAllDoctors(doctorList);
+        DoctorLister.listAllDoctors(doctorList);
 
         System.setOut(System.out);
 
@@ -55,7 +55,7 @@ public class DoctorListerTest {
         ArrayList<Doctor> doctorList = new ArrayList<>();
 
         DoctorLister doctorLister = new DoctorLister();
-        doctorLister.listAllDoctors(doctorList);
+        DoctorLister.listAllDoctors(doctorList);
 
         System.setOut(System.out);
 

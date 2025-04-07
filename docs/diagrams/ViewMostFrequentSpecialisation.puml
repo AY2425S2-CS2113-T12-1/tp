@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+actor User
+participant ":Main"
+participant ":TaskManager"
+participant ":ViewDoctorFrequencies"
+participant ":DoctorListManager"
+participant ":Doctor"
+
+User -> ":Main" : "popular doctor type"
+activate ":Main"
+
+":Main" -> ":TaskManager" : checkCommand("popular doctor type")
+activate ":TaskManager"
+
+":TaskManager" -> ":ViewDoctorFrequencies" : viewMostFrequentSpecialisation("Michael")
+activate ":ViewDoctorFrequencies"
+
+":ViewDoctorFrequencies" -> ":DoctorListManager" : getDoctorList()
+activate ":DoctorListManager"
+
+":DoctorListManager" --> ":ViewDoctorFrequencies"
+deactivate ":DoctorListManager"
+
+loop Every doctor in doctorList
+    ":ViewDoctorFrequencies" --> ":Doctor" : getSpecialisation()
+    activate ":Doctor"
+    ":Doctor" --> ":ViewDoctorFrequencies"
+    deactivate ":Doctor"
+end
+
+":ViewDoctorFrequencies" --> ":TaskManager"
+deactivate ":ViewDoctorFrequencies"
+
+":TaskManager" --> ":Main"
+deactivate ":TaskManager"
+
+":Main" --> User : Prints the type of doctor most frequently visted.
+deactivate ":Main"
+@enduml
