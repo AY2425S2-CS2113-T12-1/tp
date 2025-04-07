@@ -2,7 +2,7 @@ package seedu.medinote.commands;
 
 import seedu.medinote.person.Doctor;
 import seedu.medinote.manager.DoctorListManager;
-import seedu.medinote.storage.saveData;
+import seedu.medinote.storage.SaveData;
 
 public class DoctorUpdater {
     public static void updateDoctor(String doctorDetails) {
@@ -29,7 +29,7 @@ public class DoctorUpdater {
         System.out.println("Doctor information updated successfully.");
 
         try {
-            saveData.saveDoctorsData(DoctorListManager.getDoctorList());
+            SaveData.saveDoctorsData(DoctorListManager.getDoctorList());
         } catch (Exception e) {
             System.out.println("Error saving doctor data: " + e.getMessage());
         }

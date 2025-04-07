@@ -9,13 +9,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class loadData {
+public class LoadData {
     private static final String FIELD_SEPARATOR = "\\|"; // Escape pipe for regex
     private static final int DOCTOR_FIELD_COUNT = 5;
     private static final int PATIENT_FIELD_COUNT = 6;
 
     /**
-     * Loads doctor data from the storage file and returns an ArrayList of valid Doctor objects.
+     * Loads doctor data from the storage file with strict format validation
+     * Returns an ArrayList of valid Doctor objects
      * This method will:
      * - Skip any malformed lines while logging errors
      * - Handle empty lines gracefully
@@ -24,28 +25,31 @@ public class loadData {
      *
      * @return ArrayList containing all successfully loaded Doctor objects
      * @throws IOException if there's an error accessing the file
+     * @throws DataFormatException if any line has incorrect field count
      */
-    public ArrayList<Doctor> loadDoctorData() throws IOException {
+    public ArrayList<Doctor> loadDoctorData() throws IOException, DataFormatException {
         ArrayList<Doctor> doctors = new ArrayList<>();
+        boolean hasFormatError = false;
+        StringBuilder errorMessages = new StringBuilder();
 
-        if (!Files.exists(Paths.get(saveData.DOCTOR_FILE_PATH))) {
+        if (!Files.exists(Paths.get(SaveData.DOCTOR_FILE_PATH))) {
             return doctors;
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(saveData.DOCTOR_FILE_PATH))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(SaveData.DOCTOR_FILE_PATH))) {
             String line;
             int lineNumber = 0;
 
-            // Fixed header handling
+            // Header handling
             br.mark(1000);
             String firstLine = br.readLine();
             boolean hasHeader = (firstLine != null && firstLine.startsWith("name|"));
 
             if (!hasHeader) {
                 br.reset();
-                lineNumber = 0;  // Reset counter if no header
+                lineNumber = 0;
             } else {
-                lineNumber = 1;  // Header is line 1
+                lineNumber = 1;
             }
 
             while ((line = br.readLine()) != null) {
@@ -55,13 +59,15 @@ public class loadData {
                 try {
                     String[] fields = line.split(FIELD_SEPARATOR, -1);
 
+                    // Strict format validation
                     if (fields.length != DOCTOR_FIELD_COUNT) {
-                        System.err.printf("Invalid doctor data at line %d (expected %d fields): %s%n",
-                                lineNumber, DOCTOR_FIELD_COUNT, line);
-                        continue;
+                        hasFormatError = true;
+                        errorMessages.append(String.format(
+                                "Line %d: Expected %d fields, found %d - %s%n",
+                                lineNumber, DOCTOR_FIELD_COUNT, fields.length, line));
                     }
 
-                    // Field validation
+                    // Field content validation
                     if (fields[0].trim().isEmpty()) {
                         throw new IllegalArgumentException("Doctor name cannot be empty");
                     }
@@ -70,18 +76,24 @@ public class loadData {
                     }
 
                     doctors.add(new Doctor(
-                            fields[0].trim(), // name
-                            fields[1].trim(), // specialisation
-                            fields[2].trim(), // availability
-                            fields[3].trim()  // patientsBeingTreated
+                            fields[0].trim(),
+                            fields[1].trim(),
+                            fields[2].trim(),
+                            fields[3].trim()
                     ));
 
-                } catch (Exception e) {
-                    System.err.printf("Skipping line %d: %s (%s)%n",
-                            lineNumber, line, e.getMessage());
+                } catch (IllegalArgumentException e) {
+                    errorMessages.append(String.format(
+                            "Line %d: %s - %s%n", lineNumber, e.getMessage(), line));
                 }
             }
         }
+
+        if (hasFormatError) {
+            System.err.print(errorMessages.toString());
+            throw new DataFormatException("Invalid doctor data format detected");
+        }
+
         System.out.printf("Loaded %d valid doctor records%n", doctors.size());
         return doctors;
     }
@@ -100,11 +112,11 @@ public class loadData {
     public ArrayList<Patient> loadPatientData() throws IOException {
         ArrayList<Patient> patients = new ArrayList<>();
 
-        if (!Files.exists(Paths.get(saveData.PATIENT_FILE_PATH))) {
+        if (!Files.exists(Paths.get(SaveData.PATIENT_FILE_PATH))) {
             return patients;
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(saveData.PATIENT_FILE_PATH))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(SaveData.PATIENT_FILE_PATH))) {
             String line;
             int lineNumber = 0;
 
@@ -130,7 +142,6 @@ public class loadData {
                     if (fields.length != PATIENT_FIELD_COUNT) {
                         System.err.printf("Malformed data at line %d (expected %d fields): %s%n",
                                 lineNumber, PATIENT_FIELD_COUNT, line);
-                        continue;
                     }
 
                     patients.add(new Patient(
