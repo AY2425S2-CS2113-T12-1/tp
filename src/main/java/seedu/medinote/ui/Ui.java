@@ -30,7 +30,7 @@ public class Ui {
         printRow("register", "Registers new patient with necessary details:");
         printRow("", ARROW_POINT + " <NAME>");
         printRow("", ARROW_POINT + " <SYMPTOMS>");
-        printRow("", ARROW_POINT + " <ADMISSION TIME>");
+        printRow("", ARROW_POINT + " <ADMISSION TIME> in yyyy-MM-dd HH:mm:ss format");
         printRow("", ARROW_POINT + " <MEDICAL HISTORY>");
         printRow("", "Format: register <NAME> / <SYMPTOMS> / <ADMISSION TIME> / <MEDICAL HISTORY>");
         printEmptyRow();

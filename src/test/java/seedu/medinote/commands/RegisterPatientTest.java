@@ -11,7 +11,7 @@ public class RegisterPatientTest {
 
     @Test
     public void testRegisterPatient_correctNewPatient_successfulRegistration() {
-        String input = "Patient 1 / cough / 13:42 / peanut allergy";
+        String input = "Patient 1 / cough / 2025-01-30 23:59:59 / peanut allergy";
 
         PrintStream out = System.out;
         ByteArrayOutputStream output = new ByteArrayOutputStream();
