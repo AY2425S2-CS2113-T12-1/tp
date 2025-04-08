@@ -10,7 +10,7 @@ CS2113 Teaching Team
 
 #### Setting up
 ```
-| Tool         | Recommended Version Notes | Notes                                |
+| Tool         | Recommended Version Notes  | Notes                                |
 |--------------|----------------------------|--------------------------------------|
 | Java JDK     | 17 or higher               | Required for compiling and running   |
 | IntelliJ IDEA| 2021.2+                    | Preferred IDE for full Java support  |
