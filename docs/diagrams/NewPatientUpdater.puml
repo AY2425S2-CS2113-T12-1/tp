@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+actor User
+participant ":Main"
+participant ":TaskManager"
+participant ":PatientUpdater"
+participant ":PatientListManager"
+
+User -> ":Main" : "update patient John Tan / status=In Prog / doctor=Dr Lim"
+activate ":Main"
+
+":Main" -> ":TaskManager" : checkCommand("update patient ... doctor=Dr Lim")
+activate ":TaskManager"
+
+":TaskManager" -> ":PatientUpdater" : updatePatient(John Tan / ... / doctor=Dr Lim)
+activate ":PatientUpdater"
+
+":PatientUpdater" -> ":PatientListManager" : getPatientList()
+activate ":PatientListManager"
+
+":PatientUpdater" <-- ":PatientListManager" : ArrayList<Patient> patientList
+deactivate ":PatientListManager"
+
+":PatientUpdater" -> ":PatientUpdater" : searchForPatient()
+activate ":PatientUpdater"
+
+":PatientUpdater" --> ":PatientUpdater"
+deactivate ":PatientUpdater"
+
+":PatientUpdater" -> ":PatientUpdater" : changeAttributes()
+activate ":PatientUpdater"
+
+loop Every targeted attribute
+    alt isValidAttributeFormat() shows invalid format
+        note right : continue; (skip to next loop cycle)
+    else isValidAttributeFormat() shows valid format
+        alt isValidAttributeSpecified() shows invalid attributes
+            note right : continue; (skip to next loop cycle)
+        else
+            ":PatientUpdater" -> ":PatientUpdater" : changeThisAttribute()
+            activate ":PatientUpdater"
+            ":PatientUpdater" --> ":PatientUpdater"
+            deactivate ":PatientUpdater"
+        end
+    end
+end
+
+":TaskManager" <-- ":PatientUpdater"
+deactivate ":PatientUpdater"
+
+":Main" <-- ":TaskManager"
+deactivate ":TaskManager"
+
+User <-- ":Main" : patient John Tan information updated
+deactivate ":Main"
+
+@enduml

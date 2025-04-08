@@ -100,6 +100,18 @@ In MediNote, we have two main person classes: `PATIENT` and `DOCTOR`.
 In each of the classes, there are methods to get every attribute. Some methods set certain attributes 
 that can be updated in the PatientUpdater and DoctorUpdater classes respectively.
 
+### Manager Components<br>
+The Manager component is made up of the `DoctorListManager`, `PatientListManager` and `TaskManager` classes.  
+The list manager classes handle additions and deletions of doctors and patients.  
+The `TaskManager` class handles function calls to corresponding classes whenever the user inputs a command.
+
+![Class Diagram of Manager Components](./pictures/ManagerClasses.png)
+
+For `list patient` and `list doctor` commands, the `TaskManager` class directly accesses methods in the list
+manager classes.  
+However, in most cases, methods in the list managers such as `getPatientList` and `getDoctorList` are accessed
+by methods in the Commands component.
+
 ### Management of Tracked Doctors
 
 The `DoctorListManager` class main purpose is to maintain `ArrayList<Doctor> doctorList`, 
@@ -123,6 +135,52 @@ The <i>Sequence Diagram</i> below shows how the components interact with each ot
  issues the command `list doctor`
 
 ![Sequence Diagram of list doctor](./pictures/DoctorListManagerSequenceExample.png)
+
+### Management of Tracked Patients
+
+The `PatientListManager` class main purpose is to keep track of patients with `ArrayList<Patient> patientList`.  
+This class contains methods that directly modifies the state of `patientList`.  
+
+1. **Adding New Patients:**
+    - `addPatient()` called by `RegisterPatient` class takes in one `Patient` type and adds it to `patientList`.
+
+2. **Removing Existing Patients**
+    - `removePatient()` called by `discahrgePatient` class takes in a patient's name and removes it from `patientList`.
+
+3. **Listing Existing Patients**
+    - `TaskManager` class calls `DoctorListManager` contains `listDoctors()` which tells `DoctorLister` to print all patients.
+
+The sequence diagram that illustrates how the command `list patient` passes through the code is the same as it is depicted
+above for `list doctor`, just with different method and class names to represent patients better.
+
+### Listing Specific Patients Only
+
+The `PatientViewer` class handles the event where the user wants to only list _specific_ patients along with their attributes.  
+In case the user is unsure of how to format the command, they can just input `patient` to display the correct format for `patient` command.  
+
+Format: `patient <NAME_1> / ... / <NAME_X>`  
+
+The `PatientViewer` class only depends on `PatientListManager` to access the list of patients, so that it can verify whether the 
+input patients specified by the viewer actually exist within the hospital.
+
+Below is an example where the user inputs `patient porcupine / hedgehog` and both patients exist in hospital.
+
+![Sequence Diagram for Listing Specific Patients Only](./pictures/PatientViewerFunctionCall.png)
+
+### Listing Specific Doctors Only
+
+The `DoctorViewer` class handles the event where the user wants to only list _specific_ doctors along with their attributes.  
+In the case the user is unsure of how to format the command, they can just input `doctor` to display the correct format for `doctor` command.
+
+Format: `doctor <NAME_1> / ... / <NAME_X>`
+
+The `DoctorViewer` class only depends on `DoctorListManager` to access the list of doctors, so that it can verify whether the 
+input doctors specified by the viewer actually exists within the hospital.
+
+For example, the user can input `doctor elongated / muskrat`, which we assume are existing doctors. The command will then list 
+the details of doctors `elongated` and `muskrat` for the user.  
+The sequence diagram for _Listing Specific Doctors Only_ is the same for this, just with changes to the method names to better represent 
+listing doctors instead.
 
 ### Registration of New Patients into Hospital
 The main purpose of the `RegisterPatient` class is to admit new patients into the hospital.<br>
@@ -174,8 +232,6 @@ loads doctor and patient data, and prepares the application for user input.
 
 ![ApplicationStartupLoadData.png](diagrams/ApplicationStartupLoadData.png)
 
-
-
 ### Application Shutdown Process (Saving Data)
 
 This sequence diagram describes the data-saving process when the application exits. Upon receiving an exit command, the system saves the doctor and patient data before shutting down.
@@ -193,63 +249,51 @@ This sequence diagram describes the data-saving process when the application exi
 
 ![ApplicationShutdownSaveData.png](diagrams/ApplicationShutdownSaveData.png)
 
-## Product scope
-### Target user profile
-
-The target users are hospital management staff.
-MediNote provides a way to compile the list of patients and which patients the doctors are assigned to, and has features to help edit and keep track of changes in the hospital.
-
-
-### Value proposition
-
-MediNote provides a way to easily track and edit patient and doctor assignments in the hospital.
-MediNote aims to improve the management capacity and efficiency of hospitals.
-
 ##  PatientUpdater
 
-The `PatientUpdater` class allows users to dynamically update a patient's information through CLI input. It accepts multiple key-value fields and ensures consistency by also updating the assigned doctor record if needed.
-![Sequence_PatientUpdater.png](diagrams/Sequence_PatientUpdater.png)
+The `PatientUpdater` class allows users to dynamically update a patient's information through CLI input. 
+It accepts some available fields to target the correct patient attribute.
+![PatientUpdater sequence diagram](./pictures/NewPatientUpdater.png)
 ### Key Method:
 
 #### `updatePatient(String input)`
 Parses commands in the format:
 ```
-update patient John Tan status=In-Progress doctor=Dr Lim
+John Tan / status=In Progress / doctor=Dr Lim
 ```
 It extracts the patient name and fields to be updated. It then:
 
 - Finds the patient from `PatientListManager`
 - Updates the patient's `treatmentStatus` or `assignedDoctor`
-- If a doctor is assigned, it also updates the doctor's record
-- Changes are persisted using `saveData.savePatientsData(...)`
 
 ### Supporting Methods:
-- `findPatientByName(...)`: Case-insensitive lookup of the target patient.
-- `findDoctorByName(...)`: Used to fetch the doctor object for assignment.
-- `parseKeyValuePairs(...)`: Parses dynamic field inputs into a `HashMap`.
+- `isValidAttributeSpecified(...)`: Checks whether targeted attributes are specified correctly.
+- `isValidAttributeFormat(...)`: Checks formatting of targeting attributes.
+- `searchForPatient(...)`: Searches for patient in `patientList`.
+- `changeAttributes(...)`: Changes targeted attributes after passing input formatting checks mentioned above.
 
 ## DoctorUpdater
 
 The `DoctorUpdater` class allows the user to modify existing doctor records by updating their availability and current patients being treated.
-![Sequence_DoctorUpdater.png](diagrams/Sequence_DoctorUpdater.png)
+Its sequence diagram is the same as the one above in `PatientUpdater` class, albeit with changes to method names to better
+represent the `DoctorUpdater` class.
 ### Key Method:
 
 #### `updateDoctor(String input)`
 Accepts input in this format:
 ```
-update doctor Dr Tan availability=Busy treating=Mr A
+Dr Tan / availability=Busy / assignment=Mr A
 ```
-It:
+It extracts the doctor name and fields to be updated. It then:
 
 - Finds the doctor by name
-- Updates their availability and patient-treatment fields
-- Saves changes using `saveData.saveDoctorsData(...)`
+- Updates their availability and currently-treating fields
 
 ### Supporting Methods:
-- `findDoctorByName(...)`: Searches the global doctor list using a case-insensitive match.
-- `parseKeyValuePairs(...)`: Validates and extracts field updates.
-
----
+- `isValidAttributeSpecified(...)`: Checks whether targeted attributes are specified correctly.
+- `isValidAttributeFormat(...)`: Checks formatting of targeting attributes.
+- `searchForDoctor(...)`: Searches for doctor in `doctorList`.
+- `changeAttributes(...)`: Changes targeted attributes after passing input formatting checks mentioned above.
 
 ## ViewPatientAttributes
 
@@ -346,6 +390,19 @@ It:
 - Prints the doctor(s) with most patients treated and currently treating
 ---
 ![Sequence_OverallStatistics.png](diagrams/Sequence_OverallStatistics.png)
+
+## Product scope
+### Target user profile
+
+The target users are hospital management staff.
+MediNote provides a way to compile the list of patients and which patients the doctors are assigned to, and has features to help edit and keep track of changes in the hospital.
+
+
+### Value proposition
+
+MediNote provides a way to easily track and edit patient and doctor assignments in the hospital.
+MediNote aims to improve the management capacity and efficiency of hospitals.
+
 ## User Stories
 
 | Version | As a ...              | I want to ...                                    | So that I can ...                                                 |

@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+actor User
+participant ":Main"
+participant ":TaskManager"
+participant ":PatientViewer"
+participant ":PatientListManager"
+
+User -> ":Main" : "patient porcupine / hedgehog"
+activate ":Main"
+
+":Main" -> ":TaskManager" : checkCommand("patient porcu...gehog")
+activate ":TaskManager"
+
+":TaskManager" -> ":PatientViewer" : viewPatient(porcu...gehog)
+activate ":PatientViewer"
+
+alt targetNames is empty
+    ":PatientViewer" -> ":PatientViewer" : showExistingPatients()
+    activate ":PatientViewer"
+    ":PatientViewer" --> ":PatientViewer"
+    deactivate ":PatientViewer"
+else targetNames is not empty
+    ":PatientViewer" -> ":PatientViewer" : searchViewablePatients(targetNames)
+    activate ":PatientViewer"
+
+    ":PatientViewer" -> ":PatientListManager" : getPatientList()
+    ":PatientViewer" <-- ":PatientListManager" : ArrayList<Patient> patientList
+    ":PatientViewer" -> ":PatientViewer" : findValidViewablePatientIndexes()
+    activate ":PatientViewer"
+    ":PatientViewer" --> ":PatientViewer" : ArrayList<Integer> nameIndexList
+    deactivate ":PatientViewer"
+    ":PatientViewer" -> ":PatientViewer" : printViewablePatients()
+    activate ":PatientViewer"
+    ":PatientViewer" --> ":PatientViewer"
+    deactivate ":PatientViewer"
+
+
+    ":PatientViewer" --> ":PatientViewer"
+    deactivate ":PatientViewer"
+end
+
+":TaskManager" <-- ":PatientViewer"
+deactivate ":PatientViewer"
+
+":Main" <-- ":TaskManager"
+deactivate ":TaskManager"
+
+User <-- ":Main" : View specific patients
+deactivate ":Main"
+
+@enduml
