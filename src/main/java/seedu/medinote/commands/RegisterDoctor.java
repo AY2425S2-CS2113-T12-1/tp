@@ -99,7 +99,7 @@ public class RegisterDoctor {
         return sentence;
     }
 
-    public static boolean isNameInList(String name) {
+    private static boolean isNameInList(String name) {
         ArrayList<Doctor> doctors = DoctorListManager.getDoctorList();
         for (Doctor d : doctors) {
             if (d.getName().equalsIgnoreCase(name)) {

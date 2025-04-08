@@ -230,7 +230,7 @@ loads doctor and patient data, and prepares the application for user input.
 4. **Application Readiness:**
     - Once all necessary data is loaded, the application signals readiness for user input.
 
-![ApplicationStartupLoadData.png](diagrams/ApplicationStartupLoadData.png)
+![ApplicationStartupLoadData.png](pictures/ApplicationStartupLoadData.png)
 
 ### Application Shutdown Process (Saving Data)
 
@@ -247,7 +247,7 @@ This sequence diagram describes the data-saving process when the application exi
 3. **Application Shutdown:**
     - Once all data is saved, the application exits gracefully.
 
-![ApplicationShutdownSaveData.png](diagrams/ApplicationShutdownSaveData.png)
+![ApplicationShutdownSaveData.png](pictures/ApplicationShutdownSaveData.png)
 
 ##  PatientUpdater
 
@@ -298,7 +298,7 @@ It extracts the doctor name and fields to be updated. It then:
 ## ViewPatientAttributes
 
 The `ViewPatientAttributes` class enables users to filter and view a specific attribute across all patients. This is useful for summarizing patient information quickly.
-![Sequence_ViewPatient.png](diagrams/Sequence_ViewPatient.png)
+![Sequence_ViewPatient.png](pictures/Sequence_ViewPatient.png)
 ### Key Method:
 
 #### `viewPatientAttribute(String input)`
@@ -318,7 +318,7 @@ For each patient, it prints the value of the selected field in a tabulated manne
 ## ViewDoctorAttributes
 
 This class provides a filtered view of selected attributes from all doctor records for quick summary inspection.
-![Sequence_ViewDoctor.png](diagrams/Sequence_ViewDoctor.png)
+![Sequence_ViewDoctor.png](pictures/Sequence_ViewDoctor.png)
 ### Key Method:
 
 #### `viewDoctorAttribute(String input)`
@@ -389,7 +389,7 @@ It:
 - Goes through the list, getting number of patients the doctor has treated and finding the max # treated
 - Prints the doctor(s) with most patients treated and currently treating
 ---
-![Sequence_OverallStatistics.png](diagrams/Sequence_OverallStatistics.png)
+![Sequence_OverallStatistics.png](pictures/Sequence_OverallStatistics.png)
 
 ## Product scope
 ### Target user profile
