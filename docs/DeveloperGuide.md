@@ -10,15 +10,13 @@ CS2113 Teaching Team
 
 #### Setting up
 
----------------------------------------------------------------------------------------------
-| Tool                | Recommended Version Notes   | Notes                                   
-|---------------------|-----------------------------|----------------------------------------
-| Java JDK            | 17 or higher                | Required for compiling and running
-| IntelliJ IDEA       | 2021.2+                     | Preferred IDE for full Java support
-| JUnit 5             | 5.x                         | For running the test suite
-| Git                 | Latest                      | For version control and collaboration   
-| Gradle              | Latest                      | For dependency and build management     
-
+| Tool         | Recommended Version Notes | Notes                                |
+|--------------|----------------------------|--------------------------------------|
+| Java JDK     | 17 or higher               | Required for compiling and running   |
+| IntelliJ IDEA| 2021.2+                    | Preferred IDE for full Java support  |
+| JUnit 5      | 5.x                        | For running the test suite           |
+| Git          | Latest                     | For version control and collaboration|
+| Gradle       | Latest                     | For dependency and build management  |
 
 #### Getting started
 
