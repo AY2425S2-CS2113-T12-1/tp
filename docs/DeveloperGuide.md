@@ -9,7 +9,7 @@ CS2113 Teaching Team
 ### Setting up the project in your computer
 
 #### Setting up
- ----------------------------------------------------------------------------------
+```
 | Tool         | Recommended Version Notes  | Notes                                |
 |--------------|----------------------------|--------------------------------------|
 | Java JDK     | 17 or higher               | Required for compiling and running   |
@@ -17,7 +17,7 @@ CS2113 Teaching Team
 | JUnit 5      | 5.x                        | For running the test suite           |
 | Git          | Latest                     | For version control and collaboration|
 | Gradle       | Latest                     | For dependency and build management  |
-
+```
 #### Getting started
 
 1. **Fork this [repo](https://github.com/AY2425S2-CS2113-T12-1/tp.git)**
