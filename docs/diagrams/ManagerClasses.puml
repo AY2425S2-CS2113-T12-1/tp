@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package "Manager" {
+    class TaskManager {
+        {static} void checkCommand()
+    }
+
+    class DoctorListManager {
+        {static} doctorList: ArrayList
+        {static} ArrayList getDoctorList()
+        {static} void addDoctor()
+        {static} void removeDoctor()
+        {static} void clearDoctorList()
+    }
+
+    class PatientListManager {
+        {static} patientList: ArrayList
+        {static} ArrayList getPatientList()
+        {static} void addPatient()
+        {static} void removePatient()
+        {static} void clearPatientList()
+    }
+}
+
+package "Main" {
+}
+
+package "Commands" {
+
+}
+
+"Main" --> TaskManager
+TaskManager --> PatientListManager
+TaskManager --> DoctorListManager
+TaskManager --> "Commands"
+"Commands" -up-> PatientListManager
+"Commands" -up-> DoctorListManager
+
+@enduml
