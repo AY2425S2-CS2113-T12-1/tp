@@ -114,7 +114,7 @@ public class RegisterPatient {
         return sentence;
     }
 
-    public static boolean isNameInList(String name) {
+    private static boolean isNameInList(String name) {
         ArrayList<Patient> patients = PatientListManager.getPatientList();
         for (Patient p : patients) {
             if (p.getName().equalsIgnoreCase(name)) {
